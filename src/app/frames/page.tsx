@@ -35,47 +35,29 @@ const projects = [
   {
     num: "01",
     year: "2025",
-    name: "Teragon",
-    sub: "spirits, still life.",
-    tags: "PRODUCT · SPIRITS · UAE LAUNCH",
-    chips: ["Hero stills", "Lifestyle", "Packaging texture", "Web + paid social"],
-    desc: "A 4-day shoot for a small-batch Sri Lankan rum entering the UAE market. Hero stills for the PDP, lifestyle for paid social, and a single texture frame that became the front-of-pack imagery. Every shot scoped against a usage map before we touched a camera.",
+    name: "Opotique.lk",
+    sub: "content, captured.",
+    tags: "CONTENT · FASHION · BOUTIQUE",
+    chips: ["Content shoot", "Editorial", "Social-ready"],
+    desc: "A content shoot for one of Sri Lanka's leading fashion boutiques. We built a library of editorial and product frames shot for use across their e-commerce, paid social, and in-store touchpoints — every frame mapped to a channel before we arrived on set.",
   },
   {
     num: "02",
     year: "2025",
-    name: "Hema's Atelier",
-    sub: "SS25 lookbook.",
-    tags: "FASHION · LOOKBOOK · WHOLESALE",
-    chips: ["Editorial", "28-page lookbook", "Wholesale ready"],
-    desc: "A linen-led womenswear label out of Colombo selling into Milan boutiques. We shot the SS25 collection across two days at a colonial-era villa, edited a 28-page buyer book, and styled six anchor frames for the e-commerce relaunch.",
+    name: "Lacasa",
+    sub: "spaces, shot.",
+    tags: "CONTENT · SHOOT · INTERIOR",
+    chips: ["On-location shoot", "Lifestyle", "Content library"],
+    desc: "An on-location shoot for Lacasa. We framed the space to sell a feeling — wide anchors for the hero, detail shots for social, and lifestyle frames that put the brand in context.",
   },
   {
     num: "03",
-    year: "2024",
-    name: "Lunara",
-    sub: "a brand from zero.",
-    tags: "BRAND IDENTITY · SKINCARE · LAUNCH",
-    chips: ["Naming + voice", "Identity system", "Packaging", "Launch content"],
-    desc: "A plant-led skincare line built from a name and a moodboard. We delivered the full system: identity, voice, packaging, six campaign frames, and a Shopify launch. The cleanser sold its first 1,000 units in eleven days.",
-  },
-  {
-    num: "04",
-    year: "2024",
-    name: "Caravel",
-    sub: "opening day, captured.",
-    tags: "CAMPAIGN · CAFÉ · COLOMBO 7",
-    chips: ["Photo essay", "Menu shoot", "Staff portraits", "Opening campaign"],
-    desc: "A specialty roaster opening their first physical location. Two-week content sprint covering the build-out, the menu shoot, the staff portraits, and the opening-week trade. A photo essay that did the work of a launch campaign and a press kit at once.",
-  },
-  {
-    num: "05",
-    year: "2023",
-    name: "VetmaxPharma",
-    sub: "before & after.",
-    tags: "PACKAGING · PHARMACEUTICAL · COLOMBO",
-    chips: ["Packaging system", "14 SKUs", "+18% sell-through"],
-    desc: "A 30-year-old vet pharma label asked us to refresh 14 product cartons without losing the trust their distributors had built. We re-shot every SKU, redrew the system, and let the old palette stay. Sell-through to clinics rose 18% in the first quarter.",
+    year: "2025",
+    name: "Mora",
+    sub: "interface, designed.",
+    tags: "UI DESIGN · DIGITAL · PRODUCT",
+    chips: ["UI design", "Component system", "Figma delivery"],
+    desc: "UI design for Mora — a clean, considered interface built in Figma and delivered as a component system. Every screen scoped against real user flows, not moodboards.",
   },
 ];
 
@@ -137,13 +119,13 @@ const services = [
 ];
 
 const stats = [
-  { v: "18", u: "+", k: "Brands shot & identified" },
-  { v: "2,400", u: "+ frames", k: "Delivered to clients in 24 months" },
-  { v: "11", u: "days", k: "Average kick-off to delivery" },
-  { v: "3", u: "countries", k: "Shoot locations · SL · UAE · IN" },
+  { v: "3", u: "", k: "Projects completed" },
+  { v: "2", u: "", k: "Content shoots delivered" },
+  { v: "1", u: "", k: "UI design system shipped" },
+  { v: "3", u: "", k: "Disciplines · content · editorial · UI" },
 ];
 
-const filterPills = ["All work", "Product photography", "Brand identity", "Lookbooks", "Campaign", "Packaging"];
+const filterPills = ["All work", "Content shoot", "UI design", "Editorial"];
 
 export default function FramesPage() {
   return (
@@ -227,88 +209,30 @@ export default function FramesPage() {
             </button>
           ))}
           <span className="ml-auto text-[12px] font-mono text-black/30 hidden md:block">
-            05 of 18 shown · request the full reel →
+            03 projects shown · more on the way →
           </span>
         </motion.div>
       </section>
 
-      {/* ── PROJECT 01 — TERAGON ── */}
+      {/* ── PROJECT 01 — Opotique.LK ── */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
         <FadeIn><ProjectHead p={projects[0]} /></FadeIn>
         <FadeIn delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-4">
-            <Slot label="Hero bottle shot (4:5)" style={{ aspectRatio: "4/5" }} className="w-full" />
-            <div className="flex flex-col gap-4">
-              <Slot label="Lifestyle / pour shot" style={{ aspectRatio: "4/3" }} className="w-full" />
-              <Slot label="Label macro / texture" style={{ aspectRatio: "4/3" }} className="w-full" />
-            </div>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* ── PROJECT 02 — HEMA'S ATELIER ── */}
-      <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
-        <FadeIn><ProjectHead p={projects[1]} /></FadeIn>
-        <FadeIn delay={0.1}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Slot label="Lookbook cover (3:4)" style={{ aspectRatio: "3/4" }} className="w-full" />
+            <Slot label="Hero editorial frame (3:4)" style={{ aspectRatio: "3/4" }} className="w-full" />
             <Slot label="Editorial frame (3:4)" style={{ aspectRatio: "3/4" }} className="w-full" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-            {["Detail shot", "Fabric macro", "Styling beauty", "Behind the scenes"].map((l) => (
+            {["Detail shot", "Styling close-up", "Lifestyle frame", "Behind the scenes"].map((l) => (
               <Slot key={l} label={l} style={{ aspectRatio: "1/1" }} className="w-full" />
             ))}
           </div>
         </FadeIn>
       </section>
 
-      {/* ── PROJECT 03 — LUNARA (dark card) ── */}
+      {/* ── PROJECT 02 — LACASA (asymmetric mosaic) ── */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
-        <FadeIn><ProjectHead p={projects[2]} /></FadeIn>
-        <FadeIn delay={0.1}>
-          <div className="bg-[#1a1a17] rounded-3xl p-7 md:p-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["Bottle / packshot 01", "Bottle / packshot 02", "Brand context / ingredient"].map((l) => (
-                <div key={l} className="bg-[#2a2a24] rounded-xl flex items-center justify-center" style={{ aspectRatio: "3/4" }}>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/20 text-center px-4">{l}</span>
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Wordmark</p>
-                <p className="text-[32px] italic font-light text-white tracking-tight leading-none">
-                  Lunara<span className="text-[#f04b25]">.</span>
-                </p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Palette · paper to soil</p>
-                <div className="flex h-14 rounded-lg overflow-hidden mt-1">
-                  {[["#F1ECDF","PAPER"],["#C9B89A","CLAY"],["#7A6342","BARK"],["#2C2418","SOIL"]].map(([c, n]) => (
-                    <div key={c} className="flex-1 flex items-end p-2" style={{ background: c }}>
-                      <span className="text-[9px] font-mono" style={{ color: c === "#F1ECDF" || c === "#C9B89A" ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.5)" }}>{n}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Voice</p>
-                <p className="text-sm text-white/60 leading-snug">Quiet, ingredient-led, no superlatives. Reads like a cookbook, not an ad.</p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">First 11 days</p>
-                <p className="text-[28px] font-black text-white leading-none mt-1">
-                  1,000<span className="text-sm text-white/35 font-normal ml-1">units sold</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* ── PROJECT 04 — CARAVEL (asymmetric mosaic) ── */}
-      <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
-        <FadeIn><ProjectHead p={projects[3]} /></FadeIn>
+        <FadeIn><ProjectHead p={projects[1]} /></FadeIn>
         <FadeIn delay={0.1}>
           <div
             className="grid gap-3"
@@ -317,32 +241,43 @@ export default function FramesPage() {
               gridAutoRows: "120px",
             }}
           >
-            <Slot label="Anchor shot" className="col-span-3 row-span-4 h-full" />
-            <Slot label="Menu detail" className="col-span-2 row-span-2 h-full" />
+            <Slot label="Anchor wide shot" className="col-span-3 row-span-4 h-full" />
+            <Slot label="Space detail" className="col-span-2 row-span-2 h-full" />
             <Slot label="Portrait" className="col-span-1 row-span-3 h-full" />
-            <Slot label="Hands" className="col-span-1 row-span-2 h-full" />
-            <Slot label="Texture" className="col-span-1 row-span-1 h-full" />
-            <Slot label="Wide" className="col-span-2 row-span-1 h-full" />
+            <Slot label="Texture" className="col-span-1 row-span-2 h-full" />
+            <Slot label="Lifestyle" className="col-span-1 row-span-1 h-full" />
+            <Slot label="Overhead" className="col-span-2 row-span-1 h-full" />
           </div>
         </FadeIn>
       </section>
 
-      {/* ── PROJECT 05 — VETMAX (before/after) ── */}
+      {/* ── PROJECT 03 — MORA (dark card, UI design) ── */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
-        <FadeIn><ProjectHead p={projects[4]} /></FadeIn>
+        <FadeIn><ProjectHead p={projects[2]} /></FadeIn>
         <FadeIn delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-              <span className="absolute top-4 left-4 z-10 text-[10px] font-mono uppercase tracking-widest bg-white/90 backdrop-blur-sm text-black/55 px-3 py-1.5 rounded-full">
-                Before · 2008
-              </span>
-              <Slot label="Legacy packaging" style={{ aspectRatio: "4/3" }} className="w-full" />
+          <div className="bg-[#1a1a17] rounded-3xl p-7 md:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {["Hero screen", "Secondary screen", "Mobile view"].map((l) => (
+                <div key={l} className="bg-[#2a2a24] rounded-xl flex items-center justify-center" style={{ aspectRatio: "3/4" }}>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/20 text-center px-4">{l}</span>
+                </div>
+              ))}
             </div>
-            <div className="relative">
-              <span className="absolute top-4 left-4 z-10 text-[10px] font-mono uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full">
-                After · 2024
-              </span>
-              <Slot label="Refreshed packaging" style={{ aspectRatio: "4/3" }} className="w-full" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Wordmark</p>
+                <p className="text-[32px] italic font-light text-white tracking-tight leading-none">
+                  Mora<span className="text-[#f04b25]">.</span>
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Deliverable</p>
+                <p className="text-sm text-white/60 leading-snug">Figma component system. Every screen mapped to a real user flow before design started.</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Discipline</p>
+                <p className="text-sm text-white/60 leading-snug">UI design · component system · Figma handoff</p>
+              </div>
             </div>
           </div>
         </FadeIn>
@@ -392,7 +327,7 @@ export default function FramesPage() {
           <div className="flex items-center gap-2 mb-10">
             <span className="text-[11px] font-mono uppercase tracking-widest text-black/30">Across the studio</span>
             <span className="text-black/20 text-xs">/</span>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-black/30">2024 – 2026</span>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-black/30">2025 – 2026</span>
           </div>
         </FadeIn>
         <FadeInStagger className="grid grid-cols-2 md:grid-cols-4 divide-y-0 border-y border-black/[0.07]">

@@ -356,7 +356,7 @@ export default function CommerceSection() {
                 </div>
                 <div className="flex gap-2.5 shrink-0">
                   <a
-                    href="#work"
+                    href="/stores"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[14px] font-medium text-white transition-colors duration-150"
                     style={{ border: "1px solid rgba(255,255,255,0.3)" }}
                     onMouseEnter={(e) =>
