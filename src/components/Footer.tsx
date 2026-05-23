@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const navLinks = {
   Studio: ["Process", "Services", "Work", "Why us"],
-  Contact: ["hello@theboat.studio", "+94 77 000 0000", "Colombo, Sri Lanka"],
+  Contact: ["info@theboatgrp.com", "+94 77 711 1770", "Colombo, Sri Lanka"],
   Legal: ["Privacy policy", "Terms of service", "Cookies"],
 };
 

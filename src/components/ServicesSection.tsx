@@ -71,20 +71,18 @@ export default function ServicesSection() {
             const Icon = service.icon;
             return (
               <StaggerItem key={service.num}>
-                <div className="group bg-[#111111] border border-white/[0.06] rounded-2xl p-7 hover:border-white/[0.12] transition-all duration-200 cursor-pointer h-full">
+                <div className="group bg-white border border-black/[0.08] rounded-2xl p-7 hover:border-black/[0.18] hover:shadow-[0_8px_32px_rgba(14,14,12,0.08)] transition-all duration-200 cursor-pointer h-full">
                   <div className="flex items-start justify-between mb-7">
-                    <div className="w-11 h-11 rounded-xl bg-white/[0.06] flex items-center justify-center group-hover:bg-[#f04b25]/10 transition-colors duration-200">
-                      <Icon size={18} className="text-white/70 group-hover:text-[#f04b25] transition-colors duration-200" />
+                    <div className="w-11 h-11 rounded-xl bg-black/[0.05] flex items-center justify-center group-hover:bg-[#f04b25]/10 transition-colors duration-200">
+                      <Icon size={18} className="text-black/50 group-hover:text-[#f04b25] transition-colors duration-200" />
                     </div>
-                    <span className="text-xs text-white/20 font-mono">{service.num}</span>
+                    <span className="text-xs text-black/20 font-mono">{service.num}</span>
                   </div>
 
-                  <h3
-                    className="text-xl font-bold text-white mb-3"
-                  >
+                  <h3 className="text-xl font-bold text-black mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-white/40 leading-relaxed mb-6">
+                  <p className="text-sm text-black/45 leading-relaxed mb-6">
                     {service.desc}
                   </p>
 

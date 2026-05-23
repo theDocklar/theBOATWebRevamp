@@ -59,7 +59,9 @@ export default function Navbar() {
           {/* CTA buttons */}
           <div className="hidden md:flex items-center gap-2">
             <a
-              href="#contact"
+              href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 text-sm text-white/80 hover:text-white border border-white/20 hover:border-white/40 rounded-full transition-all duration-150"
             >
               Book a call
@@ -105,7 +107,9 @@ export default function Navbar() {
             ))}
             <div className="flex gap-2 pt-3">
               <a
-                href="#contact"
+                href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="flex-1 py-2.5 text-sm text-center text-white/80 border border-white/20 rounded-full"
               >

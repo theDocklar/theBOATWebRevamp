@@ -88,7 +88,9 @@ export default function HeroSection() {
               />
             </a>
             <a
-              href="#process"
+              href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white/80 hover:text-white border border-white/20 hover:border-white/40 px-6 py-3 rounded-full transition-all duration-200 text-sm"
             >
               Book a call

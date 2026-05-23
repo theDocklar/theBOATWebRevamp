@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn, { FadeInStagger, StaggerItem } from "@/components/FadeIn";
@@ -53,11 +54,11 @@ const projects = [
   {
     num: "03",
     year: "2025",
-    name: "Mora",
-    sub: "interface, designed.",
-    tags: "UI DESIGN · DIGITAL · PRODUCT",
-    chips: ["UI design", "Component system", "Figma delivery"],
-    desc: "UI design for Mora — a clean, considered interface built in Figma and delivered as a component system. Every screen scoped against real user flows, not moodboards.",
+    name: "Hoodie",
+    sub: "e-commerce, designed.",
+    tags: "UI DESIGN · E-COMMERCE · FASHION",
+    chips: ["UI design", "E-commerce", "Figma delivery"],
+    desc: "UI design for a fashion-forward hoodie brand — a clean e-commerce interface built around the product. Every screen designed for conversion, not decoration.",
   },
 ];
 
@@ -181,10 +182,16 @@ export default function FramesPage() {
           transition={{ duration: 0.75, delay: 0.38, ease: EASE }}
           className="mt-10 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-4"
         >
-          <Slot label="Drop your hero campaign image" style={{ aspectRatio: "4/3" }} className="w-full" />
+          <div className="relative w-full overflow-hidden rounded-2xl bg-[#eeeae4]" style={{ aspectRatio: "4/3" }}>
+            <Image src="/featured/Home.png" alt="Featured shoot" fill className="object-cover" sizes="(max-width: 768px) 100vw, 58vw" />
+          </div>
           <div className="grid grid-rows-2 gap-4" style={{ minHeight: 0 }}>
-            <Slot label="Drop product photography" className="w-full" style={{ aspectRatio: "16/9" }} />
-            <Slot label="Drop a brand identity shot" className="w-full" style={{ aspectRatio: "16/9" }} />
+            <div className="relative w-full overflow-hidden rounded-2xl bg-[#eeeae4]">
+              <Image src="/featured/House Of Waas .png" alt="House of Waas shoot" fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+            </div>
+            <div className="relative w-full overflow-hidden rounded-2xl bg-[#eeeae4]">
+              <Image src="/featured/koHEDHA.png" alt="koHEDHA shoot" fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+            </div>
           </div>
         </motion.div>
 
@@ -209,7 +216,7 @@ export default function FramesPage() {
             </button>
           ))}
           <span className="ml-auto text-[12px] font-mono text-black/30 hidden md:block">
-            03 projects shown · more on the way →
+            Covering all of your Design inquiries →
           </span>
         </motion.div>
       </section>
@@ -218,65 +225,74 @@ export default function FramesPage() {
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
         <FadeIn><ProjectHead p={projects[0]} /></FadeIn>
         <FadeIn delay={0.1}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Slot label="Hero editorial frame (3:4)" style={{ aspectRatio: "3/4" }} className="w-full" />
-            <Slot label="Editorial frame (3:4)" style={{ aspectRatio: "3/4" }} className="w-full" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-            {["Detail shot", "Styling close-up", "Lifestyle frame", "Behind the scenes"].map((l) => (
-              <Slot key={l} label={l} style={{ aspectRatio: "1/1" }} className="w-full" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {["/opotique/T_S-4287.webp", "/opotique/T_S-85.webp", "/opotique/T_S-118.webp"].map((src, i) => (
+              <div key={i} className="relative w-full overflow-hidden rounded-2xl bg-[#eeeae4]" style={{ aspectRatio: "3/4" }}>
+                <Image
+                  src={src}
+                  alt={`Opotique shoot ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
             ))}
           </div>
         </FadeIn>
       </section>
 
-      {/* ── PROJECT 02 — LACASA (asymmetric mosaic) ── */}
+      {/* ── PROJECT 02 — LACASA ── */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
         <FadeIn><ProjectHead p={projects[1]} /></FadeIn>
         <FadeIn delay={0.1}>
-          <div
-            className="grid gap-3"
-            style={{
-              gridTemplateColumns: "repeat(6, 1fr)",
-              gridAutoRows: "120px",
-            }}
-          >
-            <Slot label="Anchor wide shot" className="col-span-3 row-span-4 h-full" />
-            <Slot label="Space detail" className="col-span-2 row-span-2 h-full" />
-            <Slot label="Portrait" className="col-span-1 row-span-3 h-full" />
-            <Slot label="Texture" className="col-span-1 row-span-2 h-full" />
-            <Slot label="Lifestyle" className="col-span-1 row-span-1 h-full" />
-            <Slot label="Overhead" className="col-span-2 row-span-1 h-full" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              "/lacasa/LaCasa-3117.jpg",
+              "/lacasa/LaCasa-3182 (1).jpg",
+              "/lacasa/LaCasa-3214 (1).jpg",
+            ].map((src, i) => (
+              <div key={i} className="relative w-full overflow-hidden rounded-2xl bg-[#eeeae4]" style={{ aspectRatio: "3/4" }}>
+                <Image
+                  src={src}
+                  alt={`Lacasa shoot ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+            ))}
           </div>
         </FadeIn>
       </section>
 
-      {/* ── PROJECT 03 — MORA (dark card, UI design) ── */}
+      {/* ── PROJECT 03 — HOODIE (UI design) ── */}
       <section className="max-w-7xl mx-auto px-5 md:px-8 py-16 border-t border-black/[0.07]">
         <FadeIn><ProjectHead p={projects[2]} /></FadeIn>
         <FadeIn delay={0.1}>
           <div className="bg-[#1a1a17] rounded-3xl p-7 md:p-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["Hero screen", "Secondary screen", "Mobile view"].map((l) => (
-                <div key={l} className="bg-[#2a2a24] rounded-xl flex items-center justify-center" style={{ aspectRatio: "3/4" }}>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/20 text-center px-4">{l}</span>
-                </div>
-              ))}
+            <div className="relative w-full overflow-hidden rounded-2xl bg-[#2a2a24]" style={{ aspectRatio: "16/9" }}>
+              <Image
+                src="/hoodie/Desktop - 6 (1).png"
+                alt="Hoodie UI design"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 80vw"
+              />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Wordmark</p>
-                <p className="text-[32px] italic font-light text-white tracking-tight leading-none">
-                  Mora<span className="text-[#f04b25]">.</span>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Project</p>
+                <p className="text-[32px] font-black text-white tracking-tight leading-none">
+                  Hoodie<span className="text-[#f04b25]">.</span>
                 </p>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Deliverable</p>
-                <p className="text-sm text-white/60 leading-snug">Figma component system. Every screen mapped to a real user flow before design started.</p>
+                <p className="text-sm text-white/60 leading-snug">Full UI design for an e-commerce fashion brand. Desktop-first, conversion-mapped, Figma-delivered.</p>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
                 <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-3">Discipline</p>
-                <p className="text-sm text-white/60 leading-snug">UI design · component system · Figma handoff</p>
+                <p className="text-sm text-white/60 leading-snug">UI design · e-commerce · Figma handoff</p>
               </div>
             </div>
           </div>

@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   description:
     "We don't just build websites. We build operational systems that help your business run smoother — from Shopify to custom automations.",
   keywords: ["automation studio", "B2B", "Shopify", "web development", "Colombo"],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

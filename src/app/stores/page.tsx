@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn, { FadeInStagger, StaggerItem } from "@/components/FadeIn";
@@ -19,6 +20,7 @@ const stores = [
     chips: ["Ecommerce build", "Product catalogue", "Mobile-first"],
     desc: "A full ecommerce build for one of Sri Lanka's leading fashion boutiques. We built the storefront and product catalogue end-to-end — scoped for mobile-first browsing and wired to their inventory.",
     stage: "fashion",
+    img: "/ecom/opotique.png",
     wide: true,
   },
   {
@@ -30,6 +32,7 @@ const stores = [
     chips: ["Ecommerce build", "Gifting flows", "UAE market"],
     desc: "An ecommerce store for a floral and gifting brand operating in the UAE. Built for same-day gifting flows and a clean, browse-first experience.",
     stage: "floral",
+    img: "/ecom/ceyflora.png",
     wide: false,
   },
   {
@@ -41,21 +44,11 @@ const stores = [
     chips: ["Ecommerce build", "Product catalogue", "Local delivery"],
     desc: "An ecommerce store for Tom Products — a broad catalogue built for local delivery and straightforward product discovery.",
     stage: "products",
+    img: "/ecom/tom-products.png",
     wide: false,
   },
 ];
 
-const stageStyles: Record<string, string> = {
-  fashion: "linear-gradient(160deg, #2a1a0e 0%, #5c3a20 55%, #c4926a 100%)",
-  floral:  "linear-gradient(160deg, #0d2115 0%, #1a4a2a 55%, #5a9e72 100%)",
-  products: "linear-gradient(160deg, #0d1829 0%, #1b3a6b 55%, #4a7dc4 100%)",
-};
-
-const accentColors: Record<string, string> = {
-  fashion:  "#c4926a",
-  floral:   "#5a9e72",
-  products: "#4a7dc4",
-};
 
 const filterPills = ["All stores", "Sri Lanka", "UAE", "Fashion", "Ecommerce"];
 
@@ -89,62 +82,8 @@ const capabilities = [
   },
 ];
 
-function StageVisual({ stage }: { stage: string }) {
-  if (stage === "fashion") {
-    return (
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] z-0 flex gap-4">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="rounded-lg"
-            style={{
-              width: 52,
-              height: 88 + i * 10,
-              background: `linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)`,
-              border: "1px solid rgba(255,255,255,0.12)",
-              transform: `rotate(${(i - 1) * 5}deg) translateY(${i === 1 ? -8 : 0}px)`,
-            }}
-          />
-        ))}
-      </div>
-    );
-  }
-  if (stage === "floral") {
-    return (
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[48%] z-0">
-        <div
-          className="rounded-full"
-          style={{
-            width: 110,
-            height: 110,
-            background: "radial-gradient(circle at 40% 40%, rgba(255,255,255,0.18) 0%, rgba(90,158,114,0.3) 60%, transparent 100%)",
-            border: "1px solid rgba(255,255,255,0.14)",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-          }}
-        />
-      </div>
-    );
-  }
-  return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] z-0 flex flex-col gap-2">
-      {[80, 110, 90].map((w, i) => (
-        <div
-          key={i}
-          className="rounded"
-          style={{
-            width: w,
-            height: 22,
-            background: "rgba(255,255,255,0.10)",
-            border: "1px solid rgba(255,255,255,0.10)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
 
 function StoreCard({ s, featured }: { s: typeof stores[0]; featured?: boolean }) {
-  const accent = accentColors[s.stage];
   return (
     <div
       className={`bg-white border border-black/[0.08] rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(14,14,12,0.10)] ${
@@ -173,15 +112,20 @@ function StoreCard({ s, featured }: { s: typeof stores[0]; featured?: boolean })
       {/* Stage */}
       <div
         className="relative overflow-hidden flex items-end justify-between p-6"
-        style={{
-          aspectRatio: featured ? "21/9" : "16/9",
-          background: stageStyles[s.stage],
-        }}
+        style={{ aspectRatio: featured ? "21/9" : "16/9" }}
       >
-        <StageVisual stage={s.stage} />
+        <Image
+          src={s.img}
+          alt={s.name}
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        {/* Scrim so text stays readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
 
         {/* Store name overlay */}
-        <div className="relative z-10 text-white">
+        <div className="relative z-20 text-white">
           <p
             className="font-black leading-none tracking-tight"
             style={{ fontSize: "clamp(22px,2.8vw,32px)" }}
@@ -194,7 +138,7 @@ function StoreCard({ s, featured }: { s: typeof stores[0]; featured?: boolean })
         </div>
 
         {/* Chips overlay */}
-        <div className="relative z-10 flex flex-wrap gap-1.5 justify-end max-w-[50%]">
+        <div className="relative z-20 flex flex-wrap gap-1.5 justify-end max-w-[50%]">
           {s.chips.slice(0, 2).map((c) => (
             <span
               key={c}

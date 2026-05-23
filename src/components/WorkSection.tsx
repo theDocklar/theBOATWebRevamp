@@ -5,15 +5,15 @@ import FadeIn, { FadeInStagger, StaggerItem } from "./FadeIn";
 
 const projects = [
   {
-    tag: "Donor platform",
+    tag: "Finance automation",
     year: "2025",
-    title: "Sathkara — real-time donation platform for 40+ Sri Lankan nonprofits.",
-    desc: "Four-surface frontend: public site, donor portal, NGO dashboard, and foundation admin.",
-    accent: "#1b3a6b",
-    href: "/work/sathkara",
+    title: "FinPilot — autonomous finance ops for a 65-person creative agency.",
+    desc: "Five agentic workflows replacing 2 weeks of monthly finance work. Human approval gates for anything material.",
+    accent: "#0f5c45",
+    href: "/work/finpilot",
     featured: true,
-    url: "sathkara.org/dashboard",
-    mockAccent: "#1b3a6b",
+    url: "finpilot / northbridge · finance dashboard",
+    mockAccent: "#0f5c45",
   },
   {
     tag: "Court booking app",
@@ -86,7 +86,7 @@ export default function WorkSection() {
           </FadeIn>
         </div>
 
-        {/* Featured project — Sathkara */}
+        {/* Featured project — FinPilot */}
         <FadeIn className="mb-4">
           <a
             href={projects[0].href}
@@ -118,18 +118,22 @@ export default function WorkSection() {
                   {projects[0].url}
                 </div>
               </div>
-              <div className="p-4 grid grid-cols-4 gap-3 h-28">
-                <div className="bg-white/[0.06] rounded-lg" />
-                <div className="bg-[#1b3a6b]/80 rounded-lg col-span-2" />
-                <div className="bg-white/[0.06] rounded-lg" />
-                <div className="bg-white/[0.06] rounded-lg" />
-                <div className="bg-[#f04b25]/60 rounded-lg" />
-                <div className="bg-white/[0.06] rounded-lg" />
-                <div className="bg-white/[0.06] rounded-lg" />
+              <div className="p-4 flex flex-col gap-2 h-28">
+                <div className="grid grid-cols-4 gap-2 flex-1">
+                  <div className="bg-[#0f5c45]/70 rounded-lg" />
+                  <div className="bg-[#0f5c45]/40 rounded-lg" />
+                  <div className="bg-white/[0.06] rounded-lg" />
+                  <div className="bg-white/[0.06] rounded-lg" />
+                </div>
+                <div className="grid grid-cols-5 gap-2 flex-1">
+                  <div className="bg-white/[0.06] rounded-lg" />
+                  <div className="bg-[#0f5c45]/80 rounded-lg col-span-3" />
+                  <div className="bg-white/[0.06] rounded-lg" />
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 mt-5 text-sm font-medium group-hover:gap-2.5 transition-all duration-150" style={{ color: "#1b3a6b" }}>
+            <div className="flex items-center gap-1.5 mt-5 text-sm font-medium group-hover:gap-2.5 transition-all duration-150" style={{ color: "#0f5c45" }}>
               Read case study
               <ArrowUpRight size={14} />
             </div>
