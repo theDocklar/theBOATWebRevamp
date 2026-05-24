@@ -27,7 +27,7 @@ export default function HeroSection() {
         >
           <span className="w-2 h-2 rounded-full bg-[#f04b25] animate-pulse" />
           <span className="text-xs text-white/70 font-medium tracking-wide">
-            Now booking · PMF sprints
+            Taking on new projects
           </span>
         </motion.div>
 
@@ -71,8 +71,9 @@ export default function HeroSection() {
             {...fadeUp(0.35)}
             className="mt-8 text-base md:text-lg text-white/50 max-w-md leading-relaxed"
           >
-            We co-build products when validation is uncertain, and architect
-            AI-powered workflows when execution is the blocker.
+            We build the product when you have the idea but not the team.
+            We fix the ops when your team is too busy doing work that should
+            run itself.
           </motion.p>
 
           {/* CTAs */}
@@ -122,8 +123,7 @@ export default function HeroSection() {
               </div>
             </div>
             <p className="mt-4 text-sm text-white/40 leading-relaxed">
-              From product MVPs to full automation pipelines. Every engagement
-              documented and handed over — no vendor lock-in, ever.
+              Web apps, mobile products, automation pipelines. Nothing proprietary — everything documented and handed over.
             </p>
           </div>
 
@@ -145,8 +145,7 @@ export default function HeroSection() {
               </div>
             </div>
             <p className="mt-4 text-sm text-white/40 leading-relaxed">
-              Sri Lanka · UAE · United States. Early-stage founders and
-              ambitious SMBs who care about execution as much as the idea.
+              Sri Lanka · UAE · United States — founders and operators who know what they want to build.
             </p>
           </a>
         </motion.div>

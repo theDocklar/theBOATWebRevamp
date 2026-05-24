@@ -7,7 +7,7 @@ const projects = [
   {
     tag: "Finance automation",
     year: "2025",
-    title: "FinPilot — autonomous finance ops for a 65-person creative agency.",
+    title: "FinPilot Autonomous finance ops for a 65 person creative agency.",
     desc: "Five agentic workflows replacing 2 weeks of monthly finance work. Human approval gates for anything material.",
     accent: "#ffffffff",
     href: "/work/finpilot",
@@ -18,7 +18,7 @@ const projects = [
   {
     tag: "Court booking app",
     year: "2025",
-    title: "Bounce — court bookings, reinvented.",
+    title: "Bounce: Court bookings, reinvented.",
     desc: "Mobile app for players + admin dashboard for court operators. Real-time availability, instant confirmation.",
     accent: "#afafafff",
     href: "/work/bounce",
@@ -27,7 +27,7 @@ const projects = [
   {
     tag: "QR food ordering",
     year: "2025",
-    title: "ByteMe — scan a QR. Order. Done.",
+    title: "ByteMe: Scan a QR. Order. Done.",
     desc: "Dine-in ordering via QR code. Real-time kitchen management portal for restaurant owners.",
     accent: "#afafafff",
     href: "/work/byteme",
@@ -36,7 +36,7 @@ const projects = [
   {
     tag: "Marketing analytics",
     year: "2025",
-    title: "Troi — real-time ROAS & ROI for every channel.",
+    title: "Troi: Real-time ROAS & ROI for every channel.",
     desc: "Channel-wise breakdown of ROAS and ROI against actual store sales. Built for SME marketing teams.",
     accent: "#afafafff",
     href: "/work/troi",
@@ -45,7 +45,7 @@ const projects = [
   {
     tag: "Tour booking",
     year: "2025",
-    title: "Ceylon Routes — from browse to booked in minutes.",
+    title: "Ceylon Routes: From browse to booked in minutes.",
     desc: "Tour booking app for travelers + admin dashboard for operators. Notifications, availability, booking management.",
     accent: "#afafafff",
     href: "/work/ceylon-routes",
@@ -79,9 +79,9 @@ export default function WorkSection() {
 
           <FadeIn delay={0.1} className="md:max-w-xs md:pt-16">
             <p className="text-[15px] text-black/50 leading-relaxed">
-              Products shipped with founders. Ops automated for operators.
-              Every case study starts with a problem and ends with a measurable
-              outcome.
+              What we've shipped. Some are products built with founders,
+              some are systems built for operators — all of them start with
+              a real problem.
             </p>
           </FadeIn>
         </div>

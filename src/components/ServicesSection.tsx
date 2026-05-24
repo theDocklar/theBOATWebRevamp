@@ -8,25 +8,25 @@ const services = [
     icon: Code2,
     num: "01",
     title: "Product development",
-    desc: "Co-build your early-stage product from validated idea to shipped MVP. Structured 8-week PMF sprints with clear milestones and daily collaboration.",
+    desc: "Got an idea and need a team to build it? We work alongside you — from first wireframe to shipped product, usually in 8 weeks. No handoffs, daily contact.",
   },
   {
     icon: Bot,
     num: "02",
     title: "AI workflow automation",
-    desc: "Replace manual ops with n8n + AI agent pipelines. We audit, design, and deploy — measured in team hours saved, not story points.",
+    desc: "Your team is probably spending 20–30 hours a month on work that could run itself. We find it, automate it, and hand over the keys.",
   },
   {
     icon: ShoppingCart,
     num: "03",
     title: "Shopify + commerce",
-    desc: "Storefronts wired to an automation spine. AI agents watching inventory, pricing, and cart recovery so the store tunes itself.",
+    desc: "Shopify stores that don't need babysitting. Inventory, pricing, cart recovery — wired up to handle themselves so you can focus on growing the thing.",
   },
   {
     icon: Camera,
     num: "04",
     title: "Creative studio",
-    desc: "Product photography, brand systems, lookbooks and packaging. The same systems-first precision applied to the visuals that drive conversion.",
+    desc: "Photography, brand identities, lookbooks, packaging — done by people who also understand why it needs to convert, not just look good.",
   },
 ];
 
@@ -35,33 +35,24 @@ export default function ServicesSection() {
     <section id="services" className="bg-[#eeeae4] py-24 md:py-32 border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         {/* Section header */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-16">
+        <div className="mb-16">
           <FadeIn>
-            <div className="flex items-center gap-2 mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#f04b25]" />
-              <span className="text-xs font-medium text-black/40 uppercase tracking-widest">
-                What we build
-              </span>
-            </div>
-            <h2
-              className="text-[clamp(38px,5vw,68px)] font-black text-black leading-[0.95] tracking-tight"
-            >
-              Products
-              <br />
-              built.
-              <br />
-              Operations
-              <br />
-              automated.
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.1} className="md:max-w-xs md:pt-16">
-            <p className="text-[15px] text-black/50 leading-relaxed">
-              Two segments, one obsession: execution. Early-stage founders
-              need a build partner. Growing teams need their ops unblocked.
-              Both get the same systems-first approach.
+            <p className="text-xs font-medium text-black/40 uppercase tracking-widest mb-8">
+              Services
             </p>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <h2 className="text-[clamp(38px,5vw,68px)] font-black text-black leading-[0.95] tracking-tight">
+                Four things
+                <br />
+                we&apos;re actually
+                <br />
+                good at.
+              </h2>
+              <p className="text-[15px] text-black/50 leading-relaxed md:max-w-sm md:pb-3">
+                Early-stage founders get a build partner. Growing teams get their ops fixed.
+                Everything else we leave to people who are better at it.
+              </p>
+            </div>
           </FadeIn>
         </div>
 
