@@ -1,102 +1,122 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn, { FadeInStagger, StaggerItem } from "@/components/FadeIn";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
+const ACCENT = "#b87333";
+
 const meta = [
-  { k: "Client", v: "Bounce Sports · Colombo" },
-  { k: "Engagement", v: "Mobile app + admin dashboard" },
-  { k: "Timeline", v: "10 weeks · Q2–Q3 2025" },
-  { k: "Status", v: "In development", live: true },
+  { k: "Client", v: "Pro Master Construction Products LLC · UAE" },
+  { k: "Engagement", v: "Product website + CMS" },
+  { k: "Timeline", v: "10 weeks · Q3–Q4 2025" },
+  { k: "Status", v: "Live", live: true },
 ];
 
 const before = [
-  "Court bookings managed over WhatsApp and phone — double-bookings a weekly frustration.",
-  "Players had no way to check court availability without calling the operator directly.",
-  "Operators tracking all bookings in a spreadsheet with no payment confirmation trail.",
+  "200+ products with no searchable online catalog — distributors and contractors requested datasheets by WhatsApp.",
+  "Technical documents (TDS, SDS, application guides) stored in local folders, impossible to share consistently across GCC markets.",
+  "No way to showcase 500+ completed projects to specifiers and developers without sending a PDF deck manually.",
 ];
 
 const principles = [
   {
     n: "01",
-    title: "Real-time or nothing.",
-    body: "If availability isn't live, the whole system breaks. Every booking update propagates instantly across the mobile app and admin dashboard.",
+    title: "Content owned by the team.",
+    body: "Every product, project, and datasheet is managed through Sanity CMS. The Pro Master team can add a product or update specs without touching a line of code.",
   },
   {
     n: "02",
-    title: "Frictionless for the player.",
-    body: "Browse, pick a slot, pay. Three steps. No account required for the first booking — reduce drop-off, increase conversion.",
+    title: "Technical credibility first.",
+    body: "Contractors and specifiers need TDS, SDS, and compliance standards fast. The document library is filterable, downloadable, and always current.",
   },
   {
     n: "03",
-    title: "Full operator control.",
-    body: "Court owners see every booking, can block time, manage pricing, and push notifications — without needing us to change anything.",
+    title: "Built for the GCC market.",
+    body: "Gulf heat, humidity, and saline conditions are real constraints. The site communicates ISO certification, ASTM/EN/BS compliance, and WRAS approval upfront.",
   },
 ];
 
 const archSurfaces = [
-  { lbl: "Surface 01 · Player", title: "Mobile app (React Native)" },
-  { lbl: "Surface 02 · Booking", title: "Slot selection + payment" },
-  { lbl: "Surface 03 · Operator", title: "Admin dashboard" },
-  { lbl: "Surface 04 · Comms", title: "Notifications + receipts" },
+  { lbl: "Surface 01 · Public", title: "Product catalog" },
+  { lbl: "Surface 02 · Library", title: "TDS / SDS / App guides" },
+  { lbl: "Surface 03 · Showcase", title: "Projects portfolio" },
+  { lbl: "Surface 04 · Admin", title: "Sanity CMS studio" },
 ];
 
 const archCore = [
-  { lbl: "Database", title: "Supabase · Postgres" },
-  { lbl: "Payments", title: "Stripe · local rails" },
-  { lbl: "Real-time", title: "Supabase Realtime" },
-  { lbl: "Notifications", title: "Expo Push · Email" },
+  { lbl: "Frontend", title: "Next.js · App Router" },
+  { lbl: "CMS", title: "Sanity Studio" },
+  { lbl: "Images", title: "Sanity CDN" },
+  { lbl: "Deploy", title: "Netlify" },
 ];
 
 const outcomes = [
-  { num: "2", unit: "surfaces", label: "One mobile app for players, one admin dashboard for operators — one shared API." },
-  { num: "< 3min", unit: "to book", label: "From opening the app to confirmed booking, including payment." },
-  { num: "0", unit: "double-books", label: "Real-time slot locking prevents overlapping reservations by design." },
+  { num: "200+", unit: "products", label: "Full catalog live and searchable by category, application, and standard." },
+  { num: "500+", unit: "projects", label: "Completed GCC projects documented and filterable for specifiers." },
+  { num: "6", unit: "markets", label: "Distributed across UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman." },
 ];
 
 const timeline = [
   {
     d: "Wk 1–2 · Discovery",
-    t: "Mapped the booking flow.",
-    p: "Interviewed 6 court operators and 12 regular players. Documented every friction point. Signed a fixed-scope SOW.",
+    t: "Mapped 200+ products & doc library.",
+    p: "Audited existing product data, document formats, and how distributors and contractors actually search for products. Signed fixed-scope SOW.",
   },
   {
-    d: "Wk 3–4 · Design",
-    t: "48-hour wireframes, approved in round 2.",
-    p: "Booking flow, availability grid, and admin calendar locked before development started.",
+    d: "Wk 3–4 · Design + CMS",
+    t: "Schema-first, then UI.",
+    p: "Designed the Sanity content schema for products, projects, and documents before a single page was built. Approved in one round.",
   },
   {
     d: "Wk 5–9 · Build",
-    t: "Two surfaces in five weeks.",
-    p: "Mobile app (Expo/React Native) and Next.js admin dashboard. Supabase real-time wired to both.",
+    t: "Four surfaces, one CMS.",
+    p: "Product catalog, document library, projects showcase, and distributor pages. All content pulled from Sanity at build time.",
   },
   {
-    d: "Wk 10 · QA + launch",
-    t: "Tested across 3 court venues.",
-    p: "Stress-tested slot locking, payment flows, and push notification delivery. Operator training completed.",
+    d: "Wk 10 · Launch",
+    t: "Team trained, content migrated.",
+    p: "All 200+ products and technical documents migrated into Sanity. Pro Master team trained to manage content independently. Deployed to Netlify.",
     now: true,
   },
 ];
 
 const stack = [
-  { k: "Mobile", v: "React Native (Expo)" },
-  { k: "Admin", v: "Next.js, Tailwind" },
-  { k: "API", v: "tRPC, Zod" },
-  { k: "Data", v: "Supabase, Postgres" },
-  { k: "Payments", v: "Stripe" },
-  { k: "Notifications", v: "Expo Push, Resend" },
+  { k: "Frontend", v: "Next.js, Tailwind" },
+  { k: "CMS", v: "Sanity Studio" },
+  { k: "Images", v: "Sanity CDN" },
+  { k: "Deploy", v: "Netlify" },
+  { k: "Docs", v: "PDF library" },
+  { k: "Standards", v: "ISO · ASTM · EN" },
 ];
 
-const stackTags = ["Cross-platform mobile", "Real-time availability", "No double-bookings", "Owned by client"];
+const stackTags = ["Product catalog", "Sanity CMS", "Technical doc library", "Owned by client"];
 
-const marqueeItems = ["Court booking", "Real-time availability", "No double-bookings", "Operator dashboard", "Shipped from Colombo"];
+const marqueeItems = ["Construction chemicals", "GCC market", "200+ products", "Sanity CMS", "Dubai · UAE"];
 
-export default function BounceCase() {
+const siteScreenshots = [
+  {
+    label: "Homepage — hero & product range",
+    src: "/promaster/Screenshot 2026-06-06 at 14.08.31.png",
+  },
+  {
+    label: "Product catalog — search, filter & browse",
+    src: "/promaster/Screenshot 2026-06-06 at 14.11.02.png",
+  },
+];
+
+const featuredProjects = [
+  { name: "Dubai Hills Residential Community", location: "Dubai", tag: "Waterproofing · Podium Decks", year: "2024" },
+  { name: "Dubai Marina Mixed-Use Tower", location: "Dubai Marina", tag: "Waterproofing · Below-grade", year: "2024" },
+  { name: "Fujairah Desalination Plant", location: "Fujairah", tag: "Waterproofing · Chemical Resistance", year: "2023" },
+  { name: "Jebel Ali Port Warehouse", location: "Dubai", tag: "Industrial Flooring · Heavy Duty", year: "2022" },
+];
+
+export default function ProMasterCase() {
   return (
     <div className="bg-white min-h-screen" style={{ fontFamily: "var(--font-body)" }}>
       <Navbar />
@@ -111,7 +131,7 @@ export default function BounceCase() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
           <span className="text-xs text-black/40 font-mono uppercase tracking-widest">
-            Case 02 / Selected work / 2025
+            Case / Selected work / 2025
           </span>
         </motion.div>
 
@@ -121,8 +141,8 @@ export default function BounceCase() {
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           className="text-[clamp(40px,6vw,80px)] font-black text-black leading-[1] tracking-tight"
         >
-          Bounce<br />
-          <span className="italic font-light">killed the WhatsApp<br />booking.</span>
+          Pro Master<br />
+          <span className="italic font-light">200 products,<br />one catalog.</span>
         </motion.h1>
 
         <motion.p
@@ -131,8 +151,9 @@ export default function BounceCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          A court booking platform that replaced double-booked WhatsApp threads with real-time
-          availability, instant confirmations, and a single admin view for operators.
+          A product website and Sanity CMS for a UAE construction chemicals company — replacing
+          WhatsApp datasheet requests with a searchable catalog, technical document library, and
+          projects showcase built for the GCC market.
         </motion.p>
 
         {/* Meta grid */}
@@ -159,102 +180,38 @@ export default function BounceCase() {
           ))}
         </motion.div>
 
-        {/* Dashboard stage — booking calendar mock */}
+        {/* Hero screenshot */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-          className="mt-14 rounded-2xl bg-[#0f0f0f] overflow-hidden relative"
-          style={{
-            background:
-              "radial-gradient(900px 400px at 80% 10%, rgba(46,125,59,0.35), transparent 60%), radial-gradient(700px 600px at 0% 100%, rgba(46,125,59,0.15), transparent 60%), #0f0f0f",
-          }}
+          className="mt-14"
         >
-          {/* Browser chrome */}
-          <div className="m-5 md:m-6 rounded-xl overflow-hidden border border-white/[0.08] bg-[#16161a]">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06]">
-              <div className="flex gap-1.5">
-                {[0, 1, 2].map((i) => (
-                  <div key={i} className="w-2.5 h-2.5 rounded-full bg-white/15" />
-                ))}
-              </div>
-              <div className="flex-1 mx-3 bg-white/[0.05] rounded px-3 py-1.5 text-center">
-                <span className="text-[11px] font-mono text-white/40">
-                  bounce.lk / courts / book
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                <span className="text-[10px] text-white/50">Live</span>
-              </div>
-            </div>
-
-            {/* Booking calendar mock */}
-            <div className="bg-[#111] p-5 md:p-7" style={{ minHeight: 340 }}>
-              <div className="flex items-end justify-between mb-6">
-                <p className="font-semibold text-[15px] text-white tracking-tight">
-                  Court availability — today
-                </p>
-                <p className="text-[11px] text-white/30 font-mono">3 courts · 6am–10pm</p>
-              </div>
-              {/* Time slot grid */}
-              <div className="grid grid-cols-1 gap-3">
-                {["Court A · Padel", "Court B · Tennis", "Court C · Badminton"].map((court, ci) => (
-                  <div key={court} className="flex items-center gap-3">
-                    <p className="text-[11px] font-mono text-white/40 w-32 shrink-0">{court}</p>
-                    <div className="flex gap-1.5 flex-1 flex-wrap">
-                      {Array.from({ length: 10 }).map((_, si) => {
-                        const booked = (ci === 0 && (si === 2 || si === 3 || si === 7)) ||
-                          (ci === 1 && (si === 0 || si === 4 || si === 5)) ||
-                          (ci === 2 && (si === 1 || si === 6 || si === 8));
-                        return (
-                          <div
-                            key={si}
-                            className="rounded px-2.5 py-1.5 text-[10px] font-mono"
-                            style={{
-                              background: booked ? "rgba(46,125,59,0.4)" : "rgba(255,255,255,0.06)",
-                              color: booked ? "#86efac" : "rgba(255,255,255,0.3)",
-                              minWidth: 44,
-                            }}
-                          >
-                            {`${6 + si * (si < 4 ? 1 : 1)}:00`}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex gap-4">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded" style={{ background: "rgba(46,125,59,0.4)" }} />
-                  <span className="text-[10px] font-mono text-white/40">Booked</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
-                  <span className="text-[10px] font-mono text-white/40">Available</span>
-                </div>
-              </div>
-            </div>
+          <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm">
+            <Image
+              src="/promaster/Screenshot 2026-06-06 at 14.08.31.png"
+              alt="Pro Master — homepage showing product range"
+              width={1920}
+              height={960}
+              className="w-full h-auto"
+              priority
+            />
           </div>
 
-          {/* Float cards */}
-          <div className="grid grid-cols-3 gap-3 px-5 md:px-6 pb-6">
+          {/* Float stats */}
+          <div className="grid grid-cols-3 gap-3 mt-3">
             {[
-              { k: "Booking confirmation", v: "< 3", unit: "minutes" },
-              { k: "Double-bookings since launch", v: "0", unit: "incidents" },
-              { k: "Courts live", v: "3", unit: "venues" },
+              { k: "Products in catalog", v: "200+", unit: "live" },
+              { k: "Projects documented", v: "500+", unit: "completed" },
+              { k: "GCC markets served", v: "6", unit: "countries" },
             ].map((f) => (
-              <div
-                key={f.k}
-                className="bg-white/[0.06] border border-white/[0.1] rounded-xl p-4 text-white"
-              >
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/50 mb-1.5">
+              <div key={f.k} className="border border-black/[0.08] rounded-xl p-4">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-black/40 mb-1.5">
                   {f.k}
                 </p>
-                <p className="text-2xl font-semibold tracking-tight">
+                <p className="text-2xl font-semibold tracking-tight text-black">
                   {f.v}
-                  <span className="text-xs text-white/40 ml-1 font-normal">{f.unit}</span>
+                  <span className="text-xs text-black/30 ml-1 font-normal">{f.unit}</span>
                 </p>
               </div>
             ))}
@@ -266,10 +223,7 @@ export default function BounceCase() {
       <div className="border-t border-b border-black/[0.06] mt-20 overflow-hidden py-4 bg-white">
         <div
           className="flex gap-12 whitespace-nowrap"
-          style={{
-            animation: "marquee 22s linear infinite",
-            width: "max-content",
-          }}
+          style={{ animation: "marquee 22s linear infinite", width: "max-content" }}
         >
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="text-sm font-medium text-black/30 uppercase tracking-widest">
@@ -295,29 +249,27 @@ export default function BounceCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                Six courts.
+                15 years in the GCC.
                 <br />
-                <span className="italic font-light">One WhatsApp group</span> managing them all.
+                <span className="italic font-light">No website</span> to show for it.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                Bounce Sports came to us with a growing player base and a booking system held together
-                by WhatsApp messages and a shared spreadsheet. Players called to check availability.
-                Operators manually confirmed slots. Double-bookings landed weekly. The only thing
-                missing was a real platform.
+                Pro Master Construction Products had built an ISO-certified business supplying
+                construction chemicals across six GCC markets for over 15 years. But their online
+                presence didn't match their credibility. Distributors were requesting datasheets
+                over WhatsApp. Specifiers couldn't find compliance standards. And there was no way
+                to showcase 500+ completed projects without sending a deck.
               </p>
             </div>
           </div>
         </FadeIn>
 
-        {/* Before / After ledger */}
         <FadeIn delay={0.1}>
-          <div className="border-t border-black/[0.08] grid grid-cols-1 md:grid-cols-2">
+          <div className="border-t border-black/[0.08] grid grid-cols-1 md:grid-cols-3">
             {before.map((item, i) => (
               <div
                 key={i}
-                className={`p-7 border-b border-black/[0.08] ${
-                  i % 2 === 0 ? "md:border-r" : ""
-                } bg-black/[0.025]`}
+                className={`p-7 border-b border-black/[0.08] ${i < before.length - 1 ? "md:border-r" : ""} bg-black/[0.025]`}
               >
                 <p className="text-[10px] font-mono uppercase tracking-widest text-black/30 mb-3">
                   Before · The mess
@@ -327,6 +279,36 @@ export default function BounceCase() {
             ))}
           </div>
         </FadeIn>
+      </section>
+
+      {/* ── SITE SCREENSHOTS ────────────────────── */}
+      <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+        <FadeIn>
+          <div className="flex items-center gap-2 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+            <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+              The site
+            </span>
+          </div>
+        </FadeIn>
+        <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {siteScreenshots.map((s) => (
+            <StaggerItem key={s.label}>
+              <div className="rounded-xl overflow-hidden border border-black/[0.08] shadow-sm">
+                <Image
+                  src={s.src}
+                  alt={s.label}
+                  width={1200}
+                  height={750}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="mt-2.5 text-[11px] font-mono text-black/35 uppercase tracking-widest">
+                {s.label}
+              </p>
+            </StaggerItem>
+          ))}
+        </FadeInStagger>
       </section>
 
       {/* ── APPROACH ────────────────────────────── */}
@@ -343,13 +325,13 @@ export default function BounceCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                Two users. One shared truth. Zero race conditions.
+                CMS-first. The team runs it. We don&apos;t.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                The hard problem isn&apos;t booking a court — it&apos;s making sure two players
-                can&apos;t book the same slot at the same time. Real-time slot locking is the spine.
-                Everything else — the mobile app, the admin dashboard, the payment flow — sits on top
-                of that guarantee.
+                200+ products across 7 categories means content that changes constantly — new
+                formulations, updated compliance certificates, seasonal launches. The site had
+                to be owned by Pro Master&apos;s team from day one. Sanity Studio gives them a
+                clean editorial interface without a developer in the loop.
               </p>
             </div>
           </div>
@@ -385,8 +367,9 @@ export default function BounceCase() {
                 What we actually shipped.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                A two-surface system — mobile app for players, admin dashboard for operators — on a
-                shared React Native + Next.js API backed by Supabase Realtime.
+                Four public-facing surfaces — product catalog, document library, projects
+                showcase, and distributor pages — all managed through one Sanity CMS studio
+                and deployed to Netlify.
               </p>
             </div>
           </div>
@@ -394,7 +377,6 @@ export default function BounceCase() {
 
         <FadeIn delay={0.1}>
           <div className="border border-black/[0.1] rounded-2xl p-6 md:p-9 bg-white">
-            {/* Surfaces row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {archSurfaces.map((n) => (
                 <div key={n.lbl} className="border border-black/[0.1] rounded-xl p-4">
@@ -408,22 +390,20 @@ export default function BounceCase() {
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓ ↓ ↓ ↓</div>
 
-            {/* Spine */}
             <div
               className="text-white rounded-xl p-4 text-center mb-4"
-              style={{ background: "#2E7D3B" }}
+              style={{ background: ACCENT }}
             >
-              <p className="text-[10px] font-mono uppercase tracking-wider text-white/50 mb-1">
-                The spine · React Native + Next.js API
+              <p className="text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                The spine · Sanity CMS + Next.js
               </p>
               <p className="text-sm font-semibold">
-                Booking events, availability slots, payments, confirmations, operator alerts
+                Products, documents, projects, categories — all content managed without code
               </p>
             </div>
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓</div>
 
-            {/* Core row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {archCore.map((n) => (
                 <div key={n.lbl} className="bg-[#0f0f0f] text-white rounded-xl p-4">
@@ -437,23 +417,12 @@ export default function BounceCase() {
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓</div>
 
-            {/* Output row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                {
-                  lbl: "Out · For the player",
-                  title: "Instant booking confirmation · Live slot availability",
-                },
-                {
-                  lbl: "Out · For the operator",
-                  title: "Full booking calendar · Revenue dashboard",
-                },
+                { lbl: "Out · For specifiers", title: "TDS / SDS downloadable · Compliance standards visible" },
+                { lbl: "Out · For distributors", title: "Full product catalog · GCC distributor network page" },
               ].map((n) => (
-                <div
-                  key={n.lbl}
-                  className="text-white rounded-xl p-4"
-                  style={{ background: "#2E7D3B" }}
-                >
+                <div key={n.lbl} className="text-white rounded-xl p-4" style={{ background: ACCENT }}>
                   <p className="text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1">
                     {n.lbl}
                   </p>
@@ -465,6 +434,95 @@ export default function BounceCase() {
         </FadeIn>
       </section>
 
+      {/* ── BRAND + IDENTITY ────────────────────── */}
+      <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+        <FadeIn>
+          <div className="flex items-center gap-2 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+            <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+              Brand identity
+            </span>
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-stretch">
+            <div className="rounded-2xl overflow-hidden border border-black/[0.08] bg-white flex items-center justify-center p-8">
+              <Image
+                src="/promaster/Screenshot 2026-06-06 at 14.08.48.png"
+                alt="Pro Master brand identity and logo"
+                width={900}
+                height={300}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="bg-[#0f0f0f] text-white rounded-2xl p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-white/30 mb-3">
+                  Construction chemicals · UAE
+                </p>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
+                  15 years in the GCC.<br />Now with a presence to match.
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  Pro Master had the credentials — ISO 9001:2015, WRAS approval, ASTM/EN/BS
+                  compliance — but no platform to show them. The site communicates their
+                  industrial credibility from the first scroll.
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/[0.1] pt-6">
+                {[
+                  { k: "Certification", v: "ISO 9001:2015" },
+                  { k: "Standards", v: "ASTM · EN · BS" },
+                  { k: "Approval", v: "WRAS · MOEI" },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-white/30 mb-1">{s.k}</p>
+                    <p className="text-[13px] font-medium text-white">{s.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+
+      {/* ── PROJECTS SHOWCASE ───────────────────── */}
+      <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+        <FadeIn>
+          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-end mb-10">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+                <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+                  Projects on site
+                </span>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-[clamp(24px,3.5vw,44px)] font-black text-black leading-[1.05] tracking-tight">
+                500+ completed projects. Now findable.
+              </h2>
+            </div>
+          </div>
+        </FadeIn>
+        <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {featuredProjects.map((p) => (
+            <StaggerItem key={p.name}>
+              <div className="border border-black/[0.08] rounded-xl p-6 bg-[#f8f6f2]">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-black/30">
+                    {p.location}
+                  </span>
+                  <span className="text-[10px] font-mono text-black/25">{p.year}</span>
+                </div>
+                <h4 className="font-bold text-black text-[15px] mb-2">{p.name}</h4>
+                <p className="text-xs text-black/40 font-mono">{p.tag}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </FadeInStagger>
+      </section>
 
       {/* ── OUTCOMES ────────────────────────────── */}
       <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto">
@@ -483,16 +541,13 @@ export default function BounceCase() {
                 </h2>
               </div>
               <p className="text-xs font-mono text-white/30 max-w-xs">
-                Metrics tracked from pilot launch · Q3 2025. Baseline: pre-platform WhatsApp ops.
+                From launch · Q4 2025. Baseline: pre-website WhatsApp + PDF deck operations.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/[0.12]">
               {outcomes.map((r, i) => (
-                <div
-                  key={i}
-                  className="py-9 pr-6 border-r border-white/[0.12] last:border-r-0"
-                >
+                <div key={i} className="py-9 pr-6 border-r border-white/[0.12] last:border-r-0">
                   <p className="text-[clamp(32px,4vw,52px)] font-black text-white leading-none tracking-tight">
                     {r.num}
                     <span className="text-xl font-normal text-white/40 ml-1">{r.unit}</span>
@@ -519,11 +574,11 @@ export default function BounceCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                10 weeks. Two surfaces. Zero scope creep.
+                10 weeks. Schema-first. Handed over.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                Discovery first, design second, code third. Every week we shipped something tangible
-                and asked one direct question.
+                We designed the CMS schema before the UI. That meant no content migration surprises
+                and a team that could manage the site independently from launch day.
               </p>
             </div>
           </div>
@@ -562,10 +617,7 @@ export default function BounceCase() {
         <FadeIn delay={0.1}>
           <div className="grid grid-cols-2 md:grid-cols-6 border-t border-b border-black/[0.08]">
             {stack.map((s, i) => (
-              <div
-                key={s.k}
-                className={`p-5 ${i < stack.length - 1 ? "border-r border-black/[0.08]" : ""}`}
-              >
+              <div key={s.k} className={`p-5 ${i < stack.length - 1 ? "border-r border-black/[0.08]" : ""}`}>
                 <p className="text-[10px] font-mono uppercase tracking-widest text-black/25 mb-1.5">
                   {s.k}
                 </p>
@@ -577,47 +629,13 @@ export default function BounceCase() {
         <FadeIn delay={0.15}>
           <div className="flex flex-wrap gap-2 mt-5">
             {stackTags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs border border-black/[0.1] rounded-full px-3.5 py-1.5 text-black/50"
-              >
+              <span key={tag} className="text-xs border border-black/[0.1] rounded-full px-3.5 py-1.5 text-black/50">
                 {tag}
               </span>
             ))}
           </div>
         </FadeIn>
       </section>
-
-      {/* ── TESTIMONIAL ─────────────────────────── */}
-      {/* <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
-        <FadeIn>
-          <div className="border-t border-b border-black/[0.1] py-16 grid md:grid-cols-[1fr_1.6fr] gap-12 items-start">
-            <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-black/30 mb-5">
-                Said by the client
-              </p>
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-14 h-14 rounded-full shrink-0"
-                  style={{ background: "linear-gradient(135deg, #2E7D3B, #1a4d22)" }}
-                />
-                <div>
-                  <p className="font-semibold text-black text-sm">Harsha Perera</p>
-                  <p className="text-xs text-black/40 mt-0.5">
-                    Founder · Bounce Sports Colombo
-                  </p>
-                </div>
-              </div>
-              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q3 2025</p>
-            </div>
-            <blockquote className="italic font-light text-[clamp(20px,2.8vw,36px)] text-black leading-[1.2] tracking-tight m-0">
-              &ldquo;Before Bounce, I was the booking system. Every evening, messages, calls, confirming
-              slots by hand. theBOAT gave me back my evenings. The app runs itself — players book,
-              pay, and show up. I just manage the courts.&rdquo;
-            </blockquote>
-          </div>
-        </FadeIn>
-      </section> */}
 
       <Footer />
     </div>

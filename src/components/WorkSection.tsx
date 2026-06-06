@@ -25,12 +25,12 @@ const projects = [
     featured: false,
   },
   {
-    tag: "QR food ordering",
+    tag: "Product website + CMS",
     year: "2025",
-    title: "ByteMe: Scan a QR. Order. Done.",
-    desc: "Dine-in ordering via QR code. Real-time kitchen management portal for restaurant owners.",
+    title: "Pro Master: 200 products. One catalog.",
+    desc: "Product website and Sanity CMS for a UAE construction chemicals company. Searchable catalog, technical doc library, and projects showcase across six GCC markets.",
     accent: "#afafafff",
-    href: "/work/byteme",
+    href: "/work/promaster",
     featured: false,
   },
   {
@@ -43,12 +43,12 @@ const projects = [
     featured: false,
   },
   {
-    tag: "Tour booking",
+    tag: "Luxury tour website",
     year: "2025",
-    title: "Ceylon Routes: From browse to booked in minutes.",
-    desc: "Tour booking app for travelers + admin dashboard for operators. Notifications, availability, booking management.",
+    title: "OLYCE: Sri Lanka, without compromise.",
+    desc: "Luxury tour booking website for a premium Sri Lanka travel brand. Editorial photography up front, full itineraries before the inquiry, Standard and Premium pricing in one view.",
     accent: "#afafafff",
-    href: "/work/ceylon-routes",
+    href: "/work/olyce",
     featured: false,
   },
 ];

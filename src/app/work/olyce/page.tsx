@@ -1,108 +1,118 @@
 "use client";
 
-import { ArrowUpRight, LayoutDashboard, BarChart2, TrendingUp, Video, Mail, FileText } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn, { FadeInStagger, StaggerItem } from "@/components/FadeIn";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
+const ACCENT = "#1a1a1a";
+
 const meta = [
-  { k: "Client", v: "Troi · Colombo" },
-  { k: "Engagement", v: "SaaS dashboard" },
-  { k: "Timeline", v: "12 weeks · Q1–Q2 2025" },
-  { k: "Status", v: "Beta", live: true },
+  { k: "Client", v: "OLYCE · Colombo" },
+  { k: "Engagement", v: "Luxury tour booking website" },
+  { k: "Timeline", v: "10 weeks · Q2–Q3 2025" },
+  { k: "Status", v: "Live", live: true },
 ];
 
 const before = [
-  "SMEs spending across Google, Meta, and TikTok with no way to tie ad spend back to actual store revenue.",
-  "Each ad platform reported its own inflated numbers — impossible to reconcile against real Shopify sales.",
-  "Marketing budget decisions made on gut feel. Spend kept climbing, real ROI stayed unknown.",
+  "Premium tours with no premium presence — travelers discovered Olyce by word of mouth and requested details by email, often waiting days for a response.",
+  "Four distinct packages with Standard and Premium tiers couldn't be communicated without a call or a PDF deck sent manually.",
+  "Olyce had invested in exceptional photography. It was sitting in a Google Drive folder.",
 ];
 
 const principles = [
   {
     n: "01",
-    title: "Channel-wise, not blended.",
-    body: "Every marketing channel gets its own ROAS and ROI breakdown. Blended numbers hide the truth — we surface what each channel actually earns.",
+    title: "Feel like the destination.",
+    body: "The site opens with full-bleed editorial photography and almost no UI chrome. The first impression is Sri Lanka, not a booking form.",
   },
   {
     n: "02",
-    title: "Sales data, not ad platform data.",
-    body: "We pull from Shopify and WooCommerce — not the ad platforms — so attribution reflects real transactions, not claimed clicks.",
+    title: "Itinerary-first transparency.",
+    body: "Travelers see Day 1 through Day 7 before they ever hit Inquire. Hotels, inclusions, and the map all live on the same page — no calls needed to know what they're buying.",
   },
   {
     n: "03",
-    title: "Actionable, not decorative.",
-    body: "The dashboard answers one question per channel: is this worth running? Budget signals surface automatically so the decision is obvious.",
+    title: "Two tiers, zero confusion.",
+    body: "Standard and Premium are side-by-side on every package page. The difference is clear. The booking panel surfaces pricing, inclusions, and a single CTA.",
   },
 ];
 
 const archSurfaces = [
-  { lbl: "Surface 01 · Overview", title: "ROAS dashboard" },
-  { lbl: "Surface 02 · Channels", title: "Per-channel breakdown" },
-  { lbl: "Surface 03 · Sales", title: "Store data sync" },
-  { lbl: "Surface 04 · Reports", title: "Campaign view" },
+  { lbl: "Surface 01 · Discovery", title: "Destinations + Journeys" },
+  { lbl: "Surface 02 · Package", title: "Itinerary, Inclusions, Hotels, Map" },
+  { lbl: "Surface 03 · Booking", title: "Standard vs Premium + inquiry" },
+  { lbl: "Surface 04 · Editorial", title: "The Edit — curated travel stories" },
 ];
 
 const archCore = [
-  { lbl: "Ad data", title: "Google Ads API · Meta Ads API" },
-  { lbl: "Sales data", title: "Shopify API · WooCommerce" },
-  { lbl: "Compute", title: "Attribution engine · n8n" },
-  { lbl: "Data", title: "Supabase · Postgres" },
+  { lbl: "Frontend", title: "Next.js · App Router" },
+  { lbl: "Styling", title: "Tailwind CSS" },
+  { lbl: "Content", title: "Headless CMS" },
+  { lbl: "Deploy", title: "Netlify" },
 ];
 
 const outcomes = [
-  { num: "4+", unit: "channels", label: "Google Ads, Meta Ads, TikTok, and email — all in one attribution view." },
-  { num: "Live", unit: "updates", label: "Spend and sales data sync continuously — no waiting for end-of-month reports." },
-  { num: "1", unit: "dashboard", label: "Replace four ad platform tabs and a Shopify reports page with a single source of truth." },
+  { num: "4", unit: "packages", label: "Cultural Heritage, Hill Country, South Coast Beaches, and Wildlife & Safari — all live with full itineraries." },
+  { num: "2", unit: "tiers", label: "Standard and Premium pricing surfaced clearly on every package page — no call needed to understand the difference." },
+  { num: "1", unit: "inquiry CTA", label: "All routes — browsing, reading, exploring — converge on a single clean Inquire action." },
 ];
 
 const timeline = [
   {
-    d: "Wk 1–3 · Discovery",
-    t: "Interviewed 8 SME marketing teams.",
-    p: "Mapped every manual step in their reporting workflow. Defined the attribution model before writing a line of code.",
+    d: "Wk 1–2 · Discovery",
+    t: "Mapped four packages, two tiers.",
+    p: "Audited all tour content, photography assets, and the existing inquiry flow. Defined the information architecture for Destinations, Journeys, The Edit, and Our Story.",
   },
   {
-    d: "Wk 4–5 · Architecture",
-    t: "Data pipeline design.",
-    p: "Designed the attribution engine. Resolved overlap between ad platform claimed conversions and Shopify actual orders.",
+    d: "Wk 3–4 · Design",
+    t: "Editorial-first, UI second.",
+    p: "Full-bleed photography layout locked in round one. Package detail page — itinerary tabs, inclusions, booking panel — approved without revisions.",
   },
   {
-    d: "Wk 6–11 · Build",
-    t: "Dashboard + integrations.",
-    p: "Google Ads API, Meta Ads API, and Shopify API integrations. Real-time ROAS engine. Channel comparison views.",
+    d: "Wk 5–9 · Build",
+    t: "Every page photo-led.",
+    p: "Next.js site with headless CMS for tour packages. Itinerary, inclusions, hotel listings, and map tab all driven from structured content.",
   },
   {
-    d: "Wk 12 · Beta launch",
-    t: "5 SME beta clients onboarded.",
-    p: "Real campaigns, real budgets. Attribution running against live store data.",
+    d: "Wk 10 · Launch",
+    t: "Content migrated. Site live.",
+    p: "All four tour packages, photography, and editorial content migrated. Olyce team trained to manage packages independently.",
     now: true,
   },
 ];
 
 const stack = [
-  { k: "Front-end", v: "Next.js, Tailwind" },
-  { k: "API", v: "tRPC, Zod" },
-  { k: "Ad integrations", v: "Google Ads API, Meta Ads API" },
-  { k: "Sales", v: "Shopify API, WooCommerce" },
-  { k: "Automation", v: "n8n, data pipeline" },
-  { k: "Data", v: "Supabase, Postgres" },
+  { k: "Frontend", v: "Next.js, Tailwind" },
+  { k: "Content", v: "Headless CMS" },
+  { k: "Deploy", v: "Netlify" },
+  { k: "Photography", v: "Editorial-led" },
+  { k: "Booking", v: "Inquiry flow" },
+  { k: "Tiers", v: "Standard · Premium" },
 ];
 
-const stackTags = ["Real attribution", "No ad platform bias", "Shopify-connected", "Owned by client"];
+const stackTags = ["Luxury travel", "Editorial design", "Tour catalog", "Owned by client"];
 
 const marqueeItems = [
-  "Real attribution",
-  "Channel-wise ROAS",
-  "Built for SMEs",
-  "Shopify-connected",
-  "No guesswork",
+  "Premium Sri Lanka tours",
+  "Cultural Heritage",
+  "Curated journeys",
+  "From $480 / person",
+  "Built in Colombo",
 ];
 
-export default function TroiCase() {
+const packages = [
+  { name: "Cultural Triangle & Heritage", days: "6 days", from: "$480", tag: "Cultural" },
+  { name: "Hill Country & Tea Trails", days: "7 days", from: "$499", tag: "Nature" },
+  { name: "South Coast Beaches", days: "7 days", from: "$499", tag: "Beaches" },
+  { name: "Wildlife & Safari", days: "7 days", from: "$499", tag: "Wildlife" },
+];
+
+export default function OlyceCase() {
   return (
     <div className="bg-white min-h-screen" style={{ fontFamily: "var(--font-body)" }}>
       <Navbar />
@@ -117,7 +127,7 @@ export default function TroiCase() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
           <span className="text-xs text-black/40 font-mono uppercase tracking-widest">
-            Case 04 / Selected work / 2025
+            Case / Selected work / 2025
           </span>
         </motion.div>
 
@@ -127,8 +137,8 @@ export default function TroiCase() {
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           className="text-[clamp(40px,6vw,80px)] font-black text-black leading-[1] tracking-tight"
         >
-          Troi<br />
-          <span className="italic font-light">shows you which ad<br />actually worked.</span>
+          OLYCE<br />
+          <span className="italic font-light">Sri Lanka,<br />without compromise.</span>
         </motion.h1>
 
         <motion.p
@@ -137,8 +147,8 @@ export default function TroiCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          A real-time ROAS and ROI calculator for SMEs. Connect your ad channels and your store —
-          Troi does the attribution math so you stop guessing which campaigns are worth running.
+          A luxury tour booking website for a premium Sri Lanka travel brand — editorial photography
+          up front, full itineraries before the inquiry, Standard and Premium pricing in one view.
         </motion.p>
 
         {/* Meta grid */}
@@ -165,137 +175,38 @@ export default function TroiCase() {
           ))}
         </motion.div>
 
-        {/* Dashboard stage */}
+        {/* Hero screenshot */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-          className="mt-14 rounded-2xl bg-[#0f0f0f] overflow-hidden relative"
-          style={{
-            background:
-              "radial-gradient(900px 400px at 80% 10%, rgba(124,58,237,0.35), transparent 60%), radial-gradient(700px 600px at 0% 100%, rgba(99,60,220,0.2), transparent 60%), #0f0f0f",
-          }}
+          className="mt-14"
         >
-          {/* Browser chrome */}
-          <div className="m-5 md:m-6 rounded-xl overflow-hidden border border-white/[0.08] bg-[#16161a]">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06]">
-              <div className="flex gap-1.5">
-                {[0, 1, 2].map((i) => (
-                  <div key={i} className="w-2.5 h-2.5 rounded-full bg-white/15" />
-                ))}
-              </div>
-              <div className="flex-1 mx-3 bg-white/[0.05] rounded px-3 py-1.5 text-center">
-                <span className="text-[11px] font-mono text-white/40">
-                  troi.app / dashboard / channels
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                <span className="text-[10px] text-white/50">Live</span>
-              </div>
-            </div>
-
-            {/* Dashboard mock */}
-            <div className="bg-[#0d0d12] flex" style={{ minHeight: 340 }}>
-              {/* Sidebar */}
-              <div className="hidden md:flex flex-col w-48 border-r border-white/[0.06] p-5 shrink-0">
-                <p className="font-extrabold text-[15px] tracking-tight text-white mb-5">
-                  troi<span className="text-[#7C3AED]">.</span>
-                </p>
-                {[
-                  { label: "Overview", Icon: LayoutDashboard },
-                  { label: "Google Ads", Icon: BarChart2 },
-                  { label: "Meta Ads", Icon: TrendingUp },
-                  { label: "TikTok", Icon: Video },
-                  { label: "Email", Icon: Mail },
-                  { label: "Reports", Icon: FileText },
-                ].map(({ label, Icon }, i) => (
-                  <div
-                    key={label}
-                    className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[12px] mb-0.5 ${
-                      i === 0 ? "bg-[#7C3AED] text-white" : "text-white/30"
-                    }`}
-                  >
-                    <Icon size={12} className={i === 0 ? "text-white/70" : "text-white/25"} />
-                    {label}
-                  </div>
-                ))}
-              </div>
-
-              {/* Main dash */}
-              <div className="flex-1 p-5 flex flex-col gap-4">
-                <div className="flex items-end justify-between">
-                  <p className="font-semibold text-[15px] text-white tracking-tight">
-                    Channel ROAS — last 30 days
-                  </p>
-                  <p className="text-[11px] text-white/30 font-mono">refreshed 00m ago · live</p>
-                </div>
-
-                {/* KPIs */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-                  {[
-                    { k: "Blended ROAS", v: "3.8×", d: "▲ 0.6× vs. last mo." },
-                    { k: "Total ad spend", v: "$12,400", d: "across 4 channels" },
-                    { k: "Revenue attributed", v: "$47,120", d: "from store orders" },
-                    { k: "Best channel", v: "Google", d: "ROAS 5.1×" },
-                  ].map((kpi) => (
-                    <div
-                      key={kpi.k}
-                      className="bg-white/[0.05] border border-white/[0.08] rounded-lg p-3.5"
-                    >
-                      <p className="text-[10px] uppercase tracking-wider text-white/30 mb-1">
-                        {kpi.k}
-                      </p>
-                      <p className="text-lg font-bold text-white tracking-tight">{kpi.v}</p>
-                      <p className="text-[10px] text-purple-400 mt-0.5">{kpi.d}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bar chart placeholder */}
-                <div className="bg-white/[0.04] border border-white/[0.06] rounded-lg p-4 flex-1">
-                  <div className="flex justify-between text-[11px] text-white/30 mb-4">
-                    <span>ROAS by channel</span>
-                    <span>Apr 2025</span>
-                  </div>
-                  <div className="flex items-end gap-4 h-20">
-                    {[
-                      { label: "Google", height: "80%", color: "#7C3AED" },
-                      { label: "Meta", height: "55%", color: "#6366F1" },
-                      { label: "TikTok", height: "35%", color: "rgba(255,255,255,0.15)" },
-                      { label: "Email", height: "65%", color: "rgba(255,255,255,0.2)" },
-                    ].map((bar) => (
-                      <div key={bar.label} className="flex flex-col items-center gap-1.5 flex-1">
-                        <div
-                          className="w-full rounded-t-md"
-                          style={{ height: bar.height, background: bar.color }}
-                        />
-                        <span className="text-[9px] font-mono text-white/30 uppercase">{bar.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm">
+            <Image
+              src="/olyce/Screenshot 2026-06-06 at 14.12.21.png"
+              alt="OLYCE — homepage showing South Coast Beaches tour"
+              width={1920}
+              height={960}
+              className="w-full h-auto"
+              priority
+            />
           </div>
 
-          {/* Float cards */}
-          <div className="grid grid-cols-3 gap-3 px-5 md:px-6 pb-6">
+          {/* Float stats */}
+          <div className="grid grid-cols-3 gap-3 mt-3">
             {[
-              { k: "Attribution model", v: "Last-click", unit: "first-party" },
-              { k: "Channels connected", v: "4", unit: "ad sources" },
-              { k: "Platform tab savings", v: "~5", unit: "tabs closed" },
+              { k: "Tour packages", v: "4", unit: "live" },
+              { k: "Pricing tiers", v: "2", unit: "Standard · Premium" },
+              { k: "Starting from", v: "$480", unit: "/ person" },
             ].map((f) => (
-              <div
-                key={f.k}
-                className="bg-white/[0.06] border border-white/[0.1] rounded-xl p-4 text-white"
-              >
-                <p className="text-[10px] font-mono uppercase tracking-widest text-white/50 mb-1.5">
+              <div key={f.k} className="border border-black/[0.08] rounded-xl p-4">
+                <p className="text-[10px] font-mono uppercase tracking-widest text-black/40 mb-1.5">
                   {f.k}
                 </p>
-                <p className="text-2xl font-semibold tracking-tight">
+                <p className="text-2xl font-semibold tracking-tight text-black">
                   {f.v}
-                  <span className="text-xs text-white/40 ml-1 font-normal">{f.unit}</span>
+                  <span className="text-xs text-black/30 ml-1 font-normal">{f.unit}</span>
                 </p>
               </div>
             ))}
@@ -307,10 +218,7 @@ export default function TroiCase() {
       <div className="border-t border-b border-black/[0.06] mt-20 overflow-hidden py-4 bg-white">
         <div
           className="flex gap-12 whitespace-nowrap"
-          style={{
-            animation: "marquee 22s linear infinite",
-            width: "max-content",
-          }}
+          style={{ animation: "marquee 22s linear infinite", width: "max-content" }}
         >
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="text-sm font-medium text-black/30 uppercase tracking-widest">
@@ -336,33 +244,29 @@ export default function TroiCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                Four ad platforms.
+                Premium tours.
                 <br />
-                <span className="italic font-light">Four different stories</span> about what
-                actually worked.
+                <span className="italic font-light">A PDF in someone&apos;s inbox</span> selling them.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                Troi came to us with a problem every SME marketing team knows: Google says it drove
-                200 conversions, Meta claims 180, TikTok counts 90 — but Shopify only recorded 310
-                orders total. Every platform takes credit. Nobody owns the truth. Budget decisions
-                were being made on fiction.
+                OLYCE had built a genuinely premium Sri Lanka travel product — curated itineraries,
+                handpicked hotels, Standard and Premium tiers, exceptional photography. But travelers
+                found out about them by word of mouth, and the entire experience from discovery to
+                booking happened over email. The digital presence didn&apos;t match the product.
               </p>
             </div>
           </div>
         </FadeIn>
 
-        {/* Before ledger */}
         <FadeIn delay={0.1}>
           <div className="border-t border-black/[0.08] grid grid-cols-1 md:grid-cols-3">
             {before.map((item, i) => (
               <div
                 key={i}
-                className={`p-7 border-b border-black/[0.08] ${
-                  i < before.length - 1 ? "md:border-r" : ""
-                } bg-black/[0.025]`}
+                className={`p-7 border-b border-black/[0.08] ${i < before.length - 1 ? "md:border-r" : ""} bg-black/[0.025]`}
               >
                 <p className="text-[10px] font-mono uppercase tracking-widest text-black/30 mb-3">
-                  Before · The mess
+                  Before · The gap
                 </p>
                 <p className="text-[16px] text-black/80 leading-snug">{item}</p>
               </div>
@@ -385,12 +289,14 @@ export default function TroiCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                Attribution starts at the store, not the ad platform.
+                The photography is the product. Lead with it.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                The only source of truth is what actually got purchased. We built Troi to pull from
-                Shopify and WooCommerce first — then reconcile ad platform data against real orders.
-                The platform&apos;s job is to make the math undeniable and the decision obvious.
+                Luxury travel is sold by atmosphere before it&apos;s sold by features. The site
+                opens in full-bleed dark editorial mode — no nav clutter, no hero text competing
+                with the image. Only after the feeling is established does the information start.
+                Itineraries, hotels, inclusions, and pricing are all on one page. The traveler
+                is informed by the time they hit Inquire.
               </p>
             </div>
           </div>
@@ -404,6 +310,45 @@ export default function TroiCase() {
               </p>
               <h3 className="text-lg font-bold text-black mb-3">{p.title}</h3>
               <p className="text-sm text-black/50 leading-relaxed">{p.body}</p>
+            </StaggerItem>
+          ))}
+        </FadeInStagger>
+      </section>
+
+      {/* ── SITE SCREENSHOTS ────────────────────── */}
+      <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+        <FadeIn>
+          <div className="flex items-center gap-2 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+            <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+              The site
+            </span>
+          </div>
+        </FadeIn>
+        <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            {
+              src: "/olyce/Screenshot 2026-06-06 at 14.12.34.png",
+              label: "Package page — Cultural Triangle & Heritage",
+            },
+            {
+              src: "/olyce/Screenshot 2026-06-06 at 14.12.49.png",
+              label: "Itinerary view + Reserve Your Journey booking panel",
+            },
+          ].map((s) => (
+            <StaggerItem key={s.label}>
+              <div className="rounded-xl overflow-hidden border border-black/[0.08] shadow-sm">
+                <Image
+                  src={s.src}
+                  alt={s.label}
+                  width={1200}
+                  height={750}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="mt-2.5 text-[11px] font-mono text-black/35 uppercase tracking-widest">
+                {s.label}
+              </p>
             </StaggerItem>
           ))}
         </FadeInStagger>
@@ -426,8 +371,9 @@ export default function TroiCase() {
                 What we actually shipped.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                A four-surface SaaS dashboard on a Next.js + Supabase backbone, wired to ad APIs
-                and store data through a real-time attribution engine.
+                Four sections — Destinations, Journeys, The Edit, and Our Story — with
+                per-package itinerary, inclusions, hotel, and map detail pages, all managed
+                through a headless CMS.
               </p>
             </div>
           </div>
@@ -435,13 +381,9 @@ export default function TroiCase() {
 
         <FadeIn delay={0.1}>
           <div className="border border-black/[0.1] rounded-2xl p-6 md:p-9 bg-white">
-            {/* Surfaces row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {archSurfaces.map((n) => (
-                <div
-                  key={n.lbl}
-                  className="border border-black/[0.1] rounded-xl p-4"
-                >
+                <div key={n.lbl} className="border border-black/[0.1] rounded-xl p-4">
                   <p className="text-[10px] font-mono uppercase tracking-wider text-black/30 mb-1">
                     {n.lbl}
                   </p>
@@ -452,28 +394,20 @@ export default function TroiCase() {
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓ ↓ ↓ ↓</div>
 
-            {/* Spine */}
-            <div
-              className="text-white rounded-xl p-4 text-center mb-4"
-              style={{ background: "#7C3AED" }}
-            >
+            <div className="text-white rounded-xl p-4 text-center mb-4" style={{ background: ACCENT }}>
               <p className="text-[10px] font-mono uppercase tracking-wider text-white/50 mb-1">
-                The spine · Next.js + data pipeline
+                The spine · Next.js + Headless CMS
               </p>
               <p className="text-sm font-semibold">
-                Ad spend ingestion, sales attribution, ROAS/ROI calculation, channel reporting
+                Tour packages, itineraries, inclusions, photography, pricing tiers — all content-managed
               </p>
             </div>
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓</div>
 
-            {/* Core row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {archCore.map((n) => (
-                <div
-                  key={n.lbl}
-                  className="bg-[#0f0f0f] text-white rounded-xl p-4"
-                >
+                <div key={n.lbl} className="bg-[#0f0f0f] text-white rounded-xl p-4">
                   <p className="text-[10px] font-mono uppercase tracking-wider text-white/40 mb-1">
                     {n.lbl}
                   </p>
@@ -484,20 +418,13 @@ export default function TroiCase() {
 
             <div className="text-center text-black/20 font-mono text-sm py-3">↓</div>
 
-            {/* Output row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                {
-                  lbl: "Out · For the marketer",
-                  title: "Real-time ROAS per channel · Budget signals",
-                },
-                {
-                  lbl: "Out · For the founder",
-                  title: "Actual ROI per campaign · Spend vs. revenue truth",
-                },
+                { lbl: "Out · For the traveler", title: "Full itinerary before inquiry · Standard vs Premium side-by-side" },
+                { lbl: "Out · For the team", title: "CMS-managed packages · No dev needed to update content" },
               ].map((n) => (
-                <div key={n.lbl} className="bg-[#f04b25] text-white rounded-xl p-4">
-                  <p className="text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1">
+                <div key={n.lbl} className="text-white rounded-xl p-4" style={{ background: ACCENT }}>
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-white/50 mb-1">
                     {n.lbl}
                   </p>
                   <p className="text-[13px] font-semibold">{n.title}</p>
@@ -506,6 +433,34 @@ export default function TroiCase() {
             </div>
           </div>
         </FadeIn>
+      </section>
+
+      {/* ── PACKAGES ────────────────────────────── */}
+      <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+        <FadeIn>
+          <div className="flex items-center gap-2 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+            <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+              Tour packages
+            </span>
+          </div>
+        </FadeIn>
+        <FadeInStagger className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {packages.map((p) => (
+            <StaggerItem key={p.name}>
+              <div className="border border-black/[0.08] rounded-xl p-6 bg-[#f8f6f2]">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-black/30">
+                    {p.tag}
+                  </span>
+                  <span className="text-[10px] font-mono text-black/25">{p.days}</span>
+                </div>
+                <h4 className="font-bold text-black text-[15px] mb-2">{p.name}</h4>
+                <p className="text-xs text-black/40 font-mono">From {p.from} / person · Standard & Premium</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </FadeInStagger>
       </section>
 
 
@@ -522,20 +477,17 @@ export default function TroiCase() {
                   </span>
                 </div>
                 <h2 className="text-[clamp(28px,4vw,52px)] font-black text-white leading-[1.05] tracking-tight">
-                  What it changes.
+                  What it replaced.
                 </h2>
               </div>
               <p className="text-xs font-mono text-white/30 max-w-xs">
-                Numbers from beta cohort. 5 SMEs. Real campaigns, real budgets, live Shopify data.
+                From launch · Q3 2025. Baseline: email-only inquiry flow with no digital catalog.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/[0.12]">
               {outcomes.map((r, i) => (
-                <div
-                  key={i}
-                  className="py-9 pr-6 border-r border-white/[0.12] last:border-r-0"
-                >
+                <div key={i} className="py-9 pr-6 border-r border-white/[0.12] last:border-r-0">
                   <p className="text-[clamp(32px,4vw,52px)] font-black text-white leading-none tracking-tight">
                     {r.num}
                     <span className="text-xl font-normal text-white/40 ml-1">{r.unit}</span>
@@ -544,7 +496,6 @@ export default function TroiCase() {
                 </div>
               ))}
             </div>
-
           </div>
         </FadeIn>
       </section>
@@ -563,11 +514,11 @@ export default function TroiCase() {
             </div>
             <div>
               <h2 className="text-[clamp(28px,4vw,52px)] font-black text-black leading-[1.05] tracking-tight">
-                12 weeks. Discovery first. Attribution second. Dashboard last.
+                10 weeks. Editorial-first. Handed over.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                The attribution model was locked before a single component was written. That order
-                is non-negotiable.
+                Design came before development — and photography came before design. We didn&apos;t
+                wire a single component until the visual language was locked.
               </p>
             </div>
           </div>
@@ -606,10 +557,7 @@ export default function TroiCase() {
         <FadeIn delay={0.1}>
           <div className="grid grid-cols-2 md:grid-cols-6 border-t border-b border-black/[0.08]">
             {stack.map((s, i) => (
-              <div
-                key={s.k}
-                className={`p-5 ${i < stack.length - 1 ? "border-r border-black/[0.08]" : ""}`}
-              >
+              <div key={s.k} className={`p-5 ${i < stack.length - 1 ? "border-r border-black/[0.08]" : ""}`}>
                 <p className="text-[10px] font-mono uppercase tracking-widest text-black/25 mb-1.5">
                   {s.k}
                 </p>
@@ -621,10 +569,7 @@ export default function TroiCase() {
         <FadeIn delay={0.15}>
           <div className="flex flex-wrap gap-2 mt-5">
             {stackTags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs border border-black/[0.1] rounded-full px-3.5 py-1.5 text-black/50"
-              >
+              <span key={tag} className="text-xs border border-black/[0.1] rounded-full px-3.5 py-1.5 text-black/50">
                 {tag}
               </span>
             ))}
@@ -638,27 +583,24 @@ export default function TroiCase() {
           <div className="border-t border-b border-black/[0.1] py-16 grid md:grid-cols-[1fr_1.6fr] gap-12 items-start">
             <div>
               <p className="text-[10px] font-mono uppercase tracking-widest text-black/30 mb-5">
-                Said by the client
+                Said by the traveler
               </p>
               <div className="flex items-center gap-4">
                 <div
                   className="w-14 h-14 rounded-full shrink-0"
-                  style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+                  style={{ background: "linear-gradient(135deg, #1a1a1a, #3a3a3a)" }}
                 />
                 <div>
-                  <p className="font-semibold text-black text-sm">Beta client</p>
-                  <p className="text-xs text-black/40 mt-0.5">
-                    Founder · SME, Colombo
-                  </p>
+                  <p className="font-semibold text-black text-sm">Eleanor Vance</p>
+                  <p className="text-xs text-black/40 mt-0.5">London, UK</p>
                 </div>
               </div>
-              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q2 2025</p>
+              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q3 2025</p>
             </div>
             <blockquote className="italic font-light text-[clamp(20px,2.8vw,36px)] text-black leading-[1.2] tracking-tight m-0">
-              &ldquo;I used to open four tabs every Monday morning and try to reconcile four
-              different reports that all disagreed with each other. Troi replaced that with one
-              number per channel and a clear budget recommendation. I made a channel cut in week
-              two and saved $1,800 in the first month.&rdquo;
+              &ldquo;A truly transformative experience. Every detail was curated — we could see
+              exactly what we were booking before we ever sent an inquiry. The site gave us
+              confidence before we even spoke to anyone.&rdquo;
             </blockquote>
           </div>
         </FadeIn>

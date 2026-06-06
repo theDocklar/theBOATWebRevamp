@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { LayoutDashboard, Receipt, RefreshCw, Bell, TrendingUp, PieChart } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -209,25 +209,24 @@ export default function FinPilotCase() {
                 <p className="font-extrabold text-[15px] tracking-tight text-black mb-5">
                   fin<span style={{ color: ACCENT }}>pilot</span>
                 </p>
-                {["Overview", "Invoices · 312", "Reconciliation", "Follow-ups", "Forecast", "Budgets"].map(
-                  (item, i) => (
-                    <div
-                      key={item}
-                      className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[12px] mb-0.5 ${
-                        i === 0
-                          ? "bg-[#0f0f0f] text-white"
-                          : "text-black/40"
-                      }`}
-                    >
-                      <div
-                        className={`w-3 h-3 border rounded-sm ${
-                          i === 0 ? "border-white/50" : "border-black/20"
-                        }`}
-                      />
-                      {item}
-                    </div>
-                  )
-                )}
+                {[
+                  { label: "Overview", Icon: LayoutDashboard },
+                  { label: "Invoices · 312", Icon: Receipt },
+                  { label: "Reconciliation", Icon: RefreshCw },
+                  { label: "Follow-ups", Icon: Bell },
+                  { label: "Forecast", Icon: TrendingUp },
+                  { label: "Budgets", Icon: PieChart },
+                ].map(({ label, Icon }, i) => (
+                  <div
+                    key={label}
+                    className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[12px] mb-0.5 ${
+                      i === 0 ? "bg-[#0f0f0f] text-white" : "text-black/40"
+                    }`}
+                  >
+                    <Icon size={12} className={i === 0 ? "text-white/70" : "text-black/30"} />
+                    {label}
+                  </div>
+                ))}
               </div>
 
               {/* Main dash */}
@@ -438,21 +437,6 @@ export default function FinPilotCase() {
         </FadeInStagger>
       </section>
 
-      {/* ── PULL QUOTE ──────────────────────────── */}
-      <section className="py-20 px-5 md:px-8 max-w-7xl mx-auto">
-        <FadeIn>
-          <div className="border-t border-b border-black/[0.1] py-20">
-            <blockquote className="italic font-light text-[clamp(28px,4vw,58px)] text-black leading-[1.05] tracking-tight max-w-4xl">
-              &ldquo;I thought we needed to hire a fourth person. Turns out we needed an agent.
-              FinPilot runs the close while the team actually does finance strategy for the first
-              time.&rdquo;
-              <cite className="block not-italic text-sm text-black/40 font-normal mt-6 tracking-normal leading-normal">
-                — Finance Director · NorthBridge Studios
-              </cite>
-            </blockquote>
-          </div>
-        </FadeIn>
-      </section>
 
       {/* ── RESULTS ──────────────────────────────── */}
       <section className="py-16 px-5 md:px-8 max-w-7xl mx-auto">
@@ -577,43 +561,6 @@ export default function FinPilotCase() {
               </span>
             ))}
           </div>
-        </FadeIn>
-      </section>
-
-      {/* ── NEXT PROJECT ────────────────────────── */}
-      <section className="py-24 px-5 md:px-8 max-w-7xl mx-auto">
-        <FadeIn>
-          <div className="flex items-center gap-2 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
-            <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
-              Up next / Case 02
-            </span>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <a
-            href="/work/bounce"
-            className="group grid md:grid-cols-[1fr_1.6fr] gap-8 items-end p-8 rounded-2xl border border-black/[0.08] bg-[#f5f2ed] hover:bg-[#0f0f0f] hover:border-[#0f0f0f] transition-all duration-300"
-          >
-            <div
-              className="aspect-[4/3] rounded-xl overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #1f3f2a, #6ba07a)" }}
-            />
-            <div>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-black/30 group-hover:text-white/40 mb-3 transition-colors">
-                Court booking app · 2025
-              </p>
-              <h2 className="text-[clamp(24px,3.5vw,52px)] font-black text-black group-hover:text-white leading-[1.05] tracking-tight transition-colors">
-                Bounce —<br />
-                <span className="italic font-light">court bookings</span><br />
-                reinvented.
-              </h2>
-              <div className="inline-flex items-center gap-1.5 mt-6 text-sm text-black/50 group-hover:text-white/60 border-b border-black/[0.15] group-hover:border-white/20 pb-0.5 transition-colors">
-                Read the case
-                <ArrowUpRight size={14} />
-              </div>
-            </div>
-          </a>
         </FadeIn>
       </section>
 

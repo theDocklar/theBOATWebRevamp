@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -15,11 +18,13 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Process", href: "#process" },
-    { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
-    { label: "Why us", href: "#why" },
+    { label: "Process", hash: "process" },
+    { label: "Services", hash: "services" },
+    { label: "Work", hash: "work" },
+    { label: "Why us", hash: "why" },
   ];
+
+  const href = (hash: string) => isHome ? `#${hash}` : `/#${hash}`;
 
   return (
     <>
@@ -35,7 +40,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               src="/logo.png"
               alt="theBOAT"
@@ -48,7 +53,7 @@ export default function Navbar() {
             {links.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={href(link.hash)}
                 className="px-4 py-2 text-sm text-white/60 hover:text-white transition-colors duration-150 rounded-full hover:bg-white/[0.06]"
               >
                 {link.label}
@@ -67,7 +72,7 @@ export default function Navbar() {
               Book a call
             </a>
             <a
-              href="#contact"
+              href={href("contact")}
               className="px-4 py-2 text-sm font-medium text-white bg-[#f04b25] hover:bg-[#d94020] rounded-full flex items-center gap-1.5 transition-colors duration-150"
             >
               Get started
@@ -85,7 +90,7 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile menu — offset matches logo height (132px) + vertical padding (2×20px) */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -98,7 +103,7 @@ export default function Navbar() {
             {links.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={href(link.hash)}
                 onClick={() => setMobileOpen(false)}
                 className="py-3 text-white/70 hover:text-white border-b border-white/[0.06] last:border-0 text-sm"
               >
@@ -116,7 +121,7 @@ export default function Navbar() {
                 Book a call
               </a>
               <a
-                href="#contact"
+                href={href("contact")}
                 onClick={() => setMobileOpen(false)}
                 className="flex-1 py-2.5 text-sm font-medium text-center text-white bg-[#f04b25] rounded-full flex items-center justify-center gap-1.5"
               >

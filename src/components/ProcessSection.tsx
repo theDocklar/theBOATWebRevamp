@@ -8,21 +8,21 @@ const steps = [
     num: "01",
     tag: "Discovery · 12 questions",
     title: "Map the system first",
-    desc: "We audit your product idea or ops bottleneck with 12 focused questions. You leave with a clear system diagram before a single line of code is written.",
+    desc: "Twelve focused questions. Nothing more. You leave with a system map that shows where the actual problem is — before we write a single line of code.",
     items: ["Scope & milestones", "Current workflow", "Existing stack"],
   },
   {
     num: "02",
     tag: "Blueprint · 48h turnaround",
-    title: "Architecture delivered",
-    desc: "Product wireframes, workflow blueprints, or clickable prototypes. Delivered in 48h so you can review the plan before we build it.",
+    title: "See it before we build it",
+    desc: "Wireframes, workflow maps, or a clickable prototype — in 48 hours. You review the plan, we adjust if needed, then we build.",
     badge: "48h turnaround",
   },
   {
     num: "03",
     tag: "Build · milestone-driven",
     title: "Ship to milestones",
-    desc: "8-week PMF sprints for products. Phased automation rollouts for ops. You always know what ships next and what it unlocks.",
+    desc: "Products in 8-week sprints. Automations in phases. You know what's shipping next and when — no black boxes, no surprises.",
     badge: "milestones included",
   },
 ];
@@ -53,9 +53,8 @@ export default function ProcessSection() {
 
           <FadeIn delay={0.1} className="md:max-w-xs md:pt-16">
             <p className="text-[15px] text-black/50 leading-relaxed">
-              Whether you&apos;re building a product or automating operations —
-              the same discipline applies. Map first, build second, hand over
-              everything at the end.
+              Most projects fail because someone started writing code before
+              they understood the problem. We don&apos;t skip the mapping step.
             </p>
           </FadeIn>
         </div>
