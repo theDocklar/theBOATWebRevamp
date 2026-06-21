@@ -25,12 +25,12 @@ const projects = [
     featured: false,
   },
   {
-    tag: "Product website + CMS",
+    tag: "Product website + online store",
     year: "2025",
-    title: "Pro Master: 200 products. One catalog.",
-    desc: "Product website and Sanity CMS for a UAE construction chemicals company. Searchable catalog, technical doc library, and projects showcase across six GCC markets.",
+    title: "Hima Products: 30 feeders. One store.",
+    desc: "Product website and online store for a Sri Lankan animal feeder company. Spec-forward catalog, direct-to-customer checkout, and dealer locator — replacing phone orders with a real purchase path.",
     accent: "#afafafff",
-    href: "/work/promaster",
+    href: "/work/hima",
     featured: false,
   },
   {
