@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Poppins } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const anton = Anton({
@@ -156,7 +157,20 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Toaster
+          theme="dark"
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "#0f0f0f",
+              border: "1px solid rgba(255,255,255,0.1)",
+              color: "#ffffff",
+            },
+          }}
+        />
+      </body>
     </html>
   );
 }
