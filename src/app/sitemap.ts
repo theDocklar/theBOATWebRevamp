@@ -1,9 +1,30 @@
 import type { MetadataRoute } from "next";
+import { getAllContentSlugs } from "@/lib/mdx";
 
 const BASE = "https://theboatgrp.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+
+  // Get all service and blog slugs dynamically
+  const serviceSlugs = getAllContentSlugs('services');
+  const blogSlugs = getAllContentSlugs('blog');
+
+  // Build service pages
+  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: `${BASE}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
+
+  // Build blog pages
+  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${BASE}/blog/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -54,5 +75,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // Dynamically include all service pages
+    ...servicePages,
+    // Dynamically include all blog pages
+    ...blogPages,
   ];
 }
