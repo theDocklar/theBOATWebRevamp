@@ -85,3 +85,90 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #f04b25;
 }
+
+/* Markdown content styles */
+@layer components {
+  /* Table styles */
+  .markdown-table-wrapper {
+    @apply overflow-x-auto my-8 rounded-lg shadow-lg;
+    background: #1a1a1a;
+    border: 1px solid #333;
+  }
+  
+  .markdown-table {
+    @apply w-full border-collapse;
+    min-width: 100%;
+  }
+  
+  .markdown-table thead {
+    background: #222222;
+    border-bottom: 2px solid #f04b25;
+  }
+  
+  .markdown-table thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: #ffffff;
+    border-right: 1px solid #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .markdown-table thead th:last-child {
+    border-right: none;
+  }
+  
+  .markdown-table tbody tr {
+    border-bottom: 1px solid #2a2a2a;
+    transition: background-color 0.2s ease;
+  }
+  
+  .markdown-table tbody tr:hover {
+    background: #252525;
+  }
+  
+  .markdown-table tbody td {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    border-right: 1px solid #2a2a2a;
+  }
+  
+  .markdown-table tbody td:last-child {
+    border-right: none;
+  }
+  
+  /* Code block styles */
+  .markdown-pre {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .markdown-pre code {
+    display: block;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    white-space: pre;
+  }
+  
+  /* Inline code styles */
+  .markdown-inline-code {
+    background: #222222;
+    color: #f04b25;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    font-weight: 600;
+    border: 1px solid #333;
+  }
+}
