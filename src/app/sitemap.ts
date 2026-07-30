@@ -1,30 +1,35 @@
 import type { MetadataRoute } from "next";
-import { getAllContentSlugs } from "@/lib/mdx";
+import { client } from "../../sanity/lib/client";
 
 const BASE = "https://theboatgrp.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  // Get all service and blog slugs dynamically
-  const serviceSlugs = getAllContentSlugs('services');
-  const blogSlugs = getAllContentSlugs('blog');
+  const blogSlugs = await client.fetch(`*[_type == "blog"].slug.current`)
+  const serviceSlugs = await client.fetch(`*[_type == "service"].slug.current`)
+  const resourceSlugs = await client.fetch(`*[_type == "resource"].slug.current`)
 
-  // Build service pages
-  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
-    url: `${BASE}/services/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }));
-
-  // Build blog pages
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug: string) => ({
     url: `${BASE}/blog/${slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
-  }));
+  }))
+
+  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug: string) => ({
+    url: `${BASE}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }))
+
+  const resourcePages: MetadataRoute.Sitemap = resourceSlugs.map((slug: string) => ({
+    url: `${BASE}/resources/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }))
 
   return [
     {
@@ -75,9 +80,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Dynamically include all service pages
     ...servicePages,
-    // Dynamically include all blog pages
     ...blogPages,
+    ...resourcePages,
   ];
 }

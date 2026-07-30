@@ -1,72 +1,57 @@
-import { getAllContent, ServiceFrontmatter } from '@/lib/mdx';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Link from 'next/link';
-import { Metadata } from 'next';
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import ContactSection from '@/components/ContactSection'
+import { client } from '../../../../sanity/lib/client'
 
-export const metadata: Metadata = {
-  title: 'Services | theBOAT - AI Automation & Web Development',
-  description: 'Explore our services: AI agent development, workflow automation, custom web applications, and agentic commerce solutions.',
-  alternates: {
-    canonical: 'https://theboatgrp.com/services',
-  },
-};
+export const metadata = {
+  title: 'Services — theBOAT',
+  description: 'Our services: Web development, AI Automation, Agentic Commerce.',
+}
 
-export default function ServicesPage() {
-  const services = getAllContent<ServiceFrontmatter>('services');
-
-  // Group by pillar
-  const groupedServices = services.reduce((acc, service) => {
-    const pillar = service.frontmatter.pillar;
-    if (!acc[pillar]) {
-      acc[pillar] = [];
-    }
-    acc[pillar].push(service);
-    return acc;
-  }, {} as Record<string, typeof services>);
+export default async function ServicesIndexPage() {
+  const query = `*[_type == "service"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    metaDescription,
+    pillar
+  }`
+  const services = await client.fetch(query)
 
   return (
-    <>
+    <main className="min-h-screen bg-[#f9f9f9]">
       <Navbar />
-      <main className="min-h-screen">
-        <section className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Services</h1>
-            <p className="text-xl text-muted-foreground mb-12 max-w-3xl">
-              Systems-first automation and web development services built for scale.
-            </p>
-
-            {Object.entries(groupedServices).map(([pillar, pillarServices]) => (
-              <div key={pillar} className="mb-16">
-                <h2 className="text-3xl font-bold mb-6">{pillar}</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {pillarServices.map((service) => (
-                    <Link
-                      key={service.slug}
-                      href={`/services/${service.slug}`}
-                      className="block p-6 border rounded-lg hover:border-primary transition-colors"
-                    >
-                      <h3 className="text-xl font-semibold mb-2">
-                        {service.frontmatter.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        {service.frontmatter.metaDescription}
-                      </p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>{service.frontmatter.intent}</span>
-                        {service.frontmatter.geoTarget && (
-                          <span>• {service.frontmatter.geoTarget}</span>
-                        )}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+      <section className="max-w-7xl mx-auto px-5 md:px-8 py-32 md:py-40">
+        <h1 className="text-5xl md:text-7xl font-display uppercase leading-[0.9] tracking-tight text-[#0f0f0f] mb-12">
+          Services
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {services.map((service: any) => (
+            <a 
+              key={service._id} 
+              href={`/services/${service.slug.current}`}
+              className="block group"
+            >
+              <div className="p-8 bg-white rounded-3xl border border-black/5 hover:border-black/20 transition-all">
+                {service.pillar && (
+                  <span className="inline-block px-3 py-1 bg-black/5 text-sm font-medium rounded-full mb-4">
+                    {service.pillar}
+                  </span>
+                )}
+                <h2 className="text-3xl font-display uppercase mb-4 group-hover:text-[#f04b25] transition-colors">
+                  {service.title}
+                </h2>
+                <p className="text-black/60 text-lg line-clamp-2">
+                  {service.metaDescription}
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
-      </main>
+            </a>
+          ))}
+        </div>
+      </section>
+      <ContactSection />
       <Footer />
-    </>
-  );
+    </main>
+  )
 }

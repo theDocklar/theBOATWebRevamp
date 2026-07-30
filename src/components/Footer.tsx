@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navLinks = {
-  Studio: ["Process", "Services", "Work", "Why us"],
+  Studio: ["Process", "Services", "Work", "Why us", "Resources"],
   Contact: ["info@theboatgrp.com", "+94 77 711 1770", "Colombo, Sri Lanka"],
   Legal: ["Privacy policy", "Terms of service", "Cookies"],
 };
@@ -46,7 +46,7 @@ export default function Footer() {
                 {items.map((item) => (
                   <li key={item}>
                     <a
-                      href={group === "Studio" ? `#${item.toLowerCase().replace(" ", "")}` : "#"}
+                      href={item === "Resources" ? "/resources" : group === "Studio" ? `#${item.toLowerCase().replace(" ", "")}` : "#"}
                       className="text-sm text-white/50 hover:text-white transition-colors duration-150"
                     >
                       {item}
