@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
-import { client } from '../../../../sanity/lib/client'
+import { client } from '../../../sanity/lib/client'
 
 export const metadata = {
   title: 'Blog — theBOAT',

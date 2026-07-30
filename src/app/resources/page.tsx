@@ -1,8 +1,8 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
-import { client } from '../../../../sanity/lib/client'
-import { urlForImage } from '../../../../sanity/lib/image'
+import { client } from '../../../sanity/lib/client'
+import { urlForImage } from '../../../sanity/lib/image'
 
 export const metadata = {
   title: 'Resources — theBOAT',
