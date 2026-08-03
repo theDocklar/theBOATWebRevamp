@@ -7,10 +7,12 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { ArrowUpRight, Download } from 'lucide-react'
+import { portableTextComponents } from '@/components/PortableTextComponents'
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
   const query = `*[_type == "resource" && slug.current == $slug][0]`
-  const resource = await client.fetch(query, { slug: params.slug })
+  const resource = await client.fetch(query, { slug })
 
   if (!resource) {
     return {
@@ -25,21 +27,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: resource.metaTitle || resource.title,
       description: resource.metaDescription,
       type: 'article',
-      url: `https://theboatgrp.com/resources/${params.slug}`,
+      url: `https://theboatgrp.com/resources/${slug}`,
       images: resource.mainImage ? [{ url: urlForImage(resource.mainImage).url() }] : [],
     },
     alternates: {
-      canonical: `https://theboatgrp.com/resources/${params.slug}`,
+      canonical: `https://theboatgrp.com/resources/${slug}`,
     }
   }
 }
 
-export default async function ResourcePage({ params }: { params: { slug: string } }) {
+export default async function ResourcePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const query = `*[_type == "resource" && slug.current == $slug][0] {
     ...,
     "fileUrl": file.asset->url
   }`
-  const resource = await client.fetch(query, { slug: params.slug })
+  const resource = await client.fetch(query, { slug })
 
   if (!resource) {
     notFound()
@@ -52,7 +55,7 @@ export default async function ResourcePage({ params }: { params: { slug: string 
         <header className="mb-12">
           {resource.category && (
              <div className="mb-6">
-                <span className="px-3 py-1 bg-black/5 text-sm font-medium rounded-full">
+                <span className="px-3.5 py-1.5 bg-black/5 text-xs font-semibold rounded-full uppercase tracking-wide text-[#2a2a2a]">
                   {resource.category}
                 </span>
              </div>
@@ -60,20 +63,31 @@ export default async function ResourcePage({ params }: { params: { slug: string 
           <h1 className="text-4xl md:text-6xl font-display uppercase leading-[0.9] tracking-tight text-[#0f0f0f] mb-6">
             {resource.title}
           </h1>
+          {resource.metaDescription && (
+            <p className="text-lg text-black/50 leading-relaxed max-w-2xl mb-6">
+              {resource.metaDescription}
+            </p>
+          )}
+          {resource.publishedAt && (
+            <div className="text-sm text-black/35 font-medium border-t border-black/6 pt-6">
+              {new Date(resource.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+          )}
         </header>
 
-        {resource.mainImage && (
-          <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden mb-12">
+        {resource.mainImage?.asset && (
+          <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden mb-12 shadow-lg">
             <img 
-              src={urlForImage(resource.mainImage).url()} 
+              src={urlForImage(resource.mainImage)?.width(1400)?.url()} 
               alt={resource.title} 
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
         )}
 
-        <div className="prose prose-lg max-w-none prose-headings:font-display prose-headings:uppercase prose-p:font-body prose-a:text-[#f04b25] mb-12">
-          {resource.body && <PortableText value={resource.body} />}
+        <div className="article-content mb-12">
+          {resource.body && <PortableText value={resource.body} components={portableTextComponents} />}
         </div>
 
         {(resource.fileUrl || resource.link) && (
