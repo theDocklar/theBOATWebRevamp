@@ -8,6 +8,9 @@ export const metadata = {
   description: 'Insights on automation, web development, and agentic workflows.',
 }
 
+export const revalidate = 60;
+
+
 export default async function BlogIndexPage() {
   const query = `*[_type == "blog"] | order(publishedAt desc) {
     _id,
@@ -35,7 +38,7 @@ export default async function BlogIndexPage() {
               className="block group"
             >
               <div className="p-6 bg-white rounded-2xl border border-black/5 hover:border-black/20 transition-all">
-                <h2 className="text-2xl font-display uppercase mb-3 group-hover:text-[#f04b25] transition-colors">
+                <h2 className="text-2xl font-display uppercase mb-3 text-[#0f0f0f] group-hover:text-[#f04b25] transition-colors">
                   {post.title}
                 </h2>
                 <p className="text-black/60 mb-4 line-clamp-3">
