@@ -8,6 +8,9 @@ export const metadata = {
   description: 'Our services: Web development, AI Automation, Agentic Commerce.',
 }
 
+export const revalidate = 60;
+
+
 export default async function ServicesIndexPage() {
   const query = `*[_type == "service"] | order(publishedAt desc) {
     _id,
@@ -39,7 +42,7 @@ export default async function ServicesIndexPage() {
                     {service.pillar}
                   </span>
                 )}
-                <h2 className="text-3xl font-display uppercase mb-4 group-hover:text-[#f04b25] transition-colors">
+                <h2 className="text-3xl font-display uppercase mb-4 text-[#0f0f0f] group-hover:text-[#f04b25] transition-colors">
                   {service.title}
                 </h2>
                 <p className="text-black/60 text-lg line-clamp-2">

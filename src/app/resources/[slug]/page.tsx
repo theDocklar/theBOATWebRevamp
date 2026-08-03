@@ -9,7 +9,10 @@ import ContactSection from '@/components/ContactSection'
 import { ArrowUpRight, Download } from 'lucide-react'
 import { portableTextComponents } from '@/components/PortableTextComponents'
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+
   const { slug } = await params
   const query = `*[_type == "resource" && slug.current == $slug][0]`
   const resource = await client.fetch(query, { slug })

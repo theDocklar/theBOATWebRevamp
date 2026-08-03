@@ -9,6 +9,9 @@ export const metadata = {
   description: 'Helpful resources, guides, and tools from theBOAT.',
 }
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
+
 const TYPE_CONFIG: Record<string, { label: string; route: string; color: string }> = {
   blog: { label: 'Blog', route: '/blog', color: 'bg-[#f04b25]/10 text-[#f04b25]' },
   service: { label: 'Service', route: '/services', color: 'bg-[#1a6bf0]/10 text-[#1a6bf0]' },
@@ -72,7 +75,7 @@ export default async function ResourcesIndexPage() {
                         </span>
                       )}
                     </div>
-                    <h2 className="text-2xl font-display uppercase mb-3 group-hover:text-[#f04b25] transition-colors">
+                    <h2 className="text-2xl font-display uppercase mb-3 text-[#0f0f0f] group-hover:text-[#f04b25] transition-colors">
                       {item.title}
                     </h2>
                     <p className="text-black/60 mb-4 line-clamp-3">

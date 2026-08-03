@@ -8,6 +8,8 @@ import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { portableTextComponents } from '@/components/PortableTextComponents'
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const query = `*[_type == "service" && slug.current == $slug][0]`
