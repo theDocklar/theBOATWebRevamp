@@ -4,45 +4,77 @@ import { client } from "../../sanity/lib/client";
 const BASE = "https://theboatgrp.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
+  const now = new Date().toISOString();
 
-  const blogSlugs = await client.fetch(`*[_type == "blog"].slug.current`)
-  const serviceSlugs = await client.fetch(`*[_type == "service"].slug.current`)
-  const resourceSlugs = await client.fetch(`*[_type == "resource"].slug.current`)
+  // ── Single query for all dynamic content with real timestamps ──
+  const dynamicContent: {
+    _type: string;
+    slug: string;
+    _updatedAt: string;
+  }[] = await client.fetch(
+    `*[_type in ["blog", "service", "resource"] && defined(slug.current)] {
+      _type,
+      "slug": slug.current,
+      _updatedAt
+    }`
+  );
 
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug: string) => ({
-    url: `${BASE}/blog/${slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }))
+  // ── Route config per content type ──
+  const routeConfig: Record<
+    string,
+    { prefix: string; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"]; priority: number }
+  > = {
+    blog: { prefix: "/blog", changeFrequency: "weekly", priority: 0.7 },
+    service: { prefix: "/services", changeFrequency: "monthly", priority: 0.9 },
+    resource: { prefix: "/resources", changeFrequency: "monthly", priority: 0.7 },
+  };
 
-  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug: string) => ({
-    url: `${BASE}/services/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }))
+  const dynamicPages: MetadataRoute.Sitemap = dynamicContent.map((item) => {
+    const config = routeConfig[item._type] ?? routeConfig.resource;
+    return {
+      url: `${BASE}${config.prefix}/${item.slug}`,
+      lastModified: item._updatedAt,
+      changeFrequency: config.changeFrequency,
+      priority: config.priority,
+    };
+  });
 
-  const resourcePages: MetadataRoute.Sitemap = resourceSlugs.map((slug: string) => ({
-    url: `${BASE}/resources/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }))
-
-  return [
+  // ── Static pages ──
+  const staticPages: MetadataRoute.Sitemap = [
+    // Homepage — highest priority
     {
       url: BASE,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
+
+    // Section listing / index pages — important for crawl discovery
+    {
+      url: `${BASE}/services`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE}/resources`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+
+    // Showcase / portfolio pages
     {
       url: `${BASE}/frames`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE}/stores`,
@@ -50,38 +82,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+
+    // Case study pages
     {
       url: `${BASE}/work/finpilot`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${BASE}/work/bounce`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE}/work/hima`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE}/work/olyce`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE}/work/troi`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
-    ...servicePages,
-    ...blogPages,
-    ...resourcePages,
+    {
+      url: `${BASE}/work/promaster`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
+
+  // Static pages first (listing pages act as hubs for crawler discovery),
+  // then dynamic pages (individual content)
+  return [...staticPages, ...dynamicPages];
 }
