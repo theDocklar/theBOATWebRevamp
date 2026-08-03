@@ -86,89 +86,288 @@
   background: #f04b25;
 }
 
-/* Markdown content styles */
+/* ─── Article content styles (light-themed detail pages) ─── */
 @layer components {
-  /* Table styles */
-  .markdown-table-wrapper {
-    @apply overflow-x-auto my-8 rounded-lg shadow-lg;
-    background: #1a1a1a;
-    border: 1px solid #333;
+
+  /* Container wrapper */
+  .article-content {
+    color: #2a2a2a;
+    line-height: 1.8;
+    font-size: 1.075rem;
   }
-  
-  .markdown-table {
-    @apply w-full border-collapse;
-    min-width: 100%;
-  }
-  
-  .markdown-table thead {
-    background: #222222;
+
+  /* ── Headings ── */
+  .article-h1 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 2.25rem;
+    line-height: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #0f0f0f;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
     border-bottom: 2px solid #f04b25;
   }
-  
-  .markdown-table thead th {
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: #ffffff;
-    border-right: 1px solid #333;
+
+  .article-h2 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: -0.01em;
+    color: #0f0f0f;
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
-  
-  .markdown-table thead th:last-child {
-    border-right: none;
+
+  .article-h3 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
   }
-  
-  .markdown-table tbody tr {
-    border-bottom: 1px solid #2a2a2a;
-    transition: background-color 0.2s ease;
-  }
-  
-  .markdown-table tbody tr:hover {
-    background: #252525;
-  }
-  
-  .markdown-table tbody td {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    color: #e0e0e0;
-    border-right: 1px solid #2a2a2a;
-  }
-  
-  .markdown-table tbody td:last-child {
-    border-right: none;
-  }
-  
-  /* Code block styles */
-  .markdown-pre {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  }
-  
-  .markdown-pre code {
-    display: block;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 0.875rem;
-    line-height: 1.7;
-    color: #e0e0e0;
-    white-space: pre;
-  }
-  
-  /* Inline code styles */
-  .markdown-inline-code {
-    background: #222222;
-    color: #f04b25;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 0.9em;
+
+  .article-h4 {
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.4;
     font-weight: 600;
-    border: 1px solid #333;
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Paragraphs ── */
+  .article-p {
+    font-family: var(--font-body), system-ui, sans-serif;
+    color: #3a3a3a;
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+  }
+
+  .article-p:empty {
+    display: none;
+  }
+
+  /* ── Links ── */
+  .article-link {
+    color: #f04b25;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .article-link:hover {
+    color: #d83d1a;
+    border-bottom-color: #d83d1a;
+  }
+
+  /* ── Unordered lists ── */
+  .article-ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .article-ul > .article-li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.625rem;
+    color: #3a3a3a;
+    line-height: 1.75;
+  }
+
+  .article-ul > .article-li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    width: 8px;
+    height: 8px;
+    background: #f04b25;
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+
+  /* ── Ordered lists ── */
+  .article-ol {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    counter-reset: article-counter;
+  }
+
+  .article-ol > .article-li {
+    position: relative;
+    padding-left: 2.25rem;
+    margin-bottom: 0.75rem;
+    color: #3a3a3a;
+    line-height: 1.75;
+    counter-increment: article-counter;
+  }
+
+  .article-ol > .article-li::before {
+    content: counter(article-counter);
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #f04b25;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+
+  /* ── Nested lists ── */
+  .article-li .article-ul,
+  .article-li .article-ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .article-li .article-ul > .article-li::before {
+    background: transparent;
+    border: 2px solid #f04b25;
+    width: 6px;
+    height: 6px;
+    top: 0.7rem;
+  }
+
+  /* ── Blockquote ── */
+  .article-blockquote {
+    position: relative;
+    margin: 2rem 0;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(240, 75, 37, 0.04) 0%, rgba(240, 75, 37, 0.01) 100%);
+    border-left: 4px solid #f04b25;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #2a2a2a;
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .article-blockquote .article-p {
+    margin-bottom: 0.5rem;
+    color: #2a2a2a;
+  }
+
+  .article-blockquote .article-p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Inline code ── */
+  .article-inline-code {
+    background: rgba(0, 0, 0, 0.05);
+    color: #d63a1a;
+    padding: 0.15rem 0.45rem;
+    border-radius: 5px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.875em;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* ── Figures & images ── */
+  .article-figure {
+    margin: 2rem 0;
+  }
+
+  .article-img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .article-figcaption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  /* ── Tables ── */
+  .article-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .article-content thead {
+    background: #0f0f0f;
+  }
+
+  .article-content thead th {
+    padding: 0.875rem 1.25rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: var(--font-body), system-ui, sans-serif;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .article-content thead th:last-child {
+    border-right: none;
+  }
+
+  .article-content tbody tr {
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background 0.15s ease;
+  }
+
+  .article-content tbody tr:hover {
+    background: rgba(240, 75, 37, 0.02);
+  }
+
+  .article-content tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .article-content tbody td {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    color: #3a3a3a;
+    border-right: 1px solid rgba(0, 0, 0, 0.04);
+    vertical-align: top;
+  }
+
+  .article-content tbody td:last-child {
+    border-right: none;
+  }
+
+  /* ── Horizontal rule ── */
+  .article-content hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.12), transparent);
+    margin: 2.5rem 0;
   }
 }
