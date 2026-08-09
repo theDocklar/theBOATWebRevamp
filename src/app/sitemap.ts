@@ -83,6 +83,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
 
+    // SEO-focused landing pages — high-intent keywords
+    {
+      url: `${BASE}/services/agentic-commerce-shopify`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
+    {
+      url: `${BASE}/shopify-development-sri-lanka`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
+
     // Case study pages
     {
       url: `${BASE}/work/finpilot`,
@@ -106,7 +120,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE}/work/olyce`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${BASE}/work/troi`,
