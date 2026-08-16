@@ -7,6 +7,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { portableTextComponents } from '@/components/PortableTextComponents'
+import { BreadcrumbSchema } from '@/components/schema'
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
 export const revalidate = 60;
 
@@ -21,16 +23,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
+  const ogImage = post.mainImage ? urlForImage(post.mainImage).url() : '/og.png'
+
   return {
     title: post.metaTitle || post.title,
     description: post.metaDescription,
-    keywords: post.keyword ? [post.keyword] : undefined,
     openGraph: {
+      ...OG_DEFAULTS,
       title: post.metaTitle || post.title,
       description: post.metaDescription,
       type: 'article',
       url: `https://theboatgrp.com/blog/${slug}`,
-      images: post.mainImage ? [{ url: urlForImage(post.mainImage).url() }] : [],
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      ...TWITTER_DEFAULTS,
+      card: 'summary_large_image',
+      title: post.metaTitle || post.title,
+      description: post.metaDescription,
+      images: [ogImage],
     },
     alternates: {
       canonical: `https://theboatgrp.com/blog/${slug}`,
@@ -49,6 +60,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-[#f9f9f9]">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Blog", url: `${SITE_URL}/blog` },
+          { name: post.title, url: `${SITE_URL}/blog/${slug}` },
+        ]}
+      />
       <Navbar />
       <article className="max-w-4xl mx-auto px-5 md:px-8 py-32 md:py-40">
         <header className="mb-12">

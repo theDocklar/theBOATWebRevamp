@@ -2,33 +2,33 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/services/agentic-commerce-shopify`;
 
 export const metadata: Metadata = {
   title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
   description:
     "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management, revenue attribution, and autonomous shopping experiences that scale.",
-  keywords: [
-    "agentic commerce shopify",
-    "AI-driven e-commerce",
-    "automated shopify solutions",
-    "intelligent platform management",
-    "shopify automation",
-    "autonomous commerce",
-  ],
   openGraph: {
+    ...OG_DEFAULTS,
+    url: PAGE_URL,
     title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "theBOAT Agentic Commerce" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
+    images: ["/og.png"],
   },
   alternates: {
-    canonical: "https://theboatgrp.com/services/agentic-commerce-shopify",
+    canonical: PAGE_URL,
   },
 };
 

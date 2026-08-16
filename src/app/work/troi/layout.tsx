@@ -1,32 +1,27 @@
 import type { Metadata } from "next";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/schema";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+import { getCase, caseUrl } from "@/lib/cases";
 
-const SITE_URL = "https://theboatgrp.com";
+const CASE = getCase("troi")!;
 
 export const metadata: Metadata = {
   title: "Troi — Real-Time ROAS & ROI Analytics for SME Marketing Teams",
-  description:
-    "How theBOAT built Troi, a marketing analytics dashboard giving SME teams real-time ROAS and ROI visibility across every ad channel — against actual store sales, not just platform-reported numbers.",
-  keywords: [
-    "marketing analytics dashboard",
-    "ROAS tracking tool",
-    "ROI analytics SME",
-    "ad performance dashboard",
-    "Troi analytics",
-    "theBOAT case study",
-    "marketing automation Sri Lanka",
-  ],
+  description: CASE.description,
   alternates: {
-    canonical: `${SITE_URL}/work/troi`,
+    canonical: caseUrl("troi"),
   },
   openGraph: {
+    ...OG_DEFAULTS,
     type: "article",
-    url: `${SITE_URL}/work/troi`,
+    url: caseUrl("troi"),
     title: "Troi — ROAS & ROI Analytics Dashboard · theBOAT",
     description:
       "Channel-wise ROAS and ROI against actual store sales — built for SME marketing teams by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Troi case study" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "Troi — ROAS & ROI Analytics Dashboard · theBOAT",
     description:
@@ -36,5 +31,23 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ArticleSchema
+        title={CASE.title}
+        description={CASE.description}
+        url={caseUrl("troi")}
+        publishedAt={CASE.datePublished}
+        author="theBOAT"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Work", url: `${SITE_URL}/work` },
+          { name: CASE.shortTitle, url: caseUrl("troi") },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

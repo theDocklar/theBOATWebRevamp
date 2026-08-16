@@ -127,7 +127,7 @@ export default function OlyceCase() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
           <span className="text-xs text-black/40 font-mono uppercase tracking-widest">
-            Case / Selected work / 2025
+            Case 05 / Selected work / 2025
           </span>
         </motion.div>
 

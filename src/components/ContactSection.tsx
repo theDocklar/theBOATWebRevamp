@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import FadeIn from "./FadeIn";
+import { CALENDLY_URL } from "@/lib/constants";
 
 const timeSlots = [
   { label: "Tue 10:00", available: true },
@@ -128,7 +129,7 @@ export default function ContactSection() {
                 <div className="flex items-center justify-between pt-2 border-t border-white/10">
                   <span className="text-xs text-white/50">Avg response: 24h</span>
                   <a
-                    href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+                    href={CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 bg-[#0f0f0f] text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black transition-colors"

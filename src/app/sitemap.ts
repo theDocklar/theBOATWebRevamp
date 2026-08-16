@@ -69,6 +69,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
 
+    // Case study hub — links every case, valid breadcrumb target
+    {
+      url: `${BASE}/work`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+
     // Showcase / portfolio pages
     {
       url: `${BASE}/frames`,
@@ -124,12 +132,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE}/work/troi`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/work/promaster`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,

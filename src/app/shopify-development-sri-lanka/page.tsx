@@ -3,33 +3,33 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import Image from "next/image";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/shopify-development-sri-lanka`;
 
 export const metadata: Metadata = {
   title: "Expert Shopify Development & Architecture in Sri Lanka · theBOAT",
   description:
     "Leading Shopify agency in Colombo, Sri Lanka. Custom storefront design, payment gateway integration, and proven e-commerce solutions for local brands scaling globally.",
-  keywords: [
-    "shopify sri lanka",
-    "shopify development colombo",
-    "shopify agency sri lanka",
-    "ecommerce development sri lanka",
-    "shopify developer colombo",
-    "online store sri lanka",
-  ],
   openGraph: {
+    ...OG_DEFAULTS,
+    url: PAGE_URL,
     title: "Expert Shopify Development & Architecture in Sri Lanka",
     description:
       "Leading Shopify agency in Colombo. Custom storefront design, payment integration, proven solutions for local brands.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "theBOAT Shopify Development" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "Expert Shopify Development & Architecture in Sri Lanka",
     description:
       "Leading Shopify agency in Colombo. Custom storefront design, payment integration, proven solutions for local brands.",
+    images: ["/og.png"],
   },
   alternates: {
-    canonical: "https://theboatgrp.com/shopify-development-sri-lanka",
+    canonical: PAGE_URL,
   },
 };
 

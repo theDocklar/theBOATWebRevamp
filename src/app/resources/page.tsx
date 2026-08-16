@@ -3,10 +3,31 @@ import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { client } from '../../../sanity/lib/client'
 import { urlForImage } from '../../../sanity/lib/image'
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
+
+const PAGE_URL = `${SITE_URL}/resources`
+const TITLE = 'Resources — theBOAT'
+const DESCRIPTION = 'Helpful resources, guides, and tools from theBOAT.'
 
 export const metadata = {
-  title: 'Resources — theBOAT',
-  description: 'Helpful resources, guides, and tools from theBOAT.',
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    ...OG_DEFAULTS,
+    type: 'website',
+    url: PAGE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'theBOAT Resources' }],
+  },
+  twitter: {
+    ...TWITTER_DEFAULTS,
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ['/og.png'],
+  },
 }
 
 export const revalidate = 60; // Revalidate every 60 seconds

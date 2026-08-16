@@ -1,22 +1,32 @@
 import type { Metadata } from "next";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/schema";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+import { getCase, caseUrl } from "@/lib/cases";
+
+const CASE = getCase("olyce")!;
 
 export const metadata: Metadata = {
-  title: "Olyce: Streamlined Digital Architecture & Solutions",
-  description:
-    "Discover how Olyce simplifies digital product development and infrastructure. Get scalable, efficient solutions for your next big project. Learn more today.",
+  title: "OLYCE — Luxury Sri Lanka Tour Booking Website",
+  description: CASE.description,
+  alternates: {
+    canonical: caseUrl("olyce"),
+  },
   openGraph: {
-    title: "Olyce: Streamlined Digital Architecture & Solutions",
-    description:
-      "Discover how Olyce simplifies digital product development and infrastructure. Get scalable, efficient solutions for your next big project.",
+    ...OG_DEFAULTS,
     type: "article",
-    images: ["/olyce/Screenshot 2026-06-06 at 14.12.21.png"],
+    url: caseUrl("olyce"),
+    title: "OLYCE — Luxury Sri Lanka Tour Booking Website · theBOAT",
+    description:
+      "Editorial photography up front, full 7-day itineraries before the inquiry, Standard vs Premium pricing side-by-side. Shipped in 10 weeks. Built by theBOAT.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "OLYCE case study" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "Olyce: Streamlined Digital Architecture & Solutions",
+    title: "OLYCE — Luxury Sri Lanka Tour Booking Website · theBOAT",
     description:
-      "Discover how Olyce simplifies digital product development and infrastructure. Get scalable, efficient solutions for your next big project.",
-    images: ["/olyce/Screenshot 2026-06-06 at 14.12.21.png"],
+      "Editorial photography, full itineraries before inquiry, Standard vs Premium pricing side-by-side. Built by theBOAT.",
+    images: ["/og.png"],
   },
 };
 
@@ -25,5 +35,23 @@ export default function OlyceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ArticleSchema
+        title={CASE.title}
+        description={CASE.description}
+        url={caseUrl("olyce")}
+        publishedAt={CASE.datePublished}
+        author="theBOAT"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Work", url: `${SITE_URL}/work` },
+          { name: CASE.shortTitle, url: caseUrl("olyce") },
+        ]}
+      />
+      {children}
+    </>
+  );
 }
