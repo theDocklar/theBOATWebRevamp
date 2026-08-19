@@ -95,10 +95,20 @@ export default function CommerceSection() {
                 <div className="text-white/75 leading-relaxed md:pt-10" style={{ fontSize: "clamp(15px,1.3vw,18px)" }}>
                   <p>
                     We build{" "}
-                    <span className="text-white font-medium">Shopify storefronts</span>{" "}
+                    <a
+                      href="/shopify-development-sri-lanka"
+                      className="text-white font-medium underline decoration-white/30 hover:decoration-white/70 transition-colors"
+                    >
+                      Shopify storefronts
+                    </a>{" "}
                     wired to an automation spine — and quietly retrofit them with{" "}
-                    <span className="text-white font-medium">AI agents</span> that watch
-                    inventory, prices, customers and creative all day.
+                    <a
+                      href="/services/agentic-commerce-shopify"
+                      className="text-white font-medium underline decoration-white/30 hover:decoration-white/70 transition-colors"
+                    >
+                      AI agents
+                    </a>{" "}
+                    that watch inventory, prices, customers and creative all day.
                   </p>
                   <p className="mt-4">
                     The store sells. The system{" "}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
+import FAQBlock from "@/components/FAQBlock";
 import Image from "next/image";
 import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
 
@@ -87,6 +88,25 @@ const capabilities = [
     description:
       "Scale from local to global. Multi-currency support, international shipping configuration, regional tax compliance, and market-specific checkout flows.",
     icon: "🌍",
+  },
+];
+
+const faqs = [
+  {
+    q: "Do you integrate local payment gateways like PayHere and WEBXPAY?",
+    a: "Yes — payment gateway integration is one of our core capabilities for Sri Lankan Shopify builds. We set up local processors like PayHere and WEBXPAY alongside international options (Stripe, PayPal) so you can take orders from customers in Sri Lanka and abroad without friction.",
+  },
+  {
+    q: "How long does a Shopify store build take?",
+    a: "A standard storefront build runs 6–8 weeks from kickoff to launch. Advanced builds with custom integrations or multi-currency support typically take 8–10 weeks. We'll give you a specific timeline after an audit of your requirements.",
+  },
+  {
+    q: "Can you help a Sri Lankan business expand to international markets?",
+    a: "Yes — we've built this exact path before, including a Colombo brand expanding into the UAE market with same-day delivery workflows and international payment processing. Multi-currency support and regional tax/shipping configuration are part of our International Expansion Support capability.",
+  },
+  {
+    q: "What does a Shopify store cost in Sri Lanka?",
+    a: "A store build starts from $3k, advanced setups with custom integrations start from $6k, and ongoing maintenance retainers start from $500/month. Exact pricing depends on catalogue size, integrations, and complexity — book a free audit for an accurate quote.",
   },
 ];
 
@@ -274,6 +294,15 @@ export default function ShopifySriLankaPage() {
               </div>
             ))}
           </div>
+
+          <p className="mt-8 text-black/60 leading-relaxed">
+            Once your store is live and scaling, the next step is often{" "}
+            <a href="/services/agentic-commerce-shopify" className="text-[#f04b25] font-medium hover:underline">
+              agentic commerce on Shopify
+            </a>{" "}
+            — autonomous pricing, inventory, and campaign management layered on top of what
+            we build here.
+          </p>
         </div>
       </section>
 
@@ -368,6 +397,24 @@ export default function ShopifySriLankaPage() {
               quote.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 md:py-32">
+        <div className="max-w-3xl mx-auto px-5 md:px-8">
+          <div className="mb-12">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+              <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+                05 / Common questions
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-[#0f0f0f] leading-tight">
+              FAQ
+            </h2>
+          </div>
+          <FAQBlock qa={faqs} title="" />
         </div>
       </section>
 
