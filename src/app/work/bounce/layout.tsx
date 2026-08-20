@@ -1,31 +1,27 @@
 import type { Metadata } from "next";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/schema";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+import { getCase, caseUrl } from "@/lib/cases";
 
-const SITE_URL = "https://theboatgrp.com";
+const CASE = getCase("bounce")!;
 
 export const metadata: Metadata = {
   title: "Bounce — Court Booking App for Players & Operators",
-  description:
-    "How theBOAT built a mobile court booking app and admin dashboard for Bounce. Real-time availability, instant confirmation, and a full operator management system — built for sports facility operators.",
-  keywords: [
-    "court booking app case study",
-    "sports booking platform",
-    "mobile app development Sri Lanka",
-    "Bounce court booking",
-    "theBOAT case study",
-    "React Native app development",
-  ],
+  description: CASE.description,
   alternates: {
-    canonical: `${SITE_URL}/work/bounce`,
+    canonical: caseUrl("bounce"),
   },
   openGraph: {
+    ...OG_DEFAULTS,
     type: "article",
-    url: `${SITE_URL}/work/bounce`,
+    url: caseUrl("bounce"),
     title: "Bounce — Court Booking App · theBOAT",
     description:
       "Mobile app for players + admin dashboard for court operators. Real-time availability and instant confirmation. Built by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Bounce case study" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "Bounce — Court Booking App · theBOAT",
     description:
@@ -35,5 +31,23 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ArticleSchema
+        title={CASE.title}
+        description={CASE.description}
+        url={caseUrl("bounce")}
+        publishedAt={CASE.datePublished}
+        author="theBOAT"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Work", url: `${SITE_URL}/work` },
+          { name: CASE.shortTitle, url: caseUrl("bounce") },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

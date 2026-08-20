@@ -2,33 +2,21 @@
 
 import { ArrowRight, ShoppingCart, Bot, Code2, Camera } from "lucide-react";
 import FadeIn, { FadeInStagger, StaggerItem } from "./FadeIn";
+import { SERVICES } from "@/lib/services";
 
-const services = [
-  {
-    icon: Code2,
-    num: "01",
-    title: "Product development",
-    desc: "Got an idea and need a team to build it? We work alongside you — from first wireframe to shipped product, usually in 8 weeks. No handoffs, daily contact.",
-  },
-  {
-    icon: Bot,
-    num: "02",
-    title: "AI workflow automation",
-    desc: "Your team is probably spending 20–30 hours a month on work that could run itself. We find it, automate it, and hand over the keys.",
-  },
-  {
-    icon: ShoppingCart,
-    num: "03",
-    title: "Shopify + commerce",
-    desc: "Shopify stores that don't need babysitting. Inventory, pricing, cart recovery — wired up to handle themselves so you can focus on growing the thing.",
-  },
-  {
-    icon: Camera,
-    num: "04",
-    title: "Creative studio",
-    desc: "Photography, brand identities, lookbooks, packaging — done by people who also understand why it needs to convert, not just look good.",
-  },
+// Icon + on-page nav target per service — SERVICES (lib/services.ts) is the
+// shared source for title/description, consumed here and by ServiceSchema.
+const CARD_META = [
+  { icon: Code2, num: "01", href: "#contact" },
+  { icon: Bot, num: "02", href: "#contact" },
+  { icon: ShoppingCart, num: "03", href: "/stores" },
+  { icon: Camera, num: "04", href: "/frames" },
 ];
+
+const services = SERVICES.map((service, i) => ({
+  ...service,
+  ...CARD_META[i],
+}));
 
 export default function ServicesSection() {
   return (
@@ -62,7 +50,10 @@ export default function ServicesSection() {
             const Icon = service.icon;
             return (
               <StaggerItem key={service.num}>
-                <div className="group bg-white border border-black/[0.08] rounded-2xl p-7 hover:border-black/[0.18] hover:shadow-[0_8px_32px_rgba(14,14,12,0.08)] transition-all duration-200 cursor-pointer h-full">
+                <a
+                  href={service.href}
+                  className="group block bg-white border border-black/[0.08] rounded-2xl p-7 hover:border-black/[0.18] hover:shadow-[0_8px_32px_rgba(14,14,12,0.08)] transition-all duration-200 h-full"
+                >
                   <div className="flex items-start justify-between mb-7">
                     <div className="w-11 h-11 rounded-xl bg-black/[0.05] flex items-center justify-center group-hover:bg-[#f04b25]/10 transition-colors duration-200">
                       <Icon size={18} className="text-black/50 group-hover:text-[#f04b25] transition-colors duration-200" />
@@ -74,14 +65,14 @@ export default function ServicesSection() {
                     {service.title}
                   </h3>
                   <p className="text-sm text-black/45 leading-relaxed mb-6">
-                    {service.desc}
+                    {service.description}
                   </p>
 
-                  <button className="flex items-center gap-1.5 text-sm text-[#f04b25] group-hover:gap-2.5 transition-all duration-150">
+                  <span className="flex items-center gap-1.5 text-sm text-[#f04b25] group-hover:gap-2.5 transition-all duration-150">
                     Learn more
                     <ArrowRight size={14} />
-                  </button>
-                </div>
+                  </span>
+                </a>
               </StaggerItem>
             );
           })}

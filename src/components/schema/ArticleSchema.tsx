@@ -26,8 +26,9 @@ export default function ArticleSchema({
     "datePublished": publishedAt,
     "dateModified": updatedAt || publishedAt,
     "author": {
-      "@type": "Person",
-      "name": author
+      "@type": "Organization",
+      "name": author,
+      "url": "https://theboatgrp.com"
     },
     "publisher": {
       "@type": "Organization",

@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { ArrowUpRight, Download } from 'lucide-react'
 import { portableTextComponents } from '@/components/PortableTextComponents'
+import { OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
 export const revalidate = 60;
 
@@ -23,15 +24,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
+  const ogImage = resource.mainImage ? urlForImage(resource.mainImage).url() : '/og.png'
+
   return {
     title: resource.metaTitle || resource.title,
     description: resource.metaDescription,
     openGraph: {
+      ...OG_DEFAULTS,
       title: resource.metaTitle || resource.title,
       description: resource.metaDescription,
       type: 'article',
       url: `https://theboatgrp.com/resources/${slug}`,
-      images: resource.mainImage ? [{ url: urlForImage(resource.mainImage).url() }] : [],
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      ...TWITTER_DEFAULTS,
+      card: 'summary_large_image',
+      title: resource.metaTitle || resource.title,
+      description: resource.metaDescription,
+      images: [ogImage],
     },
     alternates: {
       canonical: `https://theboatgrp.com/resources/${slug}`,

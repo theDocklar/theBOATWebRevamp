@@ -2,10 +2,31 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { client } from '../../../sanity/lib/client'
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
+
+const PAGE_URL = `${SITE_URL}/services`
+const TITLE = 'Services — theBOAT'
+const DESCRIPTION = 'Our services: Web development, AI Automation, Agentic Commerce.'
 
 export const metadata = {
-  title: 'Services — theBOAT',
-  description: 'Our services: Web development, AI Automation, Agentic Commerce.',
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    ...OG_DEFAULTS,
+    type: 'website',
+    url: PAGE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'theBOAT Services' }],
+  },
+  twitter: {
+    ...TWITTER_DEFAULTS,
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ['/og.png'],
+  },
 }
 
 export const revalidate = 60;

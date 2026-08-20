@@ -2,12 +2,23 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { CONTACT } from "@/lib/constants";
 
-const navLinks = {
-  Studio: ["Process", "Services", "Work", "Why us", "Resources"],
-  Contact: ["info@theboatgrp.com", "+94 77 711 1770", "Colombo, Sri Lanka"],
-  Legal: ["Privacy policy", "Terms of service", "Cookies"],
-};
+const studioLinks = [
+  { label: "Process", hash: "process" },
+  { label: "Services", hash: "services" },
+  { label: "Work", hash: "work" },
+  { label: "Why us", hash: "why" },
+  { label: "Resources", href: "/resources" },
+];
+
+const contactLinks = [
+  { label: CONTACT.email, href: `mailto:${CONTACT.email}` },
+  { label: CONTACT.phoneDisplay, href: `tel:${CONTACT.phone}` },
+  { label: CONTACT.city },
+];
+
+const legalLinks = ["Privacy policy", "Terms of service", "Cookies"];
 
 export default function Footer() {
   return (
@@ -37,25 +48,65 @@ export default function Footer() {
           </div>
 
           {/* Link cols */}
-          {Object.entries(navLinks).map(([group, items]) => (
-            <div key={group}>
-              <p className="text-xs text-white/30 uppercase tracking-widest mb-4">
-                {group}
-              </p>
-              <ul className="space-y-2.5">
-                {items.map((item) => (
-                  <li key={item}>
+          <div>
+            <p className="text-xs text-white/30 uppercase tracking-widest mb-4">
+              Studio
+            </p>
+            <ul className="space-y-2.5">
+              {studioLinks.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href ?? `#${item.hash}`}
+                    className="text-sm text-white/50 hover:text-white transition-colors duration-150"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs text-white/30 uppercase tracking-widest mb-4">
+              Contact
+            </p>
+            <ul className="space-y-2.5">
+              {contactLinks.map((item) =>
+                item.href ? (
+                  <li key={item.label}>
                     <a
-                      href={item === "Resources" ? "/resources" : group === "Studio" ? `#${item.toLowerCase().replace(" ", "")}` : "#"}
+                      href={item.href}
                       className="text-sm text-white/50 hover:text-white transition-colors duration-150"
                     >
-                      {item}
+                      {item.label}
                     </a>
                   </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                ) : (
+                  <li key={item.label} className="text-sm text-white/50">
+                    {item.label}
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs text-white/30 uppercase tracking-widest mb-4">
+              Legal
+            </p>
+            <ul className="space-y-2.5">
+              {legalLinks.map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-sm text-white/50 hover:text-white transition-colors duration-150"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Big SAIL text */}

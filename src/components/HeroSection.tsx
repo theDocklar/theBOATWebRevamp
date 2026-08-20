@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { CALENDLY_URL } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -89,7 +90,7 @@ export default function HeroSection() {
               />
             </a>
             <a
-              href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-white/80 hover:text-white border border-white/20 hover:border-white/40 px-6 py-3 rounded-full transition-all duration-200 text-sm"

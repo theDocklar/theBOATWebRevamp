@@ -1,31 +1,27 @@
 import type { Metadata } from "next";
+import { ArticleSchema, BreadcrumbSchema } from "@/components/schema";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+import { getCase, caseUrl } from "@/lib/cases";
 
-const SITE_URL = "https://theboatgrp.com";
+const CASE = getCase("finpilot")!;
 
 export const metadata: Metadata = {
   title: "FinPilot — Autonomous Finance Ops for a 65-Person Creative Agency",
-  description:
-    "How theBOAT replaced two weeks of monthly finance work with five agentic workflows for a 65-person creative agency. Invoice processing, AP/AR reconciliation, and reporting — fully automated with human approval gates.",
-  keywords: [
-    "finance automation case study",
-    "agentic workflow",
-    "accounts payable automation",
-    "creative agency automation",
-    "FinPilot",
-    "theBOAT case study",
-  ],
+  description: CASE.description,
   alternates: {
-    canonical: `${SITE_URL}/work/finpilot`,
+    canonical: caseUrl("finpilot"),
   },
   openGraph: {
+    ...OG_DEFAULTS,
     type: "article",
-    url: `${SITE_URL}/work/finpilot`,
+    url: caseUrl("finpilot"),
     title: "FinPilot — Autonomous Finance Ops · theBOAT",
     description:
       "Five agentic workflows replacing 2 weeks of monthly finance work for a 65-person creative agency. Built by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "FinPilot case study" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "FinPilot — Autonomous Finance Ops · theBOAT",
     description:
@@ -35,5 +31,23 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ArticleSchema
+        title={CASE.title}
+        description={CASE.description}
+        url={caseUrl("finpilot")}
+        publishedAt={CASE.datePublished}
+        author="theBOAT"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: SITE_URL },
+          { name: "Work", url: `${SITE_URL}/work` },
+          { name: CASE.shortTitle, url: caseUrl("finpilot") },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

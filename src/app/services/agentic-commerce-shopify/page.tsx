@@ -2,33 +2,53 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
+import FAQBlock from "@/components/FAQBlock";
+import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
+
+const PAGE_URL = `${SITE_URL}/services/agentic-commerce-shopify`;
+
+const faqs = [
+  {
+    q: "What is agentic commerce, and how is it different from typical Shopify automation apps?",
+    a: "Regular automation apps run fixed rules — \"if X, do Y.\" Agentic commerce systems make decisions: adjusting pricing, managing inventory, and running campaigns based on real-time performance data, then learning from the outcomes. It's the difference between a script and a system that manages itself.",
+  },
+  {
+    q: "Do I need agentic commerce if I'm a small or early-stage store?",
+    a: "Probably not yet. Agentic commerce setups are built for stores already processing meaningful order volume — generally 1,000+ orders a month, multi-channel operations, or subscription businesses — where manual inventory, pricing, and attribution management has become the bottleneck. If you're still building your storefront, start with our Shopify development services in Sri Lanka first.",
+  },
+  {
+    q: "How does automated AI checkout actually work on Shopify?",
+    a: "It's built on server-side tracking and event-driven infrastructure — webhooks fire on cart, inventory, and order events, and automation layers respond in real time: adjusting pricing, triggering cart-recovery flows, and routing attribution data, without a human in the loop for routine decisions.",
+  },
+  {
+    q: "How long does it take to set up an agentic commerce system?",
+    a: "Initial setup — infrastructure, integrations, and automation workflows — typically takes 6–8 weeks, followed by an ongoing platform management retainer to monitor and tune the system as your store scales.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
   description:
     "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management, revenue attribution, and autonomous shopping experiences that scale.",
-  keywords: [
-    "agentic commerce shopify",
-    "AI-driven e-commerce",
-    "automated shopify solutions",
-    "intelligent platform management",
-    "shopify automation",
-    "autonomous commerce",
-  ],
   openGraph: {
+    ...OG_DEFAULTS,
+    url: PAGE_URL,
     title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "theBOAT Agentic Commerce" }],
   },
   twitter: {
+    ...TWITTER_DEFAULTS,
     card: "summary_large_image",
     title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
+    images: ["/og.png"],
   },
   alternates: {
-    canonical: "https://theboatgrp.com/services/agentic-commerce-shopify",
+    canonical: PAGE_URL,
   },
 };
 
@@ -350,6 +370,32 @@ export default function AgenticCommerceShopifyPage() {
               </p>
             </div>
           </div>
+
+          <p className="mt-8 text-black/60 leading-relaxed">
+            Not there yet? If you're still building your storefront, start with{" "}
+            <a href="/shopify-development-sri-lanka" className="text-[#f04b25] font-medium hover:underline">
+              our Shopify development services in Sri Lanka
+            </a>{" "}
+            — agentic commerce is the layer you add once you're live and scaling.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white py-24 md:py-32 border-y border-black/6">
+        <div className="max-w-3xl mx-auto px-5 md:px-8">
+          <div className="mb-12">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#f04b25]" />
+              <span className="text-xs font-mono text-black/30 uppercase tracking-widest">
+                05 / Common questions
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-[#0f0f0f] leading-tight">
+              FAQ
+            </h2>
+          </div>
+          <FAQBlock qa={faqs} title="" />
         </div>
       </section>
 

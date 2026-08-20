@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { portableTextComponents } from '@/components/PortableTextComponents'
+import { OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
 export const revalidate = 60;
 
@@ -24,12 +25,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: service.metaTitle || service.title,
     description: service.metaDescription,
-    keywords: service.keyword ? [service.keyword] : undefined,
     openGraph: {
+      ...OG_DEFAULTS,
       title: service.metaTitle || service.title,
       description: service.metaDescription,
       type: 'website',
       url: `https://theboatgrp.com/services/${slug}`,
+    },
+    twitter: {
+      ...TWITTER_DEFAULTS,
+      card: 'summary_large_image',
+      title: service.metaTitle || service.title,
+      description: service.metaDescription,
     },
     alternates: {
       canonical: `https://theboatgrp.com/services/${slug}`,

@@ -25,20 +25,6 @@ export const metadata: Metadata = {
   },
   description:
     "theBOAT is a systems-first automation and web studio based in Colombo, Sri Lanka. We build Shopify stores, custom web apps, agentic workflows, and brand identities that help businesses run faster — with less manual work.",
-  keywords: [
-    "automation agency Sri Lanka",
-    "web development Colombo",
-    "Shopify agency Sri Lanka",
-    "digital agency Colombo",
-    "business automation",
-    "workflow automation",
-    "ecommerce development Sri Lanka",
-    "UI UX design Colombo",
-    "brand identity Sri Lanka",
-    "Next.js agency",
-    "theBOAT",
-    "theboatgrp",
-  ],
   authors: [{ name: "theBOAT", url: SITE_URL }],
   creator: "theBOAT",
   publisher: "theBOAT",
@@ -83,7 +69,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/fav.png", type: "image/png" },
+      { url: "/fav.png", type: "image/png", sizes: "48x48" },
     ],
     apple: "/fav.png",
     shortcut: "/fav.png",
@@ -121,7 +107,7 @@ const jsonLd = {
         "Brand Identity Design",
         "UI/UX Design",
       ],
-      sameAs: [],
+      sameAs: ["https://www.linkedin.com/company/theboatgrp"],
     },
     {
       "@type": "WebSite",

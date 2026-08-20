@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { CALENDLY_URL } from "@/lib/constants";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -64,7 +65,7 @@ export default function Navbar() {
           {/* CTA buttons */}
           <div className="hidden md:flex items-center gap-2">
             <a
-              href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm text-white/80 hover:text-white border border-white/20 hover:border-white/40 rounded-full transition-all duration-150"
@@ -112,7 +113,7 @@ export default function Navbar() {
             ))}
             <div className="flex gap-2 pt-3">
               <a
-                href="https://calendly.com/buildarealgreatsite/one-on-one-call?month=2025-11"
+                href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
