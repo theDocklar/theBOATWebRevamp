@@ -7,8 +7,8 @@ import { SERVICES } from "@/lib/services";
 // Icon + on-page nav target per service — SERVICES (lib/services.ts) is the
 // shared source for title/description, consumed here and by ServiceSchema.
 const CARD_META = [
-  { icon: Code2, num: "01", href: "#contact" },
-  { icon: Bot, num: "02", href: "#contact" },
+  { icon: Code2, num: "01", href: "/services/web-development-colombo" },
+  { icon: Bot, num: "02", href: "/services/ai-automation" },
   { icon: ShoppingCart, num: "03", href: "/stores" },
   { icon: Camera, num: "04", href: "/frames" },
 ];

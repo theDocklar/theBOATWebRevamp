@@ -1,3 +1,5 @@
+import { CONTACT } from "@/lib/constants";
+
 interface LocalBusinessSchemaProps {
   location: "Colombo" | "Dubai";
 }
@@ -43,7 +45,7 @@ export default function LocalBusinessSchema({ location }: LocalBusinessSchemaPro
       "longitude": locationData.geo.longitude
     },
     "url": "https://theboatgrp.com",
-    "telephone": "+94-XX-XXX-XXXX", // Replace with actual
+    "telephone": location === "Colombo" ? CONTACT.phone : "+94-XX-XXX-XXXX",
     "priceRange": "$$$",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",

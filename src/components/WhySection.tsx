@@ -12,7 +12,7 @@ export default function WhySection() {
           <FadeIn>
             <div className="flex items-center gap-2 mb-5">
               <span className="text-xs font-medium text-white/30 uppercase tracking-widest">
-                — Why theBOAT
+                Why theBOAT
               </span>
             </div>
             <h2
@@ -101,7 +101,7 @@ export default function WhySection() {
                 Embedded, not outsourced
               </h3>
               <p className="text-xs text-white/40 leading-relaxed">
-                Daily comms, shared context. We work in your problem, not around it — closer to a co-founder than a contractor.
+                Daily comms, shared context. We work in your problem, not around it, closer to a co-founder than a contractor.
               </p>
             </div>
           </StaggerItem>
@@ -118,7 +118,7 @@ export default function WhySection() {
                 Connected stack
               </h3>
               <p className="text-xs text-white/40 leading-relaxed">
-                n8n, Make, Claude, Shopify, Stripe, HubSpot, Notion — 12+ named integrations.
+                n8n, Make, Claude, Shopify, Stripe, HubSpot, Notion: 12+ named integrations.
               </p>
             </div>
           </StaggerItem>
@@ -164,7 +164,7 @@ export default function WhySection() {
                 You own everything on day one.
               </p>
               <p className="text-sm text-white/40 mt-1">
-                Code, accounts, configs, docs — it all belongs to you from day one. If you want to take it somewhere else, you can.
+                Code, accounts, configs, docs: it all belongs to you from day one. If you want to take it somewhere else, you can.
               </p>
             </div>
           </div>

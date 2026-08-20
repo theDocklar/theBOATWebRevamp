@@ -13,28 +13,28 @@ const railItems = [
   {
     n: "01",
     t: "Co-build, not ship-and-forget.",
-    s: "We embed for 6–10 weeks, ship a real v1, and hand over the keys — not a deck.",
+    s: "We embed for 6–10 weeks, ship a real v1, and hand over the keys, not a deck.",
   },
   {
     n: "02",
     t: "Narrow agents, not chat boxes.",
-    s: "Inbound triage, billing recovery, lead routing, weekly digests — agents that act, not chat.",
+    s: "Inbound triage, billing recovery, lead routing, weekly digests: agents that act, not chat.",
   },
   {
     n: "03",
     t: "Native to your tools.",
-    s: "Linear, Notion, HubSpot, Stripe, Slack, Gmail, Airtable — wired via 20+ named flows.",
+    s: "Linear, Notion, HubSpot, Stripe, Slack, Gmail, Airtable: wired via 20+ named flows.",
   },
   {
     n: "04",
     t: "You own the running system.",
-    s: "Built on your infra. No vendor lock-in. Source, agent prompts and credentials — handed over.",
+    s: "Built on your infra. No vendor lock-in. Source, agent prompts and credentials, handed over.",
   },
 ];
 
 const discoverCards = [
-  { title: "Pricing page v2 — tier names test", meta: "Validation agent · 38% signup lift", av: "c" },
-  { title: "B2B onboarding — Slack-first?", meta: "12 customer calls · spec drafting", av: "a" },
+  { title: "Pricing page v2 · tier names test", meta: "Validation agent · 38% signup lift", av: "c" },
+  { title: "B2B onboarding · Slack-first?", meta: "12 customer calls · spec drafting", av: "a" },
 ];
 
 const buildCards = [
@@ -127,14 +127,19 @@ export default function ProductSection() {
                   <p>
                     We{" "}
                     <span className="text-white font-medium">co-build products</span> when
-                    validation is uncertain — and{" "}
+                    validation is uncertain, and{" "}
                     <span className="text-white font-medium">architect automations</span> when
                     execution is the only blocker.
                   </p>
                   <p className="mt-4">
                     Early-stage teams and ambitious SMBs come to us with manual chaos. They leave
                     with{" "}
-                    <span className="text-white font-medium">lean, AI-powered workflows</span>{" "}
+                    <a
+                      href="/services/ai-automation"
+                      className="text-white font-medium underline decoration-white/30 hover:decoration-white/70 transition-colors"
+                    >
+                      lean, AI-powered workflows
+                    </a>{" "}
                     that ship features and run operations while their founders sleep.
                   </p>
                 </div>
@@ -154,7 +159,7 @@ export default function ProductSection() {
                         <div className="w-2.5 h-2.5 rounded-full bg-black/[0.18]" />
                       </div>
                       <span className="ml-2.5 flex-1 font-mono text-[11px] text-black/40">
-                        console.theboat.io / pier — sprint 03 of 06
+                        console.theboat.io / pier · sprint 03 of 06
                       </span>
                       <span
                         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider"
@@ -374,7 +379,7 @@ export default function ProductSection() {
                       <span className="text-[0.36em] text-white/50 font-medium ml-1">hrs</span>
                     </p>
                     <p className="text-[13px] text-white/70 mt-3 leading-[1.45]">
-                      Across the last 9 SMBs we rewired — work that used to need a hire or two, now runs unattended.
+                      Across the last 9 SMBs we rewired, work that used to need a hire or two, now runs unattended.
                     </p>
                     <div
                       className="mt-4 grid items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-white/50"

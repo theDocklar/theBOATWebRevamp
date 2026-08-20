@@ -6,7 +6,7 @@ const testimonials = [
   {
     stars: 5,
     quote:
-      "I came in wanting a website. I left with a proper ops system I didn't know I needed. They're very direct, which I appreciated — they told me when my ideas were bad.",
+      "I came in wanting a website. I left with a proper ops system I didn't know I needed. They're very direct, which I appreciated, they told me when my ideas were bad.",
     highlight: "they told me when my ideas were bad.",
     name: "Anjali R.",
     role: "Founder · Vision Haven",
@@ -16,7 +16,7 @@ const testimonials = [
   {
     stars: 5,
     quote:
-      "Honestly they pushed back more than I expected — challenged the brief, redesigned a few decisions we'd already made. The thing that shipped was better for it.",
+      "Honestly they pushed back more than I expected, challenged the brief, redesigned a few decisions we'd already made. The thing that shipped was better for it.",
     highlight: "The thing that shipped was better for it.",
     name: "Marco D.",
     role: "COO · Perfomad",
@@ -26,7 +26,7 @@ const testimonials = [
   {
     stars: 5,
     quote:
-      "Our ops were a mess — three tools that didn't talk to each other and a lot of manual copy-pasting. They cleaned it up. We're saving probably 40 hours a month now.",
+      "Our ops were a mess: three tools that didn't talk to each other and a lot of manual copy-pasting. They cleaned it up. We're saving probably 40 hours a month now.",
     highlight: "saving probably 40 hours a month now.",
     name: "Saanvi K.",
     role: "CEO · Teragon",

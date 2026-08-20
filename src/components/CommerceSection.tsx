@@ -12,18 +12,18 @@ const techTags = [
 const railItems = [
   {
     n: "01",
-    t: "Headless or themed — we ship both.",
+    t: "Headless or themed, we ship both.",
     s: "Hydrogen + Next.js for ambitious catalogs. Tuned Dawn for fast-shipping operators.",
   },
   {
     n: "02",
     t: "AI agents, not chatbots.",
-    s: "Inventory, pricing, creative testing, cart recovery — narrow agents that act, not chat.",
+    s: "Inventory, pricing, creative testing, cart recovery: narrow agents that act, not chat.",
   },
   {
     n: "03",
     t: "Glued to your stack.",
-    s: "Klaviyo, Notion, Airtable, Stripe, Aramex, DHL — talked to via 12+ named flows.",
+    s: "Klaviyo, Notion, Airtable, Stripe, Aramex, DHL: talked to via 12+ named flows.",
   },
   {
     n: "04",
@@ -101,7 +101,7 @@ export default function CommerceSection() {
                     >
                       Shopify storefronts
                     </a>{" "}
-                    wired to an automation spine — and quietly retrofit them with{" "}
+                    wired to an automation spine, and quietly retrofit them with{" "}
                     <a
                       href="/services/agentic-commerce-shopify"
                       className="text-white font-medium underline decoration-white/30 hover:decoration-white/70 transition-colors"
@@ -247,7 +247,7 @@ export default function CommerceSection() {
                     <p className="text-[12px] text-white leading-snug">
                       Cask 014 will{" "}
                       <b style={{ color: SHOPIFY_GREEN }}>stock out in 6 days</b> at current
-                      velocity. Drafted PO to distillery — review in Notion →
+                      velocity. Drafted PO to distillery: review in Notion →
                     </p>
                   </div>
 

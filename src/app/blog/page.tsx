@@ -5,7 +5,8 @@ import { client } from '../../../sanity/lib/client'
 import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
 const PAGE_URL = `${SITE_URL}/blog`
-const TITLE = 'Blog — theBOAT'
+const TITLE = 'Blog'
+const SOCIAL_TITLE = 'Blog · theBOAT'
 const DESCRIPTION = 'Insights on automation, web development, and agentic workflows.'
 
 export const metadata = {
@@ -16,14 +17,14 @@ export const metadata = {
     ...OG_DEFAULTS,
     type: 'website',
     url: PAGE_URL,
-    title: TITLE,
+    title: SOCIAL_TITLE,
     description: DESCRIPTION,
     images: [{ url: '/og.png', width: 1200, height: 630, alt: 'theBOAT Blog' }],
   },
   twitter: {
     ...TWITTER_DEFAULTS,
     card: 'summary_large_image',
-    title: TITLE,
+    title: SOCIAL_TITLE,
     description: DESCRIPTION,
     images: ['/og.png'],
   },

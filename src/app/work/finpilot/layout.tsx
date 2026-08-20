@@ -6,7 +6,7 @@ import { getCase, caseUrl } from "@/lib/cases";
 const CASE = getCase("finpilot")!;
 
 export const metadata: Metadata = {
-  title: "FinPilot — Autonomous Finance Ops for a 65-Person Creative Agency",
+  title: "FinPilot: 5 Workflows Replace 2 Weeks of Finance Ops",
   description: CASE.description,
   alternates: {
     canonical: caseUrl("finpilot"),
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     ...OG_DEFAULTS,
     type: "article",
     url: caseUrl("finpilot"),
-    title: "FinPilot — Autonomous Finance Ops · theBOAT",
+    title: "FinPilot · Autonomous Finance Ops · theBOAT",
     description:
       "Five agentic workflows replacing 2 weeks of monthly finance work for a 65-person creative agency. Built by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "FinPilot case study" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "FinPilot — Autonomous Finance Ops · theBOAT",
+    title: "FinPilot · Autonomous Finance Ops · theBOAT",
     description:
       "Five agentic workflows replacing 2 weeks of monthly finance work. Built by theBOAT.",
     images: ["/og.png"],

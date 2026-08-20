@@ -6,7 +6,7 @@ import { getCase, caseUrl } from "@/lib/cases";
 const CASE = getCase("bounce")!;
 
 export const metadata: Metadata = {
-  title: "Bounce — Court Booking App for Players & Operators",
+  title: "Bounce · Court Booking App for Players & Operators",
   description: CASE.description,
   alternates: {
     canonical: caseUrl("bounce"),
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     ...OG_DEFAULTS,
     type: "article",
     url: caseUrl("bounce"),
-    title: "Bounce — Court Booking App · theBOAT",
+    title: "Bounce · Court Booking App · theBOAT",
     description:
       "Mobile app for players + admin dashboard for court operators. Real-time availability and instant confirmation. Built by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Bounce case study" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "Bounce — Court Booking App · theBOAT",
+    title: "Bounce · Court Booking App · theBOAT",
     description:
       "Mobile app for players + admin dashboard for court operators. Built by theBOAT.",
     images: ["/og.png"],

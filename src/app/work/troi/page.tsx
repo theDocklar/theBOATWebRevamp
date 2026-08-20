@@ -17,7 +17,7 @@ const meta = [
 
 const before = [
   "SMEs spending across Google, Meta, and TikTok with no way to tie ad spend back to actual store revenue.",
-  "Each ad platform reported its own inflated numbers — impossible to reconcile against real Shopify sales.",
+  "Each ad platform reported its own inflated numbers, impossible to reconcile against real Shopify sales.",
   "Marketing budget decisions made on gut feel. Spend kept climbing, real ROI stayed unknown.",
 ];
 
@@ -25,12 +25,12 @@ const principles = [
   {
     n: "01",
     title: "Channel-wise, not blended.",
-    body: "Every marketing channel gets its own ROAS and ROI breakdown. Blended numbers hide the truth — we surface what each channel actually earns.",
+    body: "Every marketing channel gets its own ROAS and ROI breakdown. Blended numbers hide the truth: we surface what each channel actually earns.",
   },
   {
     n: "02",
     title: "Sales data, not ad platform data.",
-    body: "We pull from Shopify and WooCommerce — not the ad platforms — so attribution reflects real transactions, not claimed clicks.",
+    body: "We pull from Shopify and WooCommerce, not the ad platforms, so attribution reflects real transactions, not claimed clicks.",
   },
   {
     n: "03",
@@ -54,8 +54,8 @@ const archCore = [
 ];
 
 const outcomes = [
-  { num: "4+", unit: "channels", label: "Google Ads, Meta Ads, TikTok, and email — all in one attribution view." },
-  { num: "Live", unit: "updates", label: "Spend and sales data sync continuously — no waiting for end-of-month reports." },
+  { num: "4+", unit: "channels", label: "Google Ads, Meta Ads, TikTok, and email, all in one attribution view." },
+  { num: "Live", unit: "updates", label: "Spend and sales data sync continuously, no waiting for end-of-month reports." },
   { num: "1", unit: "dashboard", label: "Replace four ad platform tabs and a Shopify reports page with a single source of truth." },
 ];
 
@@ -137,7 +137,7 @@ export default function TroiCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          A real-time ROAS and ROI calculator for SMEs. Connect your ad channels and your store —
+          A real-time ROAS and ROI calculator for SMEs. Connect your ad channels and your store:
           Troi does the attribution math so you stop guessing which campaigns are worth running.
         </motion.p>
 
@@ -226,7 +226,7 @@ export default function TroiCase() {
               <div className="flex-1 p-5 flex flex-col gap-4">
                 <div className="flex items-end justify-between">
                   <p className="font-semibold text-[15px] text-white tracking-tight">
-                    Channel ROAS — last 30 days
+                    Channel ROAS · last 30 days
                   </p>
                   <p className="text-[11px] text-white/30 font-mono">refreshed 00m ago · live</p>
                 </div>
@@ -343,7 +343,7 @@ export default function TroiCase() {
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
                 Troi came to us with a problem every SME marketing team knows: Google says it drove
-                200 conversions, Meta claims 180, TikTok counts 90 — but Shopify only recorded 310
+                200 conversions, Meta claims 180, TikTok counts 90, but Shopify only recorded 310
                 orders total. Every platform takes credit. Nobody owns the truth. Budget decisions
                 were being made on fiction.
               </p>
@@ -389,7 +389,7 @@ export default function TroiCase() {
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
                 The only source of truth is what actually got purchased. We built Troi to pull from
-                Shopify and WooCommerce first — then reconcile ad platform data against real orders.
+                Shopify and WooCommerce first, then reconcile ad platform data against real orders.
                 The platform&apos;s job is to make the math undeniable and the decision obvious.
               </p>
             </div>
@@ -652,7 +652,7 @@ export default function TroiCase() {
                   </p>
                 </div>
               </div>
-              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q2 2025</p>
+              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ · verified Q2 2025</p>
             </div>
             <blockquote className="italic font-light text-[clamp(20px,2.8vw,36px)] text-black leading-[1.2] tracking-tight m-0">
               &ldquo;I used to open four tabs every Monday morning and try to reconcile four

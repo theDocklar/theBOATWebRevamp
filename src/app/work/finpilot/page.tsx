@@ -13,11 +13,11 @@ const meta = [
   { k: "Client", v: "NorthBridge Studios · Remote" },
   { k: "Engagement", v: "Agentic AI system" },
   { k: "Timeline", v: "8 weeks · Q1 2025" },
-  { k: "Status", v: "Live — fully autonomous", live: true },
+  { k: "Status", v: "Live, fully autonomous", live: true },
 ];
 
 const before = [
-  "Monthly close took 9 days — finance team buried until mid-month, every month.",
+  "Monthly close took 9 days, finance team buried until mid-month, every month.",
   "300+ invoices processed manually at $14 each. No matching, no memory.",
   "Late payments chased by hand. Average collection time: 47 days.",
   "22 hours a week reconciling Stripe, bank feeds, and payment platforms by copy-paste.",
@@ -67,7 +67,7 @@ const timeline = [
   {
     d: "Wk 3–4 · Skeleton",
     t: "Invoice intake + reconciliation live.",
-    p: "First two workflows shipped and processing real data. Edge cases surfaced immediately — invoice format mismatches, FX rounding, duplicate detection.",
+    p: "First two workflows shipped and processing real data. Edge cases surfaced immediately: invoice format mismatches, FX rounding, duplicate detection.",
   },
   {
     d: "Wk 5–6 · Core workflows",
@@ -143,7 +143,7 @@ export default function FinPilotCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          An agentic AI system that runs five core finance workflows autonomously for NorthBridge Studios —
+          An agentic AI system that runs five core finance workflows autonomously for NorthBridge Studios,
           a 65-person creative agency processing 300+ invoices monthly. Finance ops went from
           consuming 2 weeks a month to running in the background.
         </motion.p>
@@ -233,7 +233,7 @@ export default function FinPilotCase() {
               <div className="flex-1 p-5 flex flex-col gap-4">
                 <div className="flex items-end justify-between">
                   <p className="font-semibold text-[15px] text-black tracking-tight">
-                    Finance pulse — this month
+                    Finance pulse · this month
                   </p>
                   <p className="text-[11px] text-black/30 font-mono">Agent last ran · 4m ago</p>
                 </div>
@@ -357,7 +357,7 @@ export default function FinPilotCase() {
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
                 NorthBridge Studios had a 3-person finance team processing 300+ invoices monthly
-                across multiple currencies. The problem wasn&apos;t talent — it was volume. Chasing
+                across multiple currencies. The problem wasn&apos;t talent, it was volume. Chasing
                 late payments, reconciling bank statements, categorizing expenses, matching invoices
                 to project budgets, producing cash flow reports. Two full weeks of every month,
                 gone. No time left for actual financial strategy.
@@ -403,7 +403,7 @@ export default function FinPilotCase() {
                 Five workflows. One agent. Human gates for anything that matters.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                FinPilot doesn&apos;t just automate tasks — it reasons through edge cases. When an invoice
+                FinPilot doesn&apos;t just automate tasks, it reasons through edge cases. When an invoice
                 doesn&apos;t match a purchase order, it reads the related email thread, proposes a
                 resolution, and asks the right person to confirm. The finance team approves; the
                 agent executes.

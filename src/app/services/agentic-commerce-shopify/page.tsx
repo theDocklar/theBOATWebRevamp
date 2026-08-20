@@ -10,30 +10,30 @@ const PAGE_URL = `${SITE_URL}/services/agentic-commerce-shopify`;
 const faqs = [
   {
     q: "What is agentic commerce, and how is it different from typical Shopify automation apps?",
-    a: "Regular automation apps run fixed rules — \"if X, do Y.\" Agentic commerce systems make decisions: adjusting pricing, managing inventory, and running campaigns based on real-time performance data, then learning from the outcomes. It's the difference between a script and a system that manages itself.",
+    a: "Regular automation apps run fixed rules: \"if X, do Y.\" Agentic commerce systems make decisions: adjusting pricing, managing inventory, and running campaigns based on real-time performance data, then learning from the outcomes. It's the difference between a script and a system that manages itself.",
   },
   {
     q: "Do I need agentic commerce if I'm a small or early-stage store?",
-    a: "Probably not yet. Agentic commerce setups are built for stores already processing meaningful order volume — generally 1,000+ orders a month, multi-channel operations, or subscription businesses — where manual inventory, pricing, and attribution management has become the bottleneck. If you're still building your storefront, start with our Shopify development services in Sri Lanka first.",
+    a: "Probably not yet. Agentic commerce setups are built for stores already processing meaningful order volume (generally 1,000+ orders a month, multi-channel operations, or subscription businesses) where manual inventory, pricing, and attribution management has become the bottleneck. If you're still building your storefront, start with our Shopify development services in Sri Lanka first.",
   },
   {
     q: "How does automated AI checkout actually work on Shopify?",
-    a: "It's built on server-side tracking and event-driven infrastructure — webhooks fire on cart, inventory, and order events, and automation layers respond in real time: adjusting pricing, triggering cart-recovery flows, and routing attribution data, without a human in the loop for routine decisions.",
+    a: "It's built on server-side tracking and event-driven infrastructure: webhooks fire on cart, inventory, and order events, and automation layers respond in real time, adjusting pricing, triggering cart-recovery flows, and routing attribution data, without a human in the loop for routine decisions.",
   },
   {
     q: "How long does it take to set up an agentic commerce system?",
-    a: "Initial setup — infrastructure, integrations, and automation workflows — typically takes 6–8 weeks, followed by an ongoing platform management retainer to monitor and tune the system as your store scales.",
+    a: "Initial setup (infrastructure, integrations, and automation workflows) typically takes 6–8 weeks, followed by an ongoing platform management retainer to monitor and tune the system as your store scales.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
+  title: "Agentic Commerce on Shopify · Automated E-Commerce Architecture",
   description:
     "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management, revenue attribution, and autonomous shopping experiences that scale.",
   openGraph: {
     ...OG_DEFAULTS,
     url: PAGE_URL,
-    title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
+    title: "Agentic Commerce on Shopify · Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "Agentic Commerce on Shopify — Automated E-Commerce Architecture",
+    title: "Agentic Commerce on Shopify · Automated E-Commerce Architecture",
     description:
       "Advanced AI-driven automated e-commerce solutions for Shopify. Intelligent platform management and autonomous shopping experiences.",
     images: ["/og.png"],
@@ -125,8 +125,8 @@ export default function AgenticCommerceShopifyPage() {
                   infrastructure.
                 </p>
                 <p>
-                  While standard storefronts require constant manual intervention—monitoring
-                  inventory, adjusting pricing, managing campaigns, tracking attribution—agentic
+                  While standard storefronts require constant manual intervention, monitoring
+                  inventory, adjusting pricing, managing campaigns, tracking attribution, agentic
                   systems handle these operations independently, learning and optimizing as they
                   go.
                 </p>
@@ -375,8 +375,8 @@ export default function AgenticCommerceShopifyPage() {
             Not there yet? If you're still building your storefront, start with{" "}
             <a href="/shopify-development-sri-lanka" className="text-[#f04b25] font-medium hover:underline">
               our Shopify development services in Sri Lanka
-            </a>{" "}
-            — agentic commerce is the layer you add once you're live and scaling.
+            </a>{". "}
+            Agentic commerce is the layer you add once you're live and scaling.
           </p>
         </div>
       </section>
