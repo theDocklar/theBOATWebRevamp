@@ -17,21 +17,21 @@ const meta = [
 ];
 
 const before = [
-  "30+ feeder products with no online catalog — dealers and pet owners placed orders by phone or WhatsApp with no way to compare specs or features.",
-  "Product images and specifications scattered across WhatsApp chats and printed brochures — no consistent way to communicate value to end customers.",
-  "Every sale ran through a dealer middleman. Customers finding Hima on Instagram had nowhere to go — no direct purchase path, no product detail, no conversion.",
+  "30+ feeder products with no online catalog, dealers and pet owners placed orders by phone or WhatsApp with no way to compare specs or features.",
+  "Product images and specifications scattered across WhatsApp chats and printed brochures, no consistent way to communicate value to end customers.",
+  "Every sale ran through a dealer middleman. Customers finding Hima on Instagram had nowhere to go: no direct purchase path, no product detail, no conversion.",
 ];
 
 const principles = [
   {
     n: "01",
     title: "Specs sell feeders.",
-    body: "Automated feeders live or die on spec clarity — portion sizes, meal schedules, power options, tank capacity. Every product page leads with what buyers actually compare before purchasing.",
+    body: "Automated feeders live or die on spec clarity: portion sizes, meal schedules, power options, tank capacity. Every product page leads with what buyers actually compare before purchasing.",
   },
   {
     n: "02",
     title: "Cut the middleman where it matters.",
-    body: "The old model required a dealer for every sale. The new site lets pet owners and farm operators buy direct — with full product detail, confidence, and no friction.",
+    body: "The old model required a dealer for every sale. The new site lets pet owners and farm operators buy direct, with full product detail, confidence, and no friction.",
   },
   {
     n: "03",
@@ -55,9 +55,9 @@ const archCore = [
 ];
 
 const outcomes = [
-  { num: "30+", unit: "products", label: "Full catalog live — pet feeders, livestock feeders, and accessories, all browsable and filterable." },
-  { num: "3", unit: "categories", label: "Pet feeders, farm & livestock feeders, and accessories — each with dedicated landing pages." },
-  { num: "1", unit: "channel", label: "Direct-to-customer orders enabled for the first time — no dealer required." },
+  { num: "30+", unit: "products", label: "Full catalog live: pet feeders, livestock feeders, and accessories, all browsable and filterable." },
+  { num: "3", unit: "categories", label: "Pet feeders, farm & livestock feeders, and accessories, each with dedicated landing pages." },
+  { num: "1", unit: "channel", label: "Direct-to-customer orders enabled for the first time, no dealer required." },
 ];
 
 const timeline = [
@@ -69,7 +69,7 @@ const timeline = [
   {
     d: "Wk 3–4 · Design + Schema",
     t: "Catalog architecture first, UI second.",
-    p: "Structured the product taxonomy — categories, specs, variants — before any UI was built. Animal feeders have distinct spec sets; getting schema right prevented rework.",
+    p: "Structured the product taxonomy (categories, specs, variants) before any UI was built. Animal feeders have distinct spec sets; getting schema right prevented rework.",
   },
   {
     d: "Wk 5–7 · Build",
@@ -139,7 +139,7 @@ export default function HimaCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          A product website and online store for a Sri Lankan animal feeder company —
+          A product website and online store for a Sri Lankan animal feeder company,
           replacing phone orders and WhatsApp chats with a searchable catalog, spec-forward
           product pages, and a direct-to-customer purchase path.
         </motion.p>
@@ -228,8 +228,8 @@ export default function HimaCase() {
                 <span className="italic font-light">No store</span> to sell them.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                Hima Products had built a solid range of animal feeders — automated pet feeders,
-                livestock troughs, bird stations, aquarium dispensers — and a loyal dealer network
+                Hima Products had built a solid range of animal feeders (automated pet feeders,
+                livestock troughs, bird stations, aquarium dispensers) and a loyal dealer network
                 across Sri Lanka. But every sale still ran through a phone call or WhatsApp message.
                 Customers finding them on Instagram had nowhere to land. Specs lived in brochures.
                 There was no way to browse, compare, or buy without calling someone first.
@@ -272,11 +272,11 @@ export default function HimaCase() {
                 Spec-first. Mobile-first. Client owns it.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                Animal feeders are a considered purchase — buyers compare meal counts, tank sizes,
+                Animal feeders are a considered purchase: buyers compare meal counts, tank sizes,
                 power sources, and build materials before deciding. The site had to surface those
                 specs immediately. And because most discovery happened on Instagram, it had to work
                 perfectly on a phone before anything else. The Hima team manages their own catalog
-                from day one — no developer required to add a product.
+                from day one, no developer required to add a product.
               </p>
             </div>
           </div>
@@ -312,8 +312,8 @@ export default function HimaCase() {
                 What we actually shipped.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                Four surfaces — product catalog, spec-first product pages, dealer locator, and
-                admin CMS — all connected through Shopify and deployed on Vercel.
+                Four surfaces (product catalog, spec-first product pages, dealer locator, and
+                admin CMS) all connected through Shopify and deployed on Vercel.
               </p>
             </div>
           </div>
@@ -342,7 +342,7 @@ export default function HimaCase() {
                 The spine · Shopify + Next.js
               </p>
               <p className="text-sm font-semibold">
-                Products, variants, inventory, orders — all managed without code
+                Products, variants, inventory, orders, all managed without code
               </p>
             </div>
 
@@ -471,7 +471,7 @@ export default function HimaCase() {
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
                 We structured the product taxonomy before any UI was designed. Getting the schema
-                right for animal feeders — where specs vary significantly across categories —
+                right for animal feeders, where specs vary significantly across categories,
                 prevented rework and let the Hima team manage their catalog independently from day one.
               </p>
             </div>

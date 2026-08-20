@@ -6,7 +6,7 @@ import { getCase, caseUrl } from "@/lib/cases";
 const CASE = getCase("olyce")!;
 
 export const metadata: Metadata = {
-  title: "OLYCE — Luxury Sri Lanka Tour Booking Website",
+  title: "OLYCE: 4 Tour Packages, Zero Calls to Book",
   description: CASE.description,
   alternates: {
     canonical: caseUrl("olyce"),
@@ -15,17 +15,17 @@ export const metadata: Metadata = {
     ...OG_DEFAULTS,
     type: "article",
     url: caseUrl("olyce"),
-    title: "OLYCE — Luxury Sri Lanka Tour Booking Website · theBOAT",
+    title: "OLYCE · Luxury Sri Lanka Tour Booking Website · theBOAT",
     description:
-      "Editorial photography up front, full 7-day itineraries before the inquiry, Standard vs Premium pricing side-by-side. Shipped in 10 weeks. Built by theBOAT.",
+      "A word-of-mouth luxury travel brand goes fully bookable: 4 packages, editorial photography, and Standard vs Premium pricing on every page. No calls needed.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "OLYCE case study" }],
   },
   twitter: {
     ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "OLYCE — Luxury Sri Lanka Tour Booking Website · theBOAT",
+    title: "OLYCE · Luxury Sri Lanka Tour Booking Website · theBOAT",
     description:
-      "Editorial photography, full itineraries before inquiry, Standard vs Premium pricing side-by-side. Built by theBOAT.",
+      "A word-of-mouth luxury travel brand goes fully bookable: 4 packages, editorial photography, and transparent pricing on every page.",
     images: ["/og.png"],
   },
 };

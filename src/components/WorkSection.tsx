@@ -28,7 +28,7 @@ const projects = [
     tag: "Product website + online store",
     year: "2025",
     title: "Hima Products: 30 feeders. One store.",
-    desc: "Product website and online store for a Sri Lankan animal feeder company. Spec-forward catalog, direct-to-customer checkout, and dealer locator — replacing phone orders with a real purchase path.",
+    desc: "Product website and online store for a Sri Lankan animal feeder company. Spec-forward catalog, direct-to-customer checkout, and dealer locator: replacing phone orders with a real purchase path.",
     accent: "#afafafff",
     href: "/work/hima",
     featured: false,
@@ -80,7 +80,7 @@ export default function WorkSection() {
           <FadeIn delay={0.1} className="md:max-w-xs md:pt-16">
             <p className="text-[15px] text-black/50 leading-relaxed">
               What we've shipped. Some are products built with founders,
-              some are systems built for operators — all of them start with
+              some are systems built for operators, all of them start with
               a real problem.
             </p>
           </FadeIn>
@@ -235,7 +235,7 @@ export default function WorkSection() {
                   <span className="text-[#f04b25]">make things beautiful.</span>
                 </h3>
                 <p className="text-sm text-white/35 max-w-sm leading-relaxed mt-3">
-                  Product photography, brand identities, lookbooks, packaging — the same
+                  Product photography, brand identities, lookbooks, packaging: the same
                   systems-first precision applied to creative work.
                 </p>
               </div>

@@ -10,6 +10,10 @@ const studioLinks = [
   { label: "Work", hash: "work" },
   { label: "Why us", hash: "why" },
   { label: "Resources", href: "/resources" },
+  { label: "Web development", href: "/services/web-development-colombo" },
+  { label: "AI automation", href: "/services/ai-automation" },
+  { label: "Shopify development", href: "/shopify-development-sri-lanka" },
+  { label: "Agentic commerce", href: "/services/agentic-commerce-shopify" },
 ];
 
 const contactLinks = [

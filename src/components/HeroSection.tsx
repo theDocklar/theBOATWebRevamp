@@ -124,7 +124,7 @@ export default function HeroSection() {
               </div>
             </div>
             <p className="mt-4 text-sm text-white/40 leading-relaxed">
-              Web apps, mobile products, automation pipelines. Nothing proprietary — everything documented and handed over.
+              Web apps, mobile products, automation pipelines. Nothing proprietary: everything documented and handed over.
             </p>
           </div>
 
@@ -146,7 +146,7 @@ export default function HeroSection() {
               </div>
             </div>
             <p className="mt-4 text-sm text-white/40 leading-relaxed">
-              Sri Lanka · UAE · United States — founders and operators who know what they want to build.
+              Sri Lanka · UAE · United States: founders and operators who know what they want to build.
             </p>
           </a>
         </motion.div>

@@ -16,7 +16,7 @@ const meta = [
 ];
 
 const before = [
-  "Court bookings managed over WhatsApp and phone — double-bookings a weekly frustration.",
+  "Court bookings managed over WhatsApp and phone, double-bookings a weekly frustration.",
   "Players had no way to check court availability without calling the operator directly.",
   "Operators tracking all bookings in a spreadsheet with no payment confirmation trail.",
 ];
@@ -30,12 +30,12 @@ const principles = [
   {
     n: "02",
     title: "Frictionless for the player.",
-    body: "Browse, pick a slot, pay. Three steps. No account required for the first booking — reduce drop-off, increase conversion.",
+    body: "Browse, pick a slot, pay. Three steps. No account required for the first booking: reduce drop-off, increase conversion.",
   },
   {
     n: "03",
     title: "Full operator control.",
-    body: "Court owners see every booking, can block time, manage pricing, and push notifications — without needing us to change anything.",
+    body: "Court owners see every booking, can block time, manage pricing, and push notifications, without needing us to change anything.",
   },
 ];
 
@@ -54,7 +54,7 @@ const archCore = [
 ];
 
 const outcomes = [
-  { num: "2", unit: "surfaces", label: "One mobile app for players, one admin dashboard for operators — one shared API." },
+  { num: "2", unit: "surfaces", label: "One mobile app for players, one admin dashboard for operators, one shared API." },
   { num: "< 3min", unit: "to book", label: "From opening the app to confirmed booking, including payment." },
   { num: "0", unit: "double-books", label: "Real-time slot locking prevents overlapping reservations by design." },
 ];
@@ -193,7 +193,7 @@ export default function BounceCase() {
             <div className="bg-[#111] p-5 md:p-7" style={{ minHeight: 340 }}>
               <div className="flex items-end justify-between mb-6">
                 <p className="font-semibold text-[15px] text-white tracking-tight">
-                  Court availability — today
+                  Court availability · today
                 </p>
                 <p className="text-[11px] text-white/30 font-mono">3 courts · 6am–10pm</p>
               </div>
@@ -346,9 +346,9 @@ export default function BounceCase() {
                 Two users. One shared truth. Zero race conditions.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                The hard problem isn&apos;t booking a court — it&apos;s making sure two players
+                The hard problem isn&apos;t booking a court, it&apos;s making sure two players
                 can&apos;t book the same slot at the same time. Real-time slot locking is the spine.
-                Everything else — the mobile app, the admin dashboard, the payment flow — sits on top
+                Everything else (the mobile app, the admin dashboard, the payment flow) sits on top
                 of that guarantee.
               </p>
             </div>
@@ -385,7 +385,7 @@ export default function BounceCase() {
                 What we actually shipped.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                A two-surface system — mobile app for players, admin dashboard for operators — on a
+                A two-surface system (mobile app for players, admin dashboard for operators) on a
                 shared React Native + Next.js API backed by Supabase Realtime.
               </p>
             </div>
@@ -608,11 +608,11 @@ export default function BounceCase() {
                   </p>
                 </div>
               </div>
-              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q3 2025</p>
+              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ · verified Q3 2025</p>
             </div>
             <blockquote className="italic font-light text-[clamp(20px,2.8vw,36px)] text-black leading-[1.2] tracking-tight m-0">
               &ldquo;Before Bounce, I was the booking system. Every evening, messages, calls, confirming
-              slots by hand. theBOAT gave me back my evenings. The app runs itself — players book,
+              slots by hand. theBOAT gave me back my evenings. The app runs itself: players book,
               pay, and show up. I just manage the courts.&rdquo;
             </blockquote>
           </div>

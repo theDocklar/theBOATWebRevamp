@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { CASES } from "@/lib/cases";
 import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
 
-const TITLE = "Selected Work — Case Studies";
+const TITLE = "Selected Work · Case Studies";
 const DESCRIPTION =
   "Five shipped projects: agentic finance automation, a court booking platform, an ecommerce catalogue, a marketing attribution dashboard, and a luxury travel site. Timelines, stacks, and outcomes.";
 const PAGE_URL = `${SITE_URL}/work`;

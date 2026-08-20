@@ -6,7 +6,7 @@ import { getCase, caseUrl } from "@/lib/cases";
 const CASE = getCase("hima")!;
 
 export const metadata: Metadata = {
-  title: "Hima Products — 30 Animal Feeders, One Online Store",
+  title: "Hima Products: 30+ Feeders, Zero Dealer Required",
   description: CASE.description,
   alternates: {
     canonical: caseUrl("hima"),
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     ...OG_DEFAULTS,
     type: "article",
     url: caseUrl("hima"),
-    title: "Hima Products — Animal Feeder Store · theBOAT",
+    title: "Hima Products · Animal Feeder Store · theBOAT",
     description:
       "Product website and Shopify store for a Sri Lankan animal feeder company. 30+ products, spec-first pages, direct checkout. Built by theBOAT.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Hima Products case study" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     ...TWITTER_DEFAULTS,
     card: "summary_large_image",
-    title: "Hima Products — Animal Feeder Store · theBOAT",
+    title: "Hima Products · Animal Feeder Store · theBOAT",
     description:
       "30+ animal feeders. Spec-first product pages. Direct-to-customer Shopify store. Built by theBOAT.",
     images: ["/og.png"],

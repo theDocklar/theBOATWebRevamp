@@ -19,7 +19,7 @@ const meta = [
 ];
 
 const before = [
-  "Premium tours with no premium presence — travelers discovered Olyce by word of mouth and requested details by email, often waiting days for a response.",
+  "Premium tours with no premium presence, travelers discovered Olyce by word of mouth and requested details by email, often waiting days for a response.",
   "Four distinct packages with Standard and Premium tiers couldn't be communicated without a call or a PDF deck sent manually.",
   "Olyce had invested in exceptional photography. It was sitting in a Google Drive folder.",
 ];
@@ -33,7 +33,7 @@ const principles = [
   {
     n: "02",
     title: "Itinerary-first transparency.",
-    body: "Travelers see Day 1 through Day 7 before they ever hit Inquire. Hotels, inclusions, and the map all live on the same page — no calls needed to know what they're buying.",
+    body: "Travelers see Day 1 through Day 7 before they ever hit Inquire. Hotels, inclusions, and the map all live on the same page, no calls needed to know what they're buying.",
   },
   {
     n: "03",
@@ -46,7 +46,7 @@ const archSurfaces = [
   { lbl: "Surface 01 · Discovery", title: "Destinations + Journeys" },
   { lbl: "Surface 02 · Package", title: "Itinerary, Inclusions, Hotels, Map" },
   { lbl: "Surface 03 · Booking", title: "Standard vs Premium + inquiry" },
-  { lbl: "Surface 04 · Editorial", title: "The Edit — curated travel stories" },
+  { lbl: "Surface 04 · Editorial", title: "The Edit · curated travel stories" },
 ];
 
 const archCore = [
@@ -57,9 +57,9 @@ const archCore = [
 ];
 
 const outcomes = [
-  { num: "4", unit: "packages", label: "Cultural Heritage, Hill Country, South Coast Beaches, and Wildlife & Safari — all live with full itineraries." },
-  { num: "2", unit: "tiers", label: "Standard and Premium pricing surfaced clearly on every package page — no call needed to understand the difference." },
-  { num: "1", unit: "inquiry CTA", label: "All routes — browsing, reading, exploring — converge on a single clean Inquire action." },
+  { num: "4", unit: "packages", label: "Cultural Heritage, Hill Country, South Coast Beaches, and Wildlife & Safari, all live with full itineraries." },
+  { num: "2", unit: "tiers", label: "Standard and Premium pricing surfaced clearly on every package page, no call needed to understand the difference." },
+  { num: "1", unit: "inquiry CTA", label: "All routes (browsing, reading, exploring) converge on a single clean Inquire action." },
 ];
 
 const timeline = [
@@ -71,7 +71,7 @@ const timeline = [
   {
     d: "Wk 3–4 · Design",
     t: "Editorial-first, UI second.",
-    p: "Full-bleed photography layout locked in round one. Package detail page — itinerary tabs, inclusions, booking panel — approved without revisions.",
+    p: "Full-bleed photography layout locked in round one. Package detail page (itinerary tabs, inclusions, booking panel) approved without revisions.",
   },
   {
     d: "Wk 5–9 · Build",
@@ -147,7 +147,7 @@ export default function OlyceCase() {
           transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
           className="mt-8 text-[17px] text-black/50 leading-relaxed max-w-2xl"
         >
-          A luxury tour booking website for a premium Sri Lanka travel brand — editorial photography
+          A luxury tour booking website for a premium Sri Lanka travel brand: editorial photography
           up front, full itineraries before the inquiry, Standard and Premium pricing in one view.
         </motion.p>
 
@@ -185,7 +185,7 @@ export default function OlyceCase() {
           <div className="rounded-2xl overflow-hidden border border-black/[0.08] shadow-sm">
             <Image
               src="/olyce/Screenshot 2026-06-06 at 14.12.21.png"
-              alt="OLYCE — homepage showing South Coast Beaches tour"
+              alt="OLYCE homepage showing South Coast Beaches tour"
               width={1920}
               height={960}
               className="w-full h-auto"
@@ -249,7 +249,7 @@ export default function OlyceCase() {
                 <span className="italic font-light">A PDF in someone&apos;s inbox</span> selling them.
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
-                OLYCE had built a genuinely premium Sri Lanka travel product — curated itineraries,
+                OLYCE had built a genuinely premium Sri Lanka travel product: curated itineraries,
                 handpicked hotels, Standard and Premium tiers, exceptional photography. But travelers
                 found out about them by word of mouth, and the entire experience from discovery to
                 booking happened over email. The digital presence didn&apos;t match the product.
@@ -293,7 +293,7 @@ export default function OlyceCase() {
               </h2>
               <p className="mt-6 text-[16px] text-black/50 leading-relaxed">
                 Luxury travel is sold by atmosphere before it&apos;s sold by features. The site
-                opens in full-bleed dark editorial mode — no nav clutter, no hero text competing
+                opens in full-bleed dark editorial mode, no nav clutter, no hero text competing
                 with the image. Only after the feeling is established does the information start.
                 Itineraries, hotels, inclusions, and pricing are all on one page. The traveler
                 is informed by the time they hit Inquire.
@@ -329,7 +329,7 @@ export default function OlyceCase() {
           {[
             {
               src: "/olyce/Screenshot 2026-06-06 at 14.12.34.png",
-              label: "Package page — Cultural Triangle & Heritage",
+              label: "Package page · Cultural Triangle & Heritage",
             },
             {
               src: "/olyce/Screenshot 2026-06-06 at 14.12.49.png",
@@ -371,7 +371,7 @@ export default function OlyceCase() {
                 What we actually shipped.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                Four sections — Destinations, Journeys, The Edit, and Our Story — with
+                Four sections (Destinations, Journeys, The Edit, and Our Story) with
                 per-package itinerary, inclusions, hotel, and map detail pages, all managed
                 through a headless CMS.
               </p>
@@ -399,7 +399,7 @@ export default function OlyceCase() {
                 The spine · Next.js + Headless CMS
               </p>
               <p className="text-sm font-semibold">
-                Tour packages, itineraries, inclusions, photography, pricing tiers — all content-managed
+                Tour packages, itineraries, inclusions, photography, pricing tiers, all content-managed
               </p>
             </div>
 
@@ -517,7 +517,7 @@ export default function OlyceCase() {
                 10 weeks. Editorial-first. Handed over.
               </h2>
               <p className="mt-4 text-[16px] text-black/50 leading-relaxed">
-                Design came before development — and photography came before design. We didn&apos;t
+                Design came before development, and photography came before design. We didn&apos;t
                 wire a single component until the visual language was locked.
               </p>
             </div>
@@ -595,10 +595,10 @@ export default function OlyceCase() {
                   <p className="text-xs text-black/40 mt-0.5">London, UK</p>
                 </div>
               </div>
-              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ — verified Q3 2025</p>
+              <p className="text-xs font-mono text-black/25 mt-6">★★★★★ · verified Q3 2025</p>
             </div>
             <blockquote className="italic font-light text-[clamp(20px,2.8vw,36px)] text-black leading-[1.2] tracking-tight m-0">
-              &ldquo;A truly transformative experience. Every detail was curated — we could see
+              &ldquo;A truly transformative experience. Every detail was curated, we could see
               exactly what we were booking before we ever sent an inquiry. The site gave us
               confidence before we even spoke to anyone.&rdquo;
             </blockquote>

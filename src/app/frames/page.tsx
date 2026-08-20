@@ -40,7 +40,7 @@ const projects = [
     sub: "content, captured.",
     tags: "CONTENT · FASHION · BOUTIQUE",
     chips: ["Content shoot", "Editorial", "Social-ready"],
-    desc: "A content shoot for one of Sri Lanka's leading fashion boutiques. We built a library of editorial and product frames shot for use across their e-commerce, paid social, and in-store touchpoints — every frame mapped to a channel before we arrived on set.",
+    desc: "A content shoot for one of Sri Lanka's leading fashion boutiques. We built a library of editorial and product frames shot for use across their e-commerce, paid social, and in-store touchpoints: every frame mapped to a channel before we arrived on set.",
   },
   {
     num: "02",
@@ -49,7 +49,7 @@ const projects = [
     sub: "spaces, shot.",
     tags: "CONTENT · SHOOT · INTERIOR",
     chips: ["On-location shoot", "Lifestyle", "Content library"],
-    desc: "An on-location shoot for Lacasa. We framed the space to sell a feeling — wide anchors for the hero, detail shots for social, and lifestyle frames that put the brand in context.",
+    desc: "An on-location shoot for Lacasa. We framed the space to sell a feeling: wide anchors for the hero, detail shots for social, and lifestyle frames that put the brand in context.",
   },
   {
     num: "03",
@@ -58,7 +58,7 @@ const projects = [
     sub: "e-commerce, designed.",
     tags: "UI DESIGN · E-COMMERCE · FASHION",
     chips: ["UI design", "E-commerce", "Figma delivery"],
-    desc: "UI design for a fashion-forward hoodie brand — a clean e-commerce interface built around the product. Every screen designed for conversion, not decoration.",
+    desc: "UI design for a fashion-forward hoodie brand: a clean e-commerce interface built around the product. Every screen designed for conversion, not decoration.",
   },
 ];
 
@@ -70,7 +70,7 @@ function ProjectHead({ p }: { p: typeof projects[0] }) {
       </p>
       <div>
         <h2 className="text-[clamp(30px,4.4vw,58px)] font-black leading-[0.95] tracking-tight text-black">
-          {p.name} <span className="font-light italic">—</span>
+          {p.name} <span className="font-light italic">·</span>
           <br />
           <span className="font-light italic">{p.sub.split(" ").slice(0, -1).join(" ")} </span>
           <strong>{p.sub.split(" ").pop()}</strong>
@@ -100,17 +100,17 @@ const services = [
   {
     n: "01 · Capture",
     title: "Product photography",
-    body: "Hero stills, packshots, packaging detail, and lifestyle. Shot for PDP, paid social, and wholesale buyer decks — usage-mapped before the camera comes out.",
+    body: "Hero stills, packshots, packaging detail, and lifestyle. Shot for PDP, paid social, and wholesale buyer decks: usage-mapped before the camera comes out.",
   },
   {
     n: "02 · Capture",
     title: "Lookbooks & editorial",
-    body: "Seasonal lookbooks, campaign features, founder portraits. We crew up locally — stylist, MUA, location — and ship a buyer-ready PDF inside two weeks.",
+    body: "Seasonal lookbooks, campaign features, founder portraits. We crew up locally (stylist, MUA, location) and ship a buyer-ready PDF inside two weeks.",
   },
   {
     n: "03 · Build",
     title: "Brand identity systems",
-    body: "Naming, wordmark, palette, type, voice. Delivered as a Figma library and a one-page rules PDF — not a 90-page brand book no one will open twice.",
+    body: "Naming, wordmark, palette, type, voice. Delivered as a Figma library and a one-page rules PDF, not a 90-page brand book no one will open twice.",
   },
   {
     n: "04 · Build",
@@ -170,7 +170,7 @@ export default function FramesPage() {
           transition={{ duration: 0.65, delay: 0.28, ease: EASE }}
           className="mt-8 text-base md:text-lg text-black/45 max-w-2xl leading-relaxed"
         >
-          We don&apos;t shoot for awards. We shoot for the line item three steps later — the
+          We don&apos;t shoot for awards. We shoot for the line item three steps later: the
           conversion, the press feature, the wholesale buyer who finally says yes. Content and
           identity work built on the same systems-first thinking as the rest of our studio.
         </motion.p>
@@ -395,7 +395,7 @@ export default function FramesPage() {
                 Half-day to three-day shoots
               </span>
               <p className="text-sm text-white/50 leading-relaxed mb-4">
-                Brief us in five minutes — usage, channels, deadline. We&apos;ll come back with a
+                Brief us in five minutes: usage, channels, deadline. We&apos;ll come back with a
                 frame-by-frame shotlist and a fixed price before you commit to a calendar slot.
               </p>
               <p className="text-[11px] text-white/25">

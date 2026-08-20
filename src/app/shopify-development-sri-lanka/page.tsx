@@ -9,7 +9,7 @@ import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from "@/lib/seo";
 const PAGE_URL = `${SITE_URL}/shopify-development-sri-lanka`;
 
 export const metadata: Metadata = {
-  title: "Expert Shopify Development & Architecture in Sri Lanka · theBOAT",
+  title: "Expert Shopify Development & Architecture in Sri Lanka",
   description:
     "Leading Shopify agency in Colombo, Sri Lanka. Custom storefront design, payment gateway integration, and proven e-commerce solutions for local brands scaling globally.",
   openGraph: {
@@ -68,7 +68,7 @@ const capabilities = [
   {
     title: "Custom Storefront Design & UX",
     description:
-      "Mobile-first storefront builds that convert. We design for how Sri Lankan customers actually shop—quick mobile browsing, clear product imagery, streamlined checkout.",
+      "Mobile-first storefront builds that convert. We design for how Sri Lankan customers actually shop: quick mobile browsing, clear product imagery, streamlined checkout.",
     icon: "🎨",
   },
   {
@@ -94,7 +94,7 @@ const capabilities = [
 const faqs = [
   {
     q: "Do you integrate local payment gateways like PayHere and WEBXPAY?",
-    a: "Yes — payment gateway integration is one of our core capabilities for Sri Lankan Shopify builds. We set up local processors like PayHere and WEBXPAY alongside international options (Stripe, PayPal) so you can take orders from customers in Sri Lanka and abroad without friction.",
+    a: "Yes, payment gateway integration is one of our core capabilities for Sri Lankan Shopify builds. We set up local processors like PayHere and WEBXPAY alongside international options (Stripe, PayPal) so you can take orders from customers in Sri Lanka and abroad without friction.",
   },
   {
     q: "How long does a Shopify store build take?",
@@ -102,11 +102,11 @@ const faqs = [
   },
   {
     q: "Can you help a Sri Lankan business expand to international markets?",
-    a: "Yes — we've built this exact path before, including a Colombo brand expanding into the UAE market with same-day delivery workflows and international payment processing. Multi-currency support and regional tax/shipping configuration are part of our International Expansion Support capability.",
+    a: "Yes, we've built this exact path before, including a Colombo brand expanding into the UAE market with same-day delivery workflows and international payment processing. Multi-currency support and regional tax/shipping configuration are part of our International Expansion Support capability.",
   },
   {
     q: "What does a Shopify store cost in Sri Lanka?",
-    a: "A store build starts from $3k, advanced setups with custom integrations start from $6k, and ongoing maintenance retainers start from $500/month. Exact pricing depends on catalogue size, integrations, and complexity — book a free audit for an accurate quote.",
+    a: "A store build starts from $3k, advanced setups with custom integrations start from $6k, and ongoing maintenance retainers start from $500/month. Exact pricing depends on catalogue size, integrations, and complexity. Book a free audit for an accurate quote.",
   },
 ];
 
@@ -119,12 +119,12 @@ const whyChooseUs = [
   {
     title: "Local Market Knowledge",
     description:
-      "We know the Sri Lankan e-commerce landscape—from payment processor limitations to delivery logistics challenges. We build for the reality, not the ideal.",
+      "We know the Sri Lankan e-commerce landscape, from payment processor limitations to delivery logistics challenges. We build for the reality, not the ideal.",
   },
   {
     title: "Proven Track Record",
     description:
-      "Three live stores, multiple local brands, real revenue flowing through systems we built. Not theory—working commerce platforms you can visit right now.",
+      "Three live stores, multiple local brands, real revenue flowing through systems we built. Not theory: working commerce platforms you can visit right now.",
   },
   {
     title: "Transparent Processes",
@@ -299,8 +299,8 @@ export default function ShopifySriLankaPage() {
             Once your store is live and scaling, the next step is often{" "}
             <a href="/services/agentic-commerce-shopify" className="text-[#f04b25] font-medium hover:underline">
               agentic commerce on Shopify
-            </a>{" "}
-            — autonomous pricing, inventory, and campaign management layered on top of what
+            </a>{": "}
+            autonomous pricing, inventory, and campaign management layered on top of what
             we build here.
           </p>
         </div>

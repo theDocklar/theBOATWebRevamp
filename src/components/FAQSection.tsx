@@ -27,7 +27,7 @@ export default function FAQSection() {
               The honest answers.
             </h2>
             <p className="text-sm text-black/40 leading-relaxed">
-              Don&apos;t see your question? Ask us directly —{" "}
+              Don&apos;t see your question? Ask us directly:{" "}
               <a href="#contact" className="text-[#f04b25] hover:underline">
                 we reply within 24 hours.
               </a>

@@ -6,7 +6,8 @@ import { urlForImage } from '../../../sanity/lib/image'
 import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
 const PAGE_URL = `${SITE_URL}/resources`
-const TITLE = 'Resources — theBOAT'
+const TITLE = 'Resources'
+const SOCIAL_TITLE = 'Resources · theBOAT'
 const DESCRIPTION = 'Helpful resources, guides, and tools from theBOAT.'
 
 export const metadata = {
@@ -17,14 +18,14 @@ export const metadata = {
     ...OG_DEFAULTS,
     type: 'website',
     url: PAGE_URL,
-    title: TITLE,
+    title: SOCIAL_TITLE,
     description: DESCRIPTION,
     images: [{ url: '/og.png', width: 1200, height: 630, alt: 'theBOAT Resources' }],
   },
   twitter: {
     ...TWITTER_DEFAULTS,
     card: 'summary_large_image',
-    title: TITLE,
+    title: SOCIAL_TITLE,
     description: DESCRIPTION,
     images: ['/og.png'],
   },

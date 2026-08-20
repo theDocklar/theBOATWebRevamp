@@ -8,21 +8,21 @@ const steps = [
     num: "01",
     tag: "Discovery · 12 questions",
     title: "Map the system first",
-    desc: "Twelve focused questions. Nothing more. You leave with a system map that shows where the actual problem is — before we write a single line of code.",
+    desc: "Twelve focused questions. Nothing more. You leave with a system map that shows where the actual problem is, before we write a single line of code.",
     items: ["Scope & milestones", "Current workflow", "Existing stack"],
   },
   {
     num: "02",
     tag: "Blueprint · 48h turnaround",
     title: "See it before we build it",
-    desc: "Wireframes, workflow maps, or a clickable prototype — in 48 hours. You review the plan, we adjust if needed, then we build.",
+    desc: "Wireframes, workflow maps, or a clickable prototype, in 48 hours. You review the plan, we adjust if needed, then we build.",
     badge: "48h turnaround",
   },
   {
     num: "03",
     tag: "Build · milestone-driven",
     title: "Ship to milestones",
-    desc: "Products in 8-week sprints. Automations in phases. You know what's shipping next and when — no black boxes, no surprises.",
+    desc: "Products in 8-week sprints. Automations in phases. You know what's shipping next and when: no black boxes, no surprises.",
     badge: "milestones included",
   },
 ];
@@ -154,10 +154,10 @@ export default function ProcessSection() {
                 {step.num === "03" && (
                   <div className="bg-[#0f0f0f] rounded-xl p-4 mt-2 space-y-2">
                     <div className="bg-white/[0.06] rounded-xl rounded-tl-sm px-3 py-2 text-xs text-white/60 max-w-[85%]">
-                      "M2 approved — when does M3 ship?"
+                      "M2 approved, when does M3 ship?"
                     </div>
                     <div className="bg-[#f04b25] rounded-xl rounded-tr-sm px-3 py-2 text-xs text-white ml-auto max-w-[85%]">
-                      End of week — on track ↗
+                      End of week, on track ↗
                     </div>
                     <div className="flex items-center gap-2 pt-1">
                       <span className="text-[10px] text-white/30">M2 done · M3 in build</span>

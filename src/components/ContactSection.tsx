@@ -64,7 +64,7 @@ export default function ContactSection() {
         throw new Error(data.error ?? "Something went wrong.");
       }
 
-      toast.success("Message sent — we'll reply within one business day.");
+      toast.success("Message sent. We'll reply within one business day.");
       setForm(initialForm);
     } catch (err) {
       toast.error(
@@ -83,7 +83,7 @@ export default function ContactSection() {
           <FadeIn>
             <div className="bg-[#f04b25] rounded-2xl p-7 h-full flex flex-col">
               <p className="text-xs text-white/60 uppercase tracking-widest mb-4">
-                01 — Book a strategy call
+                01 · Book a strategy call
               </p>
               <h2
                 className="text-4xl md:text-5xl font-black text-white leading-tight mb-3"
@@ -94,7 +94,7 @@ export default function ContactSection() {
               </h2>
               <p className="text-white/70 text-sm leading-relaxed mb-8">
                 We&apos;ll map one product challenge or ops bottleneck and walk
-                you through how we&apos;d approach it — whether or not you work
+                you through how we&apos;d approach it, whether or not you work
                 with us.
               </p>
 
@@ -146,7 +146,7 @@ export default function ContactSection() {
           <FadeIn delay={0.1}>
             <div className="bg-[#0f0f0f] rounded-2xl p-7">
               <p className="text-xs text-white/30 uppercase tracking-widest mb-4">
-                02 — Send us your details
+                02 · Send us your details
               </p>
               <h2
                 className="text-3xl font-black text-white leading-tight mb-2"

@@ -18,7 +18,7 @@ const stores = [
     sub: "Fashion boutique · Colombo",
     tags: "ECOMMERCE · FASHION · SRI LANKA",
     chips: ["Ecommerce build", "Product catalogue", "Mobile-first"],
-    desc: "A full ecommerce build for one of Sri Lanka's leading fashion boutiques. We built the storefront and product catalogue end-to-end — scoped for mobile-first browsing and wired to their inventory.",
+    desc: "A full ecommerce build for one of Sri Lanka's leading fashion boutiques. We built the storefront and product catalogue end-to-end, scoped for mobile-first browsing and wired to their inventory.",
     stage: "fashion",
     img: "/ecom/opotique.png",
     wide: true,
@@ -42,7 +42,7 @@ const stores = [
     sub: "General ecommerce · Sri Lanka",
     tags: "ECOMMERCE · PRODUCTS · SRI LANKA",
     chips: ["Ecommerce build", "Product catalogue", "Local delivery"],
-    desc: "An ecommerce store for Tom Products — a broad catalogue built for local delivery and straightforward product discovery.",
+    desc: "An ecommerce store for Tom Products: a broad catalogue built for local delivery and straightforward product discovery.",
     stage: "products",
     img: "/ecom/tom-products.png",
     wide: false,
@@ -63,12 +63,12 @@ const capabilities = [
   {
     n: "01",
     title: "Storefront build",
-    body: "Custom themed storefronts built for conversion. PDP, collection, cart and checkout — all scoped to your catalogue before we start.",
+    body: "Custom themed storefronts built for conversion. PDP, collection, cart and checkout, all scoped to your catalogue before we start.",
   },
   {
     n: "02",
     title: "Product catalogue setup",
-    body: "Structured product data, variant logic, and collection taxonomy — set up to scale without breaking when you add SKUs.",
+    body: "Structured product data, variant logic, and collection taxonomy, set up to scale without breaking when you add SKUs.",
   },
   {
     n: "03",
@@ -78,7 +78,7 @@ const capabilities = [
   {
     n: "04",
     title: "Post-launch support",
-    body: "30-day support window after every launch. Keys handed over day one — no retainer pushed.",
+    body: "30-day support window after every launch. Keys handed over day one, no retainer pushed.",
   },
 ];
 
@@ -238,7 +238,7 @@ export default function StoresPage() {
         >
           <p className="text-base md:text-lg text-black/45 leading-relaxed">
             Three ecommerce stores live and trading across Sri Lanka and the UAE. Each
-            one built end-to-end — storefront, catalogue, and the ops wiring behind it.
+            one built end-to-end: storefront, catalogue, and the ops wiring behind it.
           </p>
           <div className="grid grid-cols-3 gap-px border border-black/[0.07] rounded-xl overflow-hidden">
             {[
@@ -390,7 +390,7 @@ export default function StoresPage() {
               </span>
               <p className="text-sm text-white/50 leading-relaxed mb-4">
                 Send us your URL. We&apos;ll walk through your storefront, point to the
-                three biggest leaks, and tell you what we&apos;d fix first — whether or not
+                three biggest leaks, and tell you what we&apos;d fix first, whether or not
                 you hire us.
               </p>
               <p className="text-[11px] text-white/25">
