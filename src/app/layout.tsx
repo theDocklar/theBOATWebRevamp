@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import LocalBusinessSchema from "@/components/schema/LocalBusinessSchema";
 import { CONTACT } from "@/lib/constants";
 import "./globals.css";
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     shortcut: "/fav.png",
   },
   verification: {
-    google: "",
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
   },
   category: "technology",
 };
@@ -160,6 +161,9 @@ export default function RootLayout({
             },
           }}
         />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );
