@@ -52,20 +52,20 @@ const CLIENT_BRANDS: ClientBrand[] = [
     ),
   },
   {
-    name: "OPOTIQUE",
+    name: "O'POTIQUE",
     category: "Fashion Boutique",
-    tagline: "High-End Fashion Store",
+    tagline: "Womenswear · Colombo",
     svgLogo: (
-      <svg viewBox="0 0 170 36" fill="currentColor" className="h-6 w-auto">
+      <svg viewBox="0 0 180 36" fill="currentColor" className="h-6 w-auto">
         <text
           x="0"
           y="26"
-          fontFamily="'Didot', 'Bodoni MT', 'Cinzel', 'Playfair Display', Georgia, serif"
-          fontSize="24"
-          fontWeight="500"
-          letterSpacing="5.5"
+          fontFamily="'Instrument Serif', 'Didot', 'Bodoni MT', 'Cinzel', 'Playfair Display', Georgia, serif"
+          fontSize="25"
+          fontWeight="400"
+          letterSpacing="4.5"
         >
-          OPOTIQUE
+          O'POTIQUE
         </text>
       </svg>
     ),
@@ -229,7 +229,6 @@ const CLIENT_BRANDS: ClientBrand[] = [
 ];
 
 export default function ClientLogoCarousel() {
-  // Duplicate array 3 times for smooth, seamless infinite marquee loop
   const marqueeItems = [...CLIENT_BRANDS, ...CLIENT_BRANDS, ...CLIENT_BRANDS];
 
   return (
@@ -251,7 +250,7 @@ export default function ClientLogoCarousel() {
         </FadeIn>
       </div>
 
-      {/* Infinite Seamless Scrolling Ribbon with Left/Right Gradient Mask */}
+      {/* Infinite Seamless Scrolling Ribbon */}
       <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div className="flex w-max items-center gap-12 md:gap-16 py-4 animate-marquee hover:[animation-play-state:paused]">
           {marqueeItems.map((brand, idx) => (
