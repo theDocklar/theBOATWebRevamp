@@ -17,7 +17,8 @@
     "kohedha:gsc": "node scripts/kohedha_gsc_analyzer.mjs",
     "kohedha:mine": "node scripts/kohedha_reddit_miner.mjs",
     "kohedha:generate": "node scripts/kohedha_seo_generator.mjs",
-    "rnd:publish": "node scripts/publish_rnd_simulation.mjs"
+    "rnd:publish": "node scripts/publish_rnd_simulation.mjs",
+    "funnel:monitor": "node scripts/funnel/funnel_monitor.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
