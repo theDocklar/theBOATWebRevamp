@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactSection from '@/components/ContactSection'
 import { portableTextComponents } from '@/components/PortableTextComponents'
+import SimulationEmbedder from '@/components/simulations/SimulationEmbedder'
 import { BreadcrumbSchema } from '@/components/schema'
 import { SITE_URL, OG_DEFAULTS, TWITTER_DEFAULTS } from '@/lib/seo'
 
@@ -109,6 +110,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             />
           </div>
         )}
+
+        <SimulationEmbedder slug={slug} />
 
         <div className="article-content">
           <PortableText value={post.body} components={portableTextComponents} />

@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-08-26T13:08:45.784Z",
+  "domain": "kohedha.lk",
+  "pillars": {
+    "colombo_events": {
+      "name": "Colombo Events & Nightlife",
+      "totalScanned": 28,
+      "sampleQuestions": [
+        "What could be e great place / event to meet decent people in Colombo",
+        "Uni Event Venue in Colombo",
+        "After Work Social Events in Colombo",
+        "Activities/events in Colombo for a hyperactive friend?",
+        "Any event planners in colombo? (Wedding or other)"
+      ]
+    },
+    "restaurants_cafes": {
+      "name": "Restaurants, Cafes & Food Discovery",
+      "totalScanned": 0,
+      "sampleQuestions": []
+    },
+    "weekend_travel": {
+      "name": "Down South & Travel Events",
+      "totalScanned": 25,
+      "sampleQuestions": [
+        "Throwback to a whirlwind trip to the affable, green and beautiful Sri Lanka 7 years ago. We hired a two wheeler and did the Colombo - Kandy - Nuwara Eliya - Ella - Hambantota - Galle - Colombo loop. These are Nuwara Eliya, Ella and Galle Fort in the pics.",
+        "Sri Lanka is a dream you won’t want to wake up from",
+        "Our Qatar Bahrain Kuwait trip experience",
+        "Sri Lanka trip report",
+        "Solo Travel - A Week in Sri Lanka - Report"
+      ]
+    }
+  },
+  "highIntentOpportunities": [
+    {
+      "title": "15 Best Things to Do in Colombo This Weekend (Events, Cafes & Nightlife)",
+      "slug": "things-to-do-in-colombo-this-weekend-guide-2026",
+      "primaryKeyword": "things to do in colombo this weekend",
+      "secondaryKeywords": [
+        "events in colombo",
+        "colombo nightlife",
+        "colombo events today"
+      ],
+      "targetAppAction": "Download Kohedha App to explore real-time Colombo weekend events"
+    },
+    {
+      "title": "10 Best Work-Friendly Cafes in Colombo with High-Speed WiFi & Great Coffee",
+      "slug": "best-cafes-in-colombo-to-work-remotely",
+      "primaryKeyword": "best cafes in colombo to work",
+      "secondaryKeywords": [
+        "coffee shops in colombo",
+        "work friendly cafes colombo",
+        "digital nomad colombo"
+      ],
+      "targetAppAction": "Browse cafe menus and ratings on Kohedha"
+    },
+    {
+      "title": "The Ultimate Guide to Colombo Nightlife & EDM Events in Sri Lanka (2026)",
+      "slug": "colombo-nightlife-edm-events-sri-lanka-guide",
+      "primaryKeyword": "edm events sri lanka",
+      "secondaryKeywords": [
+        "colombo nightlife",
+        "events in colombo today",
+        "clubs in colombo"
+      ],
+      "targetAppAction": "Discover upcoming DJ lineups & ticket booking links on Kohedha"
+    },
+    {
+      "title": "Top 12 Romantic Dinner Spots & Rooftop Restaurants in Colombo",
+      "slug": "romantic-dinner-spots-rooftop-restaurants-colombo",
+      "primaryKeyword": "romantic dinner colombo",
+      "secondaryKeywords": [
+        "rooftop restaurants colombo",
+        "best restaurants in colombo",
+        "fine dining colombo"
+      ],
+      "targetAppAction": "View table reservation details and menus on Kohedha"
+    }
+  ]
+}

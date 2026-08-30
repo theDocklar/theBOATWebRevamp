@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-08-30T03:52:39.423Z",
+  "publishedMemoryCount": 19,
+  "pillars": {
+    "n8n_automation": {
+      "pillarName": "Workflow Automation & n8n",
+      "totalPostsScanned": 0,
+      "questionsCount": 0,
+      "topQuestions": []
+    },
+    "ai_agents": {
+      "pillarName": "AI Agents & Autonomous Operations",
+      "totalPostsScanned": 0,
+      "questionsCount": 0,
+      "topQuestions": []
+    },
+    "custom_web": {
+      "pillarName": "Custom Web Apps & Next.js SaaS",
+      "totalPostsScanned": 0,
+      "questionsCount": 0,
+      "topQuestions": []
+    },
+    "ecommerce_cro": {
+      "pillarName": "Shopify CRO & Ecommerce Operations",
+      "totalPostsScanned": 0,
+      "questionsCount": 0,
+      "topQuestions": []
+    },
+    "sri_lanka_tech": {
+      "pillarName": "Sri Lanka Tech & Agency Landscape",
+      "totalPostsScanned": 0,
+      "questionsCount": 0,
+      "topQuestions": []
+    }
+  },
+  "allMinedQuestions": [],
+  "evaluatedOpportunities": [
+    {
+      "pillar": "n8n_automation",
+      "title": "n8n vs Zapier vs Make in 2026: Cost and Scaling Benchmark for Teams",
+      "slug": "n8n-vs-zapier-cost-scaling-benchmark-2026",
+      "targetKeywords": [
+        "n8n vs zapier",
+        "n8n cost comparison",
+        "self hosted n8n consultant"
+      ],
+      "targetAudience": "Operations Directors, SaaS Founders, and Agency Leads",
+      "painPoints": [
+        "Zapier bill shock after 10,000+ task runs",
+        "Self-hosting n8n on Hetzner/AWS for under $20/month",
+        "Automating invoice reconciliation and client onboarding"
+      ],
+      "targetUrl": "/blog/n8n-vs-zapier-cost-scaling-benchmark-2026",
+      "internalLinks": [
+        "/services/ai-automation",
+        "/work/finpilot"
+      ],
+      "status": "ALREADY_PUBLISHED"
+    },
+    {
+      "pillar": "ai_agents",
+      "title": "Narrow AI Agents vs. Chatbots: What Actually Drives Revenue in Production",
+      "slug": "ai-agents-vs-chatbots-business-automation-guide",
+      "targetKeywords": [
+        "ai agents vs chatbots",
+        "narrow ai agents for business",
+        "agentic commerce shopify"
+      ],
+      "targetAudience": "Shopify Plus brand managers and tech-forward founders",
+      "painPoints": [
+        "Why canned chatbots frustrate buyers without resolving tickets",
+        "How autonomous agents fetch inventory, update CRMs, and process returns",
+        "ROI calculation: Replacing 30+ hours/week of manual support ops"
+      ],
+      "targetUrl": "/blog/ai-agents-vs-chatbots-business-automation-guide",
+      "internalLinks": [
+        "/services/agentic-commerce-shopify",
+        "/services/ai-automation"
+      ],
+      "status": "ALREADY_PUBLISHED"
+    },
+    {
+      "pillar": "custom_web",
+      "title": "Next.js vs. WordPress in 2026: Total Cost of Ownership for B2B Websites",
+      "slug": "nextjs-vs-wordpress-b2b-web-development-2026",
+      "targetKeywords": [
+        "nextjs vs wordpress b2b",
+        "custom web app vs wordpress",
+        "modern b2b website stack"
+      ],
+      "targetAudience": "B2B Marketing Directors and Scaling Founders",
+      "painPoints": [
+        "WordPress plugin bloat, database vulnerabilities, and slow mobile LCP",
+        "Static generation + headless CMS architecture benefits",
+        "When to choose a custom web app over a template builder"
+      ],
+      "targetUrl": "/blog/nextjs-vs-wordpress-b2b-web-development-2026",
+      "internalLinks": [
+        "/services/web-development-colombo",
+        "/work"
+      ],
+      "status": "ALREADY_PUBLISHED"
+    },
+    {
+      "pillar": "ecommerce_cro",
+      "title": "Shopify Checkout CRO: 7 Fixes to Move from 0.8% to 2.5% Conversion Rate",
+      "slug": "shopify-cro-checkout-conversion-optimization-guide",
+      "targetKeywords": [
+        "shopify conversion rate optimization",
+        "increase shopify cro",
+        "reduce cart abandonment"
+      ],
+      "targetAudience": "DTC Brand Founders and Ecommerce Managers",
+      "painPoints": [
+        "High cart abandonment between product view and completed purchase",
+        "Why bloated third-party apps slow down mobile checkout",
+        "Structuring 1-page checkout and trust signals cleanly"
+      ],
+      "targetUrl": "/blog/shopify-cro-checkout-conversion-optimization-guide",
+      "internalLinks": [
+        "/stores",
+        "/shopify-development-sri-lanka"
+      ],
+      "status": "ALREADY_PUBLISHED"
+    },
+    {
+      "pillar": "sri_lanka_tech",
+      "title": "How to Set Up Shopify in Sri Lanka: Payment Gateways and Real Costs (2026)",
+      "slug": "how-to-set-up-shopify-in-sri-lanka-payment-gateways-guide-2026",
+      "targetKeywords": [
+        "shopify sri lanka",
+        "payhere vs webxpay",
+        "shopify payment gateway sri lanka"
+      ],
+      "targetAudience": "Sri Lankan DTC brand founders & retail operators",
+      "painPoints": [
+        "How to receive LKR payments without account lockouts",
+        "Cost breakdown of PayHere vs WebXPay vs Koko",
+        "Why Instagram DM ordering loses 40% of checkout sales"
+      ],
+      "targetUrl": "/blog/how-to-set-up-shopify-in-sri-lanka-payment-gateways-guide-2026",
+      "internalLinks": [
+        "/shopify-development-sri-lanka",
+        "/stores"
+      ],
+      "status": "ALREADY_PUBLISHED"
+    }
+  ],
+  "nextRecommendedTopic": {
+    "pillar": "n8n_automation",
+    "title": "n8n vs Zapier vs Make in 2026: Cost and Scaling Benchmark for Teams",
+    "slug": "n8n-vs-zapier-cost-scaling-benchmark-2026",
+    "targetKeywords": [
+      "n8n vs zapier",
+      "n8n cost comparison",
+      "self hosted n8n consultant"
+    ],
+    "targetAudience": "Operations Directors, SaaS Founders, and Agency Leads",
+    "painPoints": [
+      "Zapier bill shock after 10,000+ task runs",
+      "Self-hosting n8n on Hetzner/AWS for under $20/month",
+      "Automating invoice reconciliation and client onboarding"
+    ],
+    "targetUrl": "/blog/n8n-vs-zapier-cost-scaling-benchmark-2026",
+    "internalLinks": [
+      "/services/ai-automation",
+      "/work/finpilot"
+    ],
+    "status": "ALREADY_PUBLISHED"
+  }
+}
