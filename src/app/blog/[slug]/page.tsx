@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         ]}
       />
       <Navbar />
-      <article className="max-w-4xl mx-auto px-5 md:px-8 py-32 md:py-40">
+      <article className="max-w-5xl mx-auto px-5 md:px-8 py-32 md:py-40">
         <header className="mb-12">
           {post.keyword && (
             <span className="inline-block px-3.5 py-1.5 bg-[#f04b25]/8 text-[#f04b25] text-xs font-semibold rounded-full uppercase tracking-wide mb-6">
