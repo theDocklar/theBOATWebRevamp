@@ -1,0 +1,200 @@
+{
+  "timestamp": "2026-08-30T06:53:20.343Z",
+  "tofu": {
+    "gscQueriesCount": 11,
+    "ga4RealtimeActive": 2
+  },
+  "mofu": {
+    "totalArticlesAudited": 20,
+    "compliantWithCommercialLinks": 5,
+    "articles": [
+      {
+        "slug": "cube-algorithm-deterministic-geometric-ai-framework",
+        "title": "The Cube Algorithm: A Deterministic Geometric Framework for Edge Intelligence · theBOAT R&D",
+        "hasStores": true,
+        "hasServices": true,
+        "hasWork": true,
+        "isRndDemo": true,
+        "isCompliant": true
+      },
+      {
+        "slug": "how-to-set-up-shopify-in-sri-lanka-payment-gateways-guide-2026",
+        "title": "How to Set Up Shopify in Sri Lanka: Payment Gateways and Real Costs (2026) · theBOAT",
+        "hasStores": true,
+        "hasServices": true,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": true
+      },
+      {
+        "slug": "ai-agents-vs-chatbots-business-automation-guide",
+        "title": "Narrow AI Agents vs. Chatbots: What Actually Drives Revenue in Production · theBOAT",
+        "hasStores": true,
+        "hasServices": true,
+        "hasWork": true,
+        "isRndDemo": false,
+        "isCompliant": true
+      },
+      {
+        "slug": "ai-workflow-automation-practical-guide",
+        "title": "AI Workflow Automation: A Practical Guide for Small Business Owners",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "ai-workflow-automation-small-business-guide",
+        "title": "AI Workflow Automation: A Practical Guide for Small Business Owners",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "ai-workflow-automation-sri-lanka-guide",
+        "title": "The Small Business Guide to AI Workflow Automation in Sri Lanka (2026 Edition)",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "brand-identity-design-sri-lanka-startup-guide",
+        "title": "Brand Identity Design for Sri Lankan Startups: A Founder’s Guide",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "brand-identity-for-solopreneurs-growth-guide",
+        "title": "Beyond the Logo: Why Your Brand Identity is Your Best Business Growth Tool",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "how-to-reduce-cart-abandonment-rate-sri-lanka",
+        "title": "How to Reduce Your Cart Abandonment Rate: A Practical Guide for Sri Lankan Small Businesses",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "n8n-vs-zapier-cost-scaling-benchmark-2026",
+        "title": "n8n vs Zapier vs Make in 2026: Cost and Scaling Benchmark for Teams · theBOAT",
+        "hasStores": false,
+        "hasServices": true,
+        "hasWork": true,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "shopify-cro-checkout-conversion-optimization-guide",
+        "title": "Shopify Checkout CRO: 7 Fixes to Move from 0.8% to 2.5% Conversion Rate · theBOAT",
+        "hasStores": true,
+        "hasServices": true,
+        "hasWork": true,
+        "isRndDemo": false,
+        "isCompliant": true
+      },
+      {
+        "slug": "local-seo-sri-lanka-small-business-guide",
+        "title": "Local SEO for Sri Lankan Small Businesses: The 2026 Guide to Getting Found",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "mvp-vs-full-product-founders-guide",
+        "title": "MVP vs. Full Product: A Founder’s Guide to Building What Matters First",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "product-photography-small-business-online-sales-impact",
+        "title": "The Bottom Line: How Product Photography Directly Impacts Your Online Sales",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "shopify-development-sri-lanka-guide-2026",
+        "title": "Ultimate Guide to Shopify Development for Small Businesses in Sri Lanka (2026)",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "shopify-vs-custom-web-app-sri-lanka",
+        "title": "Shopify vs. Custom Web App in Sri Lanka: A Localized Business Guide",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "signs-your-small-business-website-needs-a-redesign",
+        "title": "Is Your Small Business Website Hurting Your Sales? 7 Clear Signs It’s Time for a Redesign",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "nextjs-vs-wordpress-b2b-web-development-2026",
+        "title": "Next.js vs. WordPress in 2026: Total Cost of Ownership for B2B Websites · theBOAT",
+        "hasStores": true,
+        "hasServices": true,
+        "hasWork": true,
+        "isRndDemo": false,
+        "isCompliant": true
+      },
+      {
+        "slug": "validate-startup-idea-pmf-sprint",
+        "title": "How to Validate a Startup Idea Before You Build: The 14-Day PMF Sprint",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      },
+      {
+        "slug": "why-websites-are-important-for-businesses-sri-lanka",
+        "title": "Why Websites Are Important for Businesses: A Marketing Manager’s Guide in Sri Lanka",
+        "hasStores": false,
+        "hasServices": false,
+        "hasWork": false,
+        "isRndDemo": false,
+        "isCompliant": false
+      }
+    ]
+  },
+  "bofu": {
+    "conversionEndpoints": [
+      "/api/contact",
+      "https://calendly.com",
+      "https://theboatgrp.com/#contact"
+    ]
+  }
+}

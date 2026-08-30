@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ClientLogoCarousel from "@/components/ClientLogoCarousel";
 import ProcessSection from "@/components/ProcessSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProductSection from "@/components/ProductSection";
@@ -29,6 +30,7 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
+        <ClientLogoCarousel />
         <ProcessSection />
         <ServicesSection />
         <ProductSection />
