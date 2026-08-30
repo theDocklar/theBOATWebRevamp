@@ -52,22 +52,20 @@ const CLIENT_BRANDS: ClientBrand[] = [
     ),
   },
   {
-    name: "BOUNCE",
-    category: "Sports SaaS & Mobile",
-    tagline: "Court Booking Platform",
+    name: "OPOTIQUE",
+    category: "Fashion Boutique",
+    tagline: "High-End Fashion Store",
     svgLogo: (
-      <svg viewBox="0 0 140 36" fill="currentColor" className="h-6 w-auto">
-        <circle cx="14" cy="18" r="10" stroke="currentColor" strokeWidth="3" fill="none" />
-        <path d="M14 8c3 5 3 15 0 20" stroke="currentColor" strokeWidth="2.5" fill="none" />
+      <svg viewBox="0 0 170 36" fill="currentColor" className="h-6 w-auto">
         <text
-          x="32"
+          x="0"
           y="26"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="22"
-          fontWeight="850"
-          letterSpacing="2"
+          fontFamily="'Didot', 'Bodoni MT', 'Cinzel', 'Playfair Display', Georgia, serif"
+          fontSize="24"
+          fontWeight="500"
+          letterSpacing="5.5"
         >
-          BOUNCE
+          OPOTIQUE
         </text>
       </svg>
     ),
@@ -92,23 +90,50 @@ const CLIENT_BRANDS: ClientBrand[] = [
     ),
   },
   {
-    name: "OPOTIQUE",
-    category: "Eyewear E-Commerce",
-    tagline: "Designer Optics Store",
+    name: "HOUSE OF WAAS",
+    category: "Couture & Fashion",
+    tagline: "Haute Couture Atelier",
     svgLogo: (
-      <svg viewBox="0 0 155 36" fill="currentColor" className="h-6 w-auto">
-        <circle cx="10" cy="18" r="7" stroke="currentColor" strokeWidth="2.5" fill="none" />
-        <circle cx="28" cy="18" r="7" stroke="currentColor" strokeWidth="2.5" fill="none" />
-        <path d="M17 18h4" stroke="currentColor" strokeWidth="2.5" />
+      <svg viewBox="0 0 200 36" fill="currentColor" className="h-6 w-auto">
         <text
-          x="44"
+          x="0"
+          y="18"
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fontSize="14"
+          fontWeight="700"
+          letterSpacing="3.5"
+        >
+          HOUSE OF WAAS
+        </text>
+        <text
+          x="0"
+          y="30"
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fontSize="8"
+          fontWeight="500"
+          letterSpacing="5"
+          opacity="0.65"
+        >
+          COUTURE · ATELIER
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "CEYFLORA",
+    category: "Global Floral Commerce",
+    tagline: "Florals & Gifting · UAE",
+    svgLogo: (
+      <svg viewBox="0 0 150 36" fill="currentColor" className="h-6 w-auto">
+        <text
+          x="0"
           y="25"
           fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="19"
-          fontWeight="750"
-          letterSpacing="3"
+          fontSize="21"
+          fontWeight="700"
+          letterSpacing="3.5"
         >
-          OPOTIQUE
+          CEYFLORA
         </text>
       </svg>
     ),
@@ -164,69 +189,20 @@ const CLIENT_BRANDS: ClientBrand[] = [
     ),
   },
   {
-    name: "HOUSE OF WAAS",
-    category: "Couture & Fashion",
-    tagline: "Luxury Apparel E-Commerce",
+    name: "NORTHBRIDGE",
+    category: "Creative Agency",
+    tagline: "Agency Operations & Finance",
     svgLogo: (
-      <svg viewBox="0 0 200 36" fill="currentColor" className="h-6 w-auto">
-        <text
-          x="0"
-          y="18"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="14"
-          fontWeight="700"
-          letterSpacing="3.5"
-        >
-          HOUSE OF WAAS
-        </text>
-        <text
-          x="0"
-          y="30"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="8"
-          fontWeight="500"
-          letterSpacing="5"
-          opacity="0.65"
-        >
-          COUTURE · ATELIER
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "CEYFLORA",
-    category: "Global Export Commerce",
-    tagline: "Direct Floral Store",
-    svgLogo: (
-      <svg viewBox="0 0 150 36" fill="currentColor" className="h-6 w-auto">
+      <svg viewBox="0 0 190 36" fill="currentColor" className="h-6 w-auto">
         <text
           x="0"
           y="25"
           fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="21"
-          fontWeight="700"
-          letterSpacing="3.5"
-        >
-          CEYFLORA
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "TOM PRODUCTS",
-    category: "Wholesale & Hardware",
-    tagline: "Commercial Catalog Platform",
-    svgLogo: (
-      <svg viewBox="0 0 170 36" fill="currentColor" className="h-6 w-auto">
-        <text
-          x="0"
-          y="25"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          fontSize="20"
-          fontWeight="850"
+          fontSize="19"
+          fontWeight="800"
           letterSpacing="3"
         >
-          TOM<span className="font-light tracking-widest text-[14px] ml-1.5 opacity-70">PRODUCTS</span>
+          NORTHBRIDGE
         </text>
       </svg>
     ),
@@ -253,7 +229,7 @@ const CLIENT_BRANDS: ClientBrand[] = [
 ];
 
 export default function ClientLogoCarousel() {
-  // Duplicate array 3 times for seamless, jitter-free infinite loop
+  // Duplicate array 3 times for smooth, seamless infinite marquee loop
   const marqueeItems = [...CLIENT_BRANDS, ...CLIENT_BRANDS, ...CLIENT_BRANDS];
 
   return (
@@ -299,7 +275,6 @@ export default function ClientLogoCarousel() {
         </div>
       </div>
 
-      {/* Tailwind CSS Marquee Animation Utility */}
       <style jsx>{`
         @keyframes marquee {
           0% {
@@ -310,7 +285,7 @@ export default function ClientLogoCarousel() {
           }
         }
         .animate-marquee {
-          animation: marquee 32s linear infinite;
+          animation: marquee 30s linear infinite;
         }
       `}</style>
     </section>
