@@ -75,9 +75,9 @@ const LOGISTICS: ScenarioConfig = {
 };
 
 const AXIS = [
-  new THREE.Vector3(1.4, 0, 0),
-  new THREE.Vector3(0, 1.4, 0),
-  new THREE.Vector3(0, 0, 1.4)
+  new THREE.Vector3(1.4, 0, 0), // X
+  new THREE.Vector3(0, 1.4, 0), // Y
+  new THREE.Vector3(0, 0, 1.4)  // Z
 ];
 
 const C = {
@@ -96,6 +96,7 @@ interface LabelItem {
   html: string;
   pos: THREE.Vector3;
   cls: string;
+  axisIdx: number; // 0=X (right), 1=Y (up), 2=Z (left/forward), -1=root
 }
 
 export default function CubeAlgorithmSandbox() {
@@ -115,7 +116,9 @@ export default function CubeAlgorithmSandbox() {
     depth: 0
   });
 
-  const [screenLabels, setScreenLabels] = useState<Array<{ id: string; x: number; y: number; html: string; cls: string }>>([]);
+  const [screenLabels, setScreenLabels] = useState<
+    Array<{ id: string; x: number; y: number; html: string; cls: string; axisIdx: number }>
+  >([]);
   const labelsRef = useRef<LabelItem[]>([]);
 
   const simRef = useRef<{
@@ -138,7 +141,7 @@ export default function CubeAlgorithmSandbox() {
     py: number;
   } | null>(null);
 
-  // Screen label projection
+  // Screen label projection with smart non-overlapping directional offsets
   const updateLabels = useCallback(() => {
     if (!simRef.current || !stageRef.current) return;
     const { camera } = simRef.current;
@@ -156,7 +159,8 @@ export default function CubeAlgorithmSandbox() {
         x: isVisible ? x : -9999,
         y: isVisible ? y : -9999,
         html: l.html,
-        cls: l.cls
+        cls: l.cls,
+        axisIdx: l.axisIdx
       };
     });
 
@@ -301,7 +305,7 @@ export default function CubeAlgorithmSandbox() {
     updateLabels();
   };
 
-  // 3D Scene Geometry Functions
+  // 3D Scene Geometry
   const clearScene = useCallback(() => {
     if (!simRef.current) return;
     const { scene, objects } = simRef.current;
@@ -371,8 +375,8 @@ export default function CubeAlgorithmSandbox() {
     return track(m);
   };
 
-  const addLabel = (pos: THREE.Vector3, html: string, cls = "") => {
-    const rec = { id: Math.random().toString(), html, pos: pos.clone(), cls };
+  const addLabel = (pos: THREE.Vector3, html: string, cls = "", axisIdx = -1) => {
+    const rec: LabelItem = { id: Math.random().toString(), html, pos: pos.clone(), cls, axisIdx };
     labelsRef.current.push(rec);
     return rec;
   };
@@ -403,7 +407,7 @@ export default function CubeAlgorithmSandbox() {
         t: 0,
         fn: () => {
           nodeCube(cur, 0xffffff, 0.3);
-          addLabel(cur, `<b>${cfg.startLabel}</b>`);
+          addLabel(cur, `<b>${cfg.startLabel}</b>`, "", -1);
         }
       });
 
@@ -423,11 +427,11 @@ export default function CubeAlgorithmSandbox() {
               const p = origin.clone().add(AXIS[i]);
               line(origin, p, o.score <= 0 ? C.red : 0x8892a6, true);
               nodeCube(p, o.score <= 0 ? C.red : C.ghost, 0.16, 0.85);
-              addLabel(
-                p,
-                `[${nd.id}${i + 1}] ${o.label} · <b>${o.score.toFixed(1)}</b>`,
-                o.score <= 0 ? "dead" : ""
-              );
+
+              // Compact formatted label text
+              const labelHtml = `[${nd.id}${i + 1}] ${o.label} · <b>${o.score.toFixed(1)}</b>`;
+              addLabel(p, labelHtml, o.score <= 0 ? "dead" : "", i);
+
               setLogs((prev) => [
                 ...prev,
                 {
@@ -508,6 +512,9 @@ export default function CubeAlgorithmSandbox() {
                 ]);
                 tube(pOrigin, pTarget, C.cyan, 0.055);
                 nodeCube(pTarget, C.cyan, 0.26);
+
+                const rec = labelsRef.current.find((l) => l.pos.distanceTo(pTarget) < 0.01);
+                if (rec) rec.cls = "pivot";
               }
             });
             t += 1200;
@@ -598,7 +605,7 @@ export default function CubeAlgorithmSandbox() {
     [clearScene]
   );
 
-  // Speed and Pause controls
+  // Speed & Pause
   const handleSpeedChange = (s: number) => {
     setSpeed(s);
     if (simRef.current) simRef.current.speed = s;
@@ -622,7 +629,6 @@ export default function CubeAlgorithmSandbox() {
     return () => clearTimeout(timer);
   }, [buildScenario]);
 
-  // Scroll logs to bottom
   useEffect(() => {
     if (logRef.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
@@ -632,7 +638,7 @@ export default function CubeAlgorithmSandbox() {
   return (
     <div className="w-full my-12 rounded-2xl overflow-hidden border border-[#252c39] bg-[#0e1117] text-[#e8ecf3] shadow-2xl font-sans">
       <div className="flex flex-col lg:flex-row min-h-[580px] lg:h-[620px]">
-        {/* Left Control & Information Side Panel (380px) */}
+        {/* Left Control Panel (380px) */}
         <div className="w-full lg:w-[380px] lg:min-w-[380px] bg-[#161b24] border-b lg:border-b-0 lg:border-r border-[#252c39] p-5 flex flex-col justify-between overflow-y-auto">
           <div>
             <h3 className="text-base font-bold tracking-tight text-white mb-1">The Cube Algorithm</h3>
@@ -785,32 +791,58 @@ export default function CubeAlgorithmSandbox() {
         >
           <canvas ref={canvasRef} className="w-full h-full block" />
 
-          {/* Sleek HTML 3D Projected Pill Labels */}
+          {/* Clean, Non-overlapping 3D Directional Screen Labels */}
           {screenLabels.map((lbl) => {
             if (lbl.x < -100 || lbl.x > 3000) return null;
+
+            // Directional positioning based on axis
+            let transform = "translate(-50%, -100%)";
+            let leftOffset = 0;
+            let topOffset = 0;
+
+            if (lbl.axisIdx === 0) {
+              // X-axis: offset to the right of the node
+              transform = "translate(10px, -50%)";
+            } else if (lbl.axisIdx === 1) {
+              // Y-axis: offset straight above the node
+              transform = "translate(-50%, -125%)";
+            } else if (lbl.axisIdx === 2) {
+              // Z-axis (forward optimal): offset to the left of the node
+              transform = "translate(calc(-100% - 10px), -50%)";
+            } else {
+              // Root node: offset above
+              transform = "translate(-50%, -130%)";
+            }
+
+            const isWinner = lbl.cls === "win";
+            const isPivot = lbl.cls === "pivot";
+            const isDead = lbl.cls === "dead";
+
             return (
               <div
                 key={lbl.id}
                 style={{
                   position: "absolute",
-                  left: `${lbl.x}px`,
-                  top: `${lbl.y}px`,
-                  transform: "translate(-50%, -120%)"
+                  left: `${lbl.x + leftOffset}px`,
+                  top: `${lbl.y + topOffset}px`,
+                  transform
                 }}
                 dangerouslySetInnerHTML={{ __html: lbl.html }}
-                className={`pointer-events-none text-[11px] leading-tight px-2 py-0.5 rounded-md border whitespace-nowrap transition-all ${
-                  lbl.cls === "win"
-                    ? "border-[#1e6b50] text-[#34d399] bg-[rgba(14,17,23,0.85)] font-bold shadow-[0_0_10px_rgba(52,211,153,0.2)]"
-                    : lbl.cls === "dead"
-                    ? "border-[#7f2c2c] text-[#f87171] bg-[rgba(14,17,23,0.85)]"
-                    : "border-[#252c39] text-[#9aa5b5] bg-[rgba(14,17,23,0.78)]"
+                className={`pointer-events-none text-[9.5px] leading-tight px-1.5 py-0.5 rounded border whitespace-nowrap transition-all duration-150 ${
+                  isWinner
+                    ? "border-[#1e6b50] text-[#34d399] bg-[#0e1117]/95 font-bold shadow-[0_0_10px_rgba(52,211,153,0.3)] z-20 scale-105"
+                    : isPivot
+                    ? "border-[#1e5a6b] text-[#22d3ee] bg-[#0e1117]/95 font-bold shadow-[0_0_10px_rgba(34,211,238,0.3)] z-20 scale-105"
+                    : isDead
+                    ? "border-[#7f2c2c] text-[#f87171] bg-[#0e1117]/85 opacity-75"
+                    : "border-[#252c39]/70 text-[#9aa5b5] bg-[#0e1117]/75 opacity-60 hover:opacity-100"
                 }`}
               />
             );
           })}
 
           {/* Bottom-right drag hint */}
-          <div className="absolute bottom-3 right-4 text-[11px] text-[#5f6b7d] pointer-events-none">
+          <div className="absolute bottom-3 right-4 text-[10.5px] text-[#5f6b7d] pointer-events-none">
             drag to orbit · wheel to zoom
           </div>
         </div>
