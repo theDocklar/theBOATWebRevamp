@@ -39,11 +39,11 @@ interface ScenarioConfig {
 const SMART_HOME: ScenarioConfig = {
   id: "smart_home",
   title: "Scenario 1: Probabilistic Lattice (Smart Home)",
-  badge: "High-Efficiency Mode",
+  badge: "Optimal Extrusion",
   trigger: "Core Trigger A: Room temperature is 82°F.",
-  startLabel: "A · 82°F Ambient",
+  startLabel: "A · 82°F Hot",
   focus: [0.6, 1.6, 1.4],
-  radius: 8.4,
+  radius: 8.6,
   nodes: [
     { id: "A", opts: [{ label: "Do nothing", score: 0.1 }, { label: "Turn on fan", score: 0.4 }, { label: "Turn on AC", score: 0.9 }] },
     { id: "B", opts: [{ label: "Ignore humidity", score: 0.2 }, { label: "Open window", score: 0.3 }, { label: "Dehumidifier", score: 0.8 }] },
@@ -56,11 +56,11 @@ const SMART_HOME: ScenarioConfig = {
 const LOGISTICS: ScenarioConfig = {
   id: "logistics",
   title: "Scenario 2: Latent Memory Pivot (Logistics Crisis)",
-  badge: "Self-Healing Mode",
+  badge: "Self-Healing Memory",
   trigger: "Core Trigger A: Cargo ship arrives at Port of LA → Dock strike.",
-  startLabel: "A · LA Port Strike",
+  startLabel: "A · LA Strike",
   focus: [1.0, 1.2, 0.8],
-  radius: 9.2,
+  radius: 9.6,
   nodes: [
     { id: "A", opts: [{ label: "Wait out strike", score: 0.1 }, { label: "Reroute Seattle", score: 0.7 }, { label: "Mexico + truck", score: 0.4 }] },
     { id: "B", opts: [{ label: "Rail south", score: 0.3 }, { label: "Trucks on I-5", score: 0.75 }, { label: "Air freight ×8 cost", score: 0.2 }] },
@@ -78,28 +78,27 @@ const LOGISTICS: ScenarioConfig = {
   doneLog: "DISASTER AVOIDED VIA LATENT PATH MEMORY"
 };
 
-const AXIS_VECTORS = [
-  new THREE.Vector3(2.0, 0, 0), // X
-  new THREE.Vector3(0, 2.0, 0), // Y
-  new THREE.Vector3(0, 0, 2.0)  // Z
+const AXIS = [
+  new THREE.Vector3(1.4, 0, 0), // X
+  new THREE.Vector3(0, 1.4, 0), // Y
+  new THREE.Vector3(0, 0, 1.4)  // Z
 ];
 
-const COLORS = {
+const C = {
   green: 0x00ff88,
-  red: 0xff3366,
-  magenta: 0xf43f5e,
+  red: 0xff3b5c,
+  magenta: 0xff00d4,
   cyan: 0x00e5ff,
-  dim: 0x334155,
-  core: 0xffffff
+  wire: 0x475569,
+  ghost: 0x1e293b,
+  node: 0xffffff
 };
 
 interface LabelItem {
   id: string;
   text: string;
-  sub?: string;
-  score?: number;
   pos: THREE.Vector3;
-  type: "root" | "option" | "winner" | "dead" | "pivot";
+  type: "root" | "normal" | "win" | "dead" | "pivot";
 }
 
 export default function CubeAlgorithmSandbox() {
@@ -109,51 +108,51 @@ export default function CubeAlgorithmSandbox() {
   const [activeScenario, setActiveScenario] = useState<ScenarioConfig>(SMART_HOME);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [speed, setSpeed] = useState<number>(1);
-  const [statusText, setStatusText] = useState<string>("Ready. Explore 3D geometry or play simulation.");
+  const [statusText, setStatusText] = useState<string>("Ready. Select a scenario and click Play.");
   const [logs, setLogs] = useState<Array<{ text: string; type?: string }>>([]);
   const [labels, setLabels] = useState<LabelItem[]>([]);
-  const [screenLabels, setScreenLabels] = useState<Array<{ id: string; x: number; y: number; text: string; sub?: string; score?: number; type: string }>>([]);
+  const [screenLabels, setScreenLabels] = useState<Array<{ id: string; x: number; y: number; text: string; type: string }>>([]);
 
   const [kpis, setKpis] = useState({
-    activeNodes: 1,
-    latentPaths: 0,
-    causalDepth: 1,
-    recomputeCost: "0.00%"
+    evals: 0,
+    latent: 0,
+    depth: 0
   });
 
   const threeRef = useRef<{
     scene: THREE.Scene;
     camera: THREE.PerspectiveCamera;
     renderer: THREE.WebGLRenderer;
-    objs: THREE.Object3D[];
+    objects: THREE.Object3D[];
     animTimers: NodeJS.Timeout[];
-    isDragging: boolean;
-    prevMouse: { x: number; y: number };
-    spherical: { radius: number; theta: number; phi: number };
+    theta: number;
+    phi: number;
+    radius: number;
     target: THREE.Vector3;
+    drag: boolean;
+    px: number;
+    py: number;
   } | null>(null);
 
-  // Helper to project 3D coords to 2D screen pixels
+  // Project 3D positions to 2D screen coordinates
   const updateScreenLabels = useCallback(() => {
     if (!threeRef.current || !containerRef.current) return;
     const { camera } = threeRef.current;
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
+    const w = containerRef.current.clientWidth;
+    const h = containerRef.current.clientHeight;
 
-    const projected = labels.map((lbl) => {
-      const v = lbl.pos.clone().project(camera);
-      const isBehind = v.z > 1;
-      const x = ((v.x + 1) * width) / 2;
-      const y = ((-v.y + 1) * height) / 2;
+    const projected = labels.map((l) => {
+      const p = l.pos.clone().project(camera);
+      const isVisible = p.z < 1;
+      const x = (p.x * 0.5 + 0.5) * w;
+      const y = (-p.y * 0.5 + 0.5) * h;
 
       return {
-        id: lbl.id,
-        x: isBehind ? -9999 : x,
-        y: isBehind ? -9999 : y,
-        text: lbl.text,
-        sub: lbl.sub,
-        score: lbl.score,
-        type: lbl.type
+        id: l.id,
+        x: isVisible ? x : -9999,
+        y: isVisible ? y : -9999,
+        text: l.text,
+        type: l.type
       };
     });
 
@@ -164,69 +163,75 @@ export default function CubeAlgorithmSandbox() {
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
 
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight || 580;
+    const w = containerRef.current.clientWidth;
+    const h = containerRef.current.clientHeight || 520;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x060911);
-    scene.fog = new THREE.FogExp2(0x060911, 0.028);
+    scene.background = new THREE.Color(0x0a0d14);
 
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       antialias: true,
       powerPreference: "high-performance"
     });
-    renderer.setSize(width, height);
+    renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Lights
-    const ambLight = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(ambLight);
+    const amb = new THREE.AmbientLight(0xffffff, 0.85);
+    scene.add(amb);
 
-    const pLight1 = new THREE.PointLight(0x00ff88, 1.4, 40);
-    pLight1.position.set(6, 10, 6);
-    scene.add(pLight1);
+    const dir = new THREE.DirectionalLight(0xffffff, 1.2);
+    dir.position.set(8, 14, 10);
+    scene.add(dir);
 
-    const pLight2 = new THREE.PointLight(0x00e5ff, 1.0, 40);
-    pLight2.position.set(-6, -5, -6);
-    scene.add(pLight2);
+    const p1 = new THREE.PointLight(0x00ff88, 1.2, 30);
+    p1.position.set(-4, -2, -4);
+    scene.add(p1);
 
-    // Floor Grid
-    const grid = new THREE.GridHelper(24, 24, 0x1e293b, 0x0d131f);
-    grid.position.y = -1.2;
+    // Subtle coordinate floor grid
+    const grid = new THREE.GridHelper(16, 16, 0x1e293b, 0x0f172a);
+    grid.position.y = -0.5;
     scene.add(grid);
 
-    const spherical = { radius: 9.8, theta: 0.65, phi: 1.15 };
-    const target = new THREE.Vector3(0.6, 1.4, 0.9);
+    const theta = 0.72;
+    const phi = 1.12;
+    const radius = 9.2;
+    const target = new THREE.Vector3(1, 1.4, 1);
 
     threeRef.current = {
       scene,
       camera,
       renderer,
-      objs: [],
+      objects: [],
       animTimers: [],
-      isDragging: false,
-      prevMouse: { x: 0, y: 0 },
-      spherical,
-      target
+      theta,
+      phi,
+      radius,
+      target,
+      drag: false,
+      px: 0,
+      py: 0
     };
 
-    function updateCamera() {
+    function placeCam() {
       if (!threeRef.current) return;
-      const { camera, spherical, target } = threeRef.current;
-      const x = target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
-      const y = target.y + spherical.radius * Math.cos(spherical.phi);
-      const z = target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
-      camera.position.set(x, y, z);
+      const { camera, theta, phi, radius, target } = threeRef.current;
+      camera.position.set(
+        target.x + radius * Math.sin(phi) * Math.cos(theta),
+        target.y + radius * Math.cos(phi),
+        target.z + radius * Math.sin(phi) * Math.sin(theta)
+      );
       camera.lookAt(target);
     }
 
-    updateCamera();
+    placeCam();
 
     let animationId: number;
     function animate() {
       animationId = requestAnimationFrame(animate);
+      placeCam();
       renderer.render(scene, camera);
       updateScreenLabels();
     }
@@ -234,11 +239,11 @@ export default function CubeAlgorithmSandbox() {
 
     const handleResize = () => {
       if (!containerRef.current || !threeRef.current) return;
-      const w = containerRef.current.clientWidth;
-      const h = containerRef.current.clientHeight || 580;
-      threeRef.current.camera.aspect = w / h;
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight || 520;
+      threeRef.current.camera.aspect = width / height;
       threeRef.current.camera.updateProjectionMatrix();
-      threeRef.current.renderer.setSize(w, h);
+      threeRef.current.renderer.setSize(width, height);
     };
 
     window.addEventListener("resize", handleResize);
@@ -250,293 +255,309 @@ export default function CubeAlgorithmSandbox() {
     };
   }, [updateScreenLabels]);
 
-  // Mouse / Touch Orbit Controls
-  const handleMouseDown = (e: React.MouseEvent) => {
+  // Pointer Orbit Controls
+  const handlePointerDown = (e: React.PointerEvent) => {
     if (!threeRef.current) return;
-    threeRef.current.isDragging = true;
-    threeRef.current.prevMouse = { x: e.clientX, y: e.clientY };
+    threeRef.current.drag = true;
+    threeRef.current.px = e.clientX;
+    threeRef.current.py = e.clientY;
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!threeRef.current || !threeRef.current.isDragging) return;
-    const dx = e.clientX - threeRef.current.prevMouse.x;
-    const dy = e.clientY - threeRef.current.prevMouse.y;
-    threeRef.current.prevMouse = { x: e.clientX, y: e.clientY };
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!threeRef.current || !threeRef.current.drag) return;
+    const dx = e.clientX - threeRef.current.px;
+    const dy = e.clientY - threeRef.current.py;
+    threeRef.current.px = e.clientX;
+    threeRef.current.py = e.clientY;
 
-    threeRef.current.spherical.theta -= dx * 0.0055;
-    threeRef.current.spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, threeRef.current.spherical.phi - dy * 0.0055));
-
-    const { camera, spherical, target } = threeRef.current;
-    const x = target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
-    const y = target.y + spherical.radius * Math.cos(spherical.phi);
-    const z = target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
-    camera.position.set(x, y, z);
-    camera.lookAt(target);
+    threeRef.current.theta += dx * 0.006;
+    threeRef.current.phi = Math.min(2.6, Math.max(0.35, threeRef.current.phi + dy * 0.006));
     updateScreenLabels();
   };
 
-  const handleMouseUp = () => {
-    if (threeRef.current) threeRef.current.isDragging = false;
+  const handlePointerUp = () => {
+    if (threeRef.current) threeRef.current.drag = false;
   };
 
   const handleWheel = (e: React.WheelEvent) => {
     if (!threeRef.current) return;
-    threeRef.current.spherical.radius = Math.max(4.5, Math.min(22, threeRef.current.spherical.radius + e.deltaY * 0.008));
-    const { camera, spherical, target } = threeRef.current;
-    const x = target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
-    const y = target.y + spherical.radius * Math.cos(spherical.phi);
-    const z = target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
-    camera.position.set(x, y, z);
-    camera.lookAt(target);
+    threeRef.current.radius = Math.min(24, Math.max(4, threeRef.current.radius + e.deltaY * 0.008));
     updateScreenLabels();
   };
 
-  // 3D Geometry primitives
-  const clearSceneObjects = useCallback(() => {
+  // 3D Helpers
+  const clearScene = useCallback(() => {
     if (!threeRef.current) return;
-    const { scene, objs, animTimers } = threeRef.current;
+    const { scene, objects, animTimers } = threeRef.current;
     animTimers.forEach(clearTimeout);
     threeRef.current.animTimers = [];
 
-    objs.forEach((o) => scene.remove(o));
-    threeRef.current.objs = [];
+    objects.forEach((o) => scene.remove(o));
+    threeRef.current.objects = [];
     setLabels([]);
     setScreenLabels([]);
   }, []);
 
-  const addTube = (p1: THREE.Vector3, p2: THREE.Vector3, color: number, radius = 0.045) => {
-    if (!threeRef.current) return;
-    const curve = new THREE.LineCurve3(p1, p2);
-    const geom = new THREE.TubeGeometry(curve, 20, radius, 10, false);
-    const mat = new THREE.MeshStandardMaterial({
-      color,
-      emissive: color,
-      emissiveIntensity: 0.75,
-      roughness: 0.2,
-      metalness: 0.3
-    });
-    const mesh = new THREE.Mesh(geom, mat);
-    threeRef.current.scene.add(mesh);
-    threeRef.current.objs.push(mesh);
+  const track = (o: THREE.Object3D) => {
+    if (!threeRef.current) return o;
+    threeRef.current.objects.push(o);
+    threeRef.current.scene.add(o);
+    return o;
   };
 
-  const addDashedLine = (p1: THREE.Vector3, p2: THREE.Vector3, color: number) => {
-    if (!threeRef.current) return;
-    const geom = new THREE.BufferGeometry().setFromPoints([p1, p2]);
-    const mat = new THREE.LineDashedMaterial({
-      color,
-      dashSize: 0.14,
-      gapSize: 0.09,
-      linewidth: 2,
-      transparent: true,
-      opacity: 0.7
-    });
-    const line = new THREE.Line(geom, mat);
-    line.computeLineDistances();
-    threeRef.current.scene.add(line);
-    threeRef.current.objs.push(line);
-  };
-
-  const addNodeCube = (pos: THREE.Vector3, color: number, size = 0.28) => {
-    if (!threeRef.current) return;
+  const nodeCube = (pos: THREE.Vector3, color = C.node, size = 0.24, opacity = 1) => {
     const geom = new THREE.BoxGeometry(size, size, size);
     const mat = new THREE.MeshStandardMaterial({
       color,
+      transparent: opacity < 1,
+      opacity,
       emissive: color,
-      emissiveIntensity: 0.85,
-      roughness: 0.1,
-      metalness: 0.4
+      emissiveIntensity: 0.35,
+      roughness: 0.3
     });
     const mesh = new THREE.Mesh(geom, mat);
     mesh.position.copy(pos);
-    threeRef.current.scene.add(mesh);
-    threeRef.current.objs.push(mesh);
+    return track(mesh);
   };
 
-  const addWireBox = (p1: THREE.Vector3, p2: THREE.Vector3, color = COLORS.dim) => {
-    if (!threeRef.current) return;
-    const min = new THREE.Vector3(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math.min(p1.z, p2.z));
-    const max = new THREE.Vector3(Math.max(p1.x, p2.x), Math.max(p1.y, p2.y), Math.max(p1.z, p2.z));
-    const sz = max.clone().sub(min);
-    const ctr = min.clone().add(sz.clone().multiplyScalar(0.5));
+  const line = (a: THREE.Vector3, b: THREE.Vector3, color: number, dashed = false) => {
+    const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+    const mat = dashed
+      ? new THREE.LineDashedMaterial({ color, dashSize: 0.12, gapSize: 0.09, transparent: true, opacity: 0.85 })
+      : new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.95 });
+    const l = new THREE.Line(geom, mat);
+    if (dashed) l.computeLineDistances();
+    return track(l);
+  };
 
-    const geom = new THREE.BoxGeometry(Math.max(sz.x, 0.05), Math.max(sz.y, 0.05), Math.max(sz.z, 0.05));
+  const wallCube = (corner: THREE.Vector3, scale = 1.4) => {
+    const geom = new THREE.BoxGeometry(scale, scale, scale);
     const edges = new THREE.EdgesGeometry(geom);
-    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.35 });
+    const mat = new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.65 });
     const wire = new THREE.LineSegments(edges, mat);
-    wire.position.copy(ctr);
-    threeRef.current.scene.add(wire);
-    threeRef.current.objs.push(wire);
+    wire.position.copy(corner.clone().addScalar(scale / 2));
+    return track(wire);
   };
 
-  // Run Scenario
+  const tube = (a: THREE.Vector3, b: THREE.Vector3, color: number, r = 0.045) => {
+    const dir = b.clone().sub(a);
+    const len = dir.length();
+    const geom = new THREE.CylinderGeometry(r, r, len, 12);
+    const mat = new THREE.MeshStandardMaterial({
+      color,
+      emissive: color,
+      emissiveIntensity: 0.6,
+      roughness: 0.25
+    });
+    const mesh = new THREE.Mesh(geom, mat);
+    mesh.position.copy(a.clone().add(b).multiplyScalar(0.5));
+    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+    return track(mesh);
+  };
+
+  // Run Scenario Timeline
   const runSimulation = useCallback(
     (cfg: ScenarioConfig) => {
-      clearSceneObjects();
+      clearScene();
       setIsPlaying(true);
       setLogs([]);
 
-      const baseDelay = 1300 / speed;
-      let t = 0;
+      if (threeRef.current) {
+        threeRef.current.target.set(cfg.focus[0], cfg.focus[1], cfg.focus[2]);
+        threeRef.current.radius = cfg.radius || 9.2;
+      }
+
+      setKpis({ evals: 0, latent: 0, depth: 0 });
+
+      let t = 200;
+      const baseDelay = 1400 / speed;
       const timers: NodeJS.Timeout[] = [];
 
-      setKpis({
-        activeNodes: 1,
-        latentPaths: 0,
-        causalDepth: 1,
-        recomputeCost: "0.00%"
-      });
+      let cur = new THREE.Vector3(0, 0, 0);
 
-      const rootPos = new THREE.Vector3(0, 0, 0);
-      addNodeCube(rootPos, COLORS.core, 0.35);
+      // Root Node A
+      timers.push(
+        setTimeout(() => {
+          nodeCube(cur, 0xffffff, 0.3);
+          setLabels([{ id: "root", text: `<b>${cfg.startLabel}</b>`, pos: cur.clone(), type: "root" }]);
+          setStatusText(`Trigger: ${cfg.trigger}`);
+          setLogs((prev) => [...prev, { text: `[TRIGGER] ${cfg.trigger}`, type: "core" }]);
+        }, (t += 200))
+      );
 
-      setLabels([{ id: "root", text: cfg.startLabel, pos: rootPos.clone(), type: "root" }]);
-      setStatusText(`Core Trigger: ${cfg.trigger}`);
-      setLogs((prev) => [...prev, { text: `[INIT] ${cfg.trigger}`, type: "core" }]);
-
-      let cur = rootPos.clone();
       const pathStack: Array<{ node: SimNode; origin: THREE.Vector3; end: THREE.Vector3; chosen: number }> = [];
 
       cfg.nodes.forEach((nd) => {
         const origin = cur.clone();
 
-        // 1. Simulate 3 Spatial Alternatives
+        // 1. Simulate 3 options
         timers.push(
           setTimeout(() => {
-            setStatusText(`Node ${nd.id}: Simulating 3 spatial vectors along X, Y, Z axes...`);
+            setStatusText(`Node ${nd.id}: Simulating 3 timelines (X, Y, Z axes)...`);
             setLogs((prev) => [
               ...prev,
-              { text: `>> Node ${nd.id} Evaluating Spatial Options (X, Y, Z)...`, type: "info" },
-              ...nd.opts.map((o, i) => ({
-                text: `  [${nd.id}${i + 1}] ${o.label} -> Deterministic Score: ${o.score.toFixed(2)}`,
-                type: o.score > 0.5 ? "good" : o.score === 0 ? "dead" : "neutral"
-              }))
+              { text: `>> Node ${nd.id} simulating options (X, Y, Z axes)...`, type: "info" }
             ]);
 
             const newLabels: LabelItem[] = [];
-            nd.opts.forEach((opt, i) => {
-              const endPos = origin.clone().add(AXIS_VECTORS[i]);
-              addDashedLine(origin, endPos, opt.score === 0 ? COLORS.red : COLORS.red);
-              addNodeCube(endPos, opt.score === 0 ? COLORS.red : COLORS.dim, 0.2);
-              addWireBox(origin, endPos);
+            nd.opts.forEach((o, i) => {
+              const p = origin.clone().add(AXIS[i]);
+              line(origin, p, o.score <= 0 ? C.red : 0x8892a6, true);
+              nodeCube(p, o.score <= 0 ? C.red : C.ghost, 0.18, 0.85);
 
               newLabels.push({
                 id: `${nd.id}_${i}`,
-                text: `${nd.id}${i + 1} · ${opt.label}`,
-                score: opt.score,
-                pos: endPos.clone(),
-                type: opt.score === 0 ? "dead" : "option"
+                text: `[${nd.id}${i + 1}] ${o.label} · <b>${o.score.toFixed(1)}</b>`,
+                pos: p.clone(),
+                type: o.score <= 0 ? "dead" : "normal"
               });
+
+              setLogs((prev) => [
+                ...prev,
+                {
+                  text: `   [${nd.id}${i + 1}] ${o.label} → Score: ${o.score.toFixed(1)}`,
+                  type: o.score <= 0 ? "dead" : "neutral"
+                }
+              ]);
             });
 
+            wallCube(origin, 1.4);
             setLabels((prev) => [...prev, ...newLabels]);
+
+            setKpis((prev) => ({ ...prev, evals: prev.evals + 3 }));
           }, (t += baseDelay))
         );
 
-        // Crisis Failure & Backtrack Handling
+        // Crisis & Backtrack
         if (nd.dead) {
           timers.push(
             setTimeout(() => {
-              setStatusText(`ALERT: Node ${nd.id} hit catastrophic DEAD END (Score: 0.00). Discarding timeline.`);
+              setStatusText(`DEAD END at node ${nd.id} — all scores 0.0`);
               setLogs((prev) => [
                 ...prev,
-                { text: `!! ALERT: CURRENT PATH HIT A DEAD END (Score: 0.00) !!`, type: "dead" },
-                { text: `>> INITIATING CAUSAL MEMORY BACKTRACKING...`, type: "warn" }
+                { text: `!! ALERT: CURRENT PATH HIT A DEAD END (Score: 0.0) !!`, type: "dead" }
               ]);
 
-              const deadEnd = origin.clone().add(AXIS_VECTORS[1]);
-              addTube(origin, deadEnd, COLORS.red, 0.065);
+              nd.opts.forEach((o, i) => {
+                const p = origin.clone().add(AXIS[i]);
+                line(origin, p, C.red, false);
+              });
             }, (t += baseDelay))
           );
 
+          timers.push(
+            setTimeout(() => {
+              setStatusText("Causal memory backtrack — scanning latent walls...");
+              setLogs((prev) => [
+                ...prev,
+                { text: `>> INITIATING CAUSAL MEMORY BACKTRACKING...`, type: "backtrack" }
+              ]);
+            }, (t += 700 / speed))
+          );
+
           if (cfg.pivot) {
-            const p = cfg.pivot;
+            const pv = cfg.pivot;
+            for (let i = pathStack.length - 1; i >= 0; i--) {
+              const seg = pathStack[i];
+              timers.push(
+                setTimeout(() => {
+                  tube(seg.end, seg.origin, C.magenta, 0.05);
+                  const best = seg.node.opts.reduce(
+                    (a, b, j) => (j === seg.chosen ? a : a && a.score >= b.score ? a : b),
+                    null as NodeOption | null
+                  );
+                  setLogs((prev) => [
+                    ...prev,
+                    {
+                      text: `>> Traversing back to Node ${seg.node.id}... best latent: ${best?.label} (${best?.score.toFixed(1)})`,
+                      type: "backtrack"
+                    }
+                  ]);
+                  setKpis((prev) => ({ ...prev, evals: prev.evals + 2 }));
+                }, (t += 900 / speed))
+              );
+            }
+
+            const pOrigin = pathStack[pv.stackIdx].origin;
+            const pTarget = pOrigin.clone().add(AXIS[pv.optIdx]);
+
             timers.push(
               setTimeout(() => {
-                setStatusText(`Backtracking through Latent Path Memory...`);
-                for (let j = pathStack.length - 1; j >= p.stackIdx; j--) {
-                  const seg = pathStack[j];
-                  addTube(seg.end, seg.origin, COLORS.magenta, 0.055);
-                }
+                setStatusText("PIVOT: Reactivating cached latent node — zero recomputation.");
                 setLogs((prev) => [
                   ...prev,
-                  { text: `>> Traversing causal ledger backwards to Node ${cfg.nodes[p.stackIdx].id}...`, type: "backtrack" },
-                  { text: `>> Causal analysis complete: ${p.log}`, type: "pivot" }
+                  { text: `>> Causal analysis complete. ${pv.log}`, type: "pivot" },
+                  { text: `>> PIVOTING PATHWAY to latent node ${pv.id}.`, type: "pivot" }
                 ]);
-              }, (t += baseDelay))
-            );
-
-            timers.push(
-              setTimeout(() => {
-                const pivotOrigin = pathStack[p.stackIdx].origin;
-                const pivotEnd = pivotOrigin.clone().add(AXIS_VECTORS[p.optIdx]);
-
-                addTube(pivotOrigin, pivotEnd, COLORS.cyan, 0.07);
-                addNodeCube(pivotEnd, COLORS.cyan, 0.32);
+                tube(pOrigin, pTarget, C.cyan, 0.055);
+                nodeCube(pTarget, C.cyan, 0.26);
 
                 setLabels((prev) =>
-                  prev.map((lbl) =>
-                    lbl.id === `A_2` ? { ...lbl, type: "pivot", text: `A3 · Mexico + Truck (PIVOT)` } : lbl
-                  )
+                  prev.map((lbl) => (lbl.id === `A_2` ? { ...lbl, type: "pivot" } : lbl))
                 );
+              }, (t += 1200 / speed))
+            );
 
-                setKpis((prev) => ({
-                  ...prev,
-                  latentPaths: prev.latentPaths + 2,
-                  recomputeCost: "0.00% (Instant Pivot)"
-                }));
+            let c2 = pTarget.clone();
+            pv.continueDirs.forEach((d, i) => {
+              timers.push(
+                setTimeout(() => {
+                  const nx = c2.clone().add(AXIS[d]);
+                  tube(c2, nx, C.cyan, 0.055);
+                  nodeCube(nx, C.cyan, 0.22);
+                  if (pv.continueLogs[i]) {
+                    setLogs((prev) => [...prev, { text: `>> ${pv.continueLogs[i]}`, type: "good" }]);
+                  }
+                  c2 = nx;
+                  setKpis((prev) => ({ ...prev, depth: prev.depth + 1 }));
+                }, (t += 900 / speed))
+              );
+            });
 
-                setStatusText(`Pivot Successful: Locked into cached latent node ${p.id} with zero recalculation.`);
-                setLogs((prev) => [
-                  ...prev,
-                  {
-                    text: `>> PIVOTING PATHWAY to Latent Node ${p.id} (${pivotOrigin.toArray().join(", ")} -> ${pivotEnd.toArray().join(", ")})`,
-                    type: "pivot"
-                  },
-                  ...p.continueLogs.map((cl) => ({ text: `>> ${cl}`, type: "good" })),
-                  { text: `=== ${cfg.doneLog} ===`, type: "good" }
-                ]);
+            timers.push(
+              setTimeout(() => {
+                setStatusText(cfg.doneMsg);
+                setLogs((prev) => [...prev, { text: `=== ${cfg.doneLog} ===`, type: "good" }]);
                 setIsPlaying(false);
-              }, (t += baseDelay))
+              }, (t += 800 / speed))
             );
           }
           return;
         }
 
-        // 2. Select Highest Scoring Alternative
-        const bestIdx = nd.opts.reduce((m, o, i) => (o.score > nd.opts[m].score ? i : m), 0);
-        const chosenPos = origin.clone().add(AXIS_VECTORS[bestIdx]);
+        // 2. Select Best Outcome
+        const bi = nd.opts.reduce((m, o, i) => (o.score > nd.opts[m].score ? i : m), 0);
+        const chosenPos = origin.clone().add(AXIS[bi]);
 
         timers.push(
           setTimeout(() => {
-            setStatusText(`Node ${nd.id}: Optimal outcome selected → ${nd.id}${bestIdx + 1} (${nd.opts[bestIdx].label})`);
+            setStatusText(`Node ${nd.id}: Best outcome ${nd.id}${bi + 1} — ${nd.opts[bi].label}`);
             setLogs((prev) => [
               ...prev,
               {
-                text: `>> BEST OUTCOME SELECTED: ${nd.id}${bestIdx + 1} (${nd.opts[bestIdx].label}). Collapsing timeline forward.`,
+                text: `>> BEST OUTCOME SELECTED: ${nd.id}${bi + 1} (${nd.opts[bi].label}). Collapsing timeline.`,
                 type: "good"
               }
             ]);
 
-            addTube(origin, chosenPos, COLORS.green, 0.06);
-            addNodeCube(chosenPos, COLORS.green, 0.3);
+            tube(origin, chosenPos, C.green, 0.05);
+            nodeCube(chosenPos, C.green, 0.26);
+
+            nd.opts.forEach((o, i) => {
+              if (i !== bi) {
+                setKpis((prev) => ({ ...prev, latent: prev.latent + 1 }));
+              }
+            });
 
             setLabels((prev) =>
-              prev.map((lbl) =>
-                lbl.id === `${nd.id}_${bestIdx}` ? { ...lbl, type: "winner" } : lbl
-              )
+              prev.map((lbl) => (lbl.id === `${nd.id}_${bi}` ? { ...lbl, type: "win" } : lbl))
             );
 
-            setKpis((prev) => ({
-              ...prev,
-              activeNodes: prev.activeNodes + 1,
-              latentPaths: prev.latentPaths + 2,
-              causalDepth: prev.causalDepth + 1
-            }));
+            setKpis((prev) => ({ ...prev, depth: prev.depth + 1 }));
           }, (t += baseDelay))
         );
 
-        pathStack.push({ node: nd, origin, end: chosenPos, chosen: bestIdx });
+        pathStack.push({ node: nd, origin, end: chosenPos, chosen: bi });
         cur = chosenPos;
       });
 
@@ -554,128 +575,93 @@ export default function CubeAlgorithmSandbox() {
         threeRef.current.animTimers = timers;
       }
     },
-    [clearSceneObjects, speed]
+    [clearScene, speed]
   );
 
-  // Auto-run when switching scenarios
   const handleScenarioChange = (scenario: ScenarioConfig) => {
     setActiveScenario(scenario);
     runSimulation(scenario);
   };
 
-  // Run on mount
   useEffect(() => {
     const timer = setTimeout(() => {
       runSimulation(SMART_HOME);
-    }, 600);
+    }, 400);
     return () => clearTimeout(timer);
   }, [runSimulation]);
 
   return (
-    <div className="w-full my-12 rounded-3xl overflow-hidden border border-white/10 bg-[#060911] text-white shadow-2xl transition-all duration-300">
-      {/* Top Header Bar */}
-      <div className="p-5 md:p-7 border-b border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 bg-gradient-to-b from-white/[0.04] to-transparent">
+    <div className="w-full my-10 rounded-2xl overflow-hidden border border-white/10 bg-[#0a0d14] text-white shadow-2xl">
+      {/* Top Header & Scenario Selection */}
+      <div className="p-4 md:p-6 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-b from-white/[0.03] to-transparent">
         <div>
-          <div className="flex items-center gap-2.5 mb-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff88] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00ff88]" />
-            </span>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#00ff88] font-semibold">
-              Interactive 3D Geometric Intelligence Sandbox
-            </span>
-            <span className="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50">
-              WebGL · Three.js
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#00ff88] animate-pulse" />
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#00ff88] font-bold">
+              3D Deterministic Geometric Intelligence
             </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-display font-bold tracking-tight text-white">
-            The Cube Algorithm Live Simulator
-          </h2>
+          <h3 className="text-xl md:text-2xl font-display font-semibold tracking-tight text-white">
+            The Cube Algorithm Live Simulation
+          </h3>
         </div>
 
-        {/* Tactical Scenario Switcher Pills */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        {/* Scenario Switchers */}
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => handleScenarioChange(SMART_HOME)}
-            className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center gap-2.5 ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
               activeScenario.id === "smart_home"
-                ? "bg-[#00ff88]/15 text-[#00ff88] border border-[#00ff88]/50 shadow-[0_0_20px_rgba(0,255,136,0.15)]"
-                : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white"
+                ? "bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/60 shadow-[0_0_15px_rgba(0,255,136,0.2)]"
+                : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
             }`}
           >
             <Zap className="w-3.5 h-3.5" />
-            <span>Scenario 1: Smart Home Lattice</span>
+            Scenario 1: Smart Home Lattice
           </button>
 
           <button
             onClick={() => handleScenarioChange(LOGISTICS)}
-            className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all flex items-center gap-2.5 ${
+            className={`px-3.5 py-2 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
               activeScenario.id === "logistics"
-                ? "bg-[#00e5ff]/15 text-[#00e5ff] border border-[#00e5ff]/50 shadow-[0_0_20px_rgba(0,229,255,0.15)]"
-                : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white"
+                ? "bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/60 shadow-[0_0_15px_rgba(0,229,255,0.2)]"
+                : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10"
             }`}
           >
             <ShieldAlert className="w-3.5 h-3.5" />
-            <span>Scenario 2: Logistics Crisis Pivot</span>
+            Scenario 2: Logistics Crisis Pivot
           </button>
         </div>
       </div>
 
-      {/* KPI Metric Strip */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border-b border-white/10 font-mono">
-        <div className="p-4 bg-[#090d16] flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-lg bg-[#00ff88]/10 border border-[#00ff88]/30 flex items-center justify-center text-[#00ff88]">
-            <Cpu className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="text-white/40 block text-[10px] uppercase tracking-wider">ACTIVE LATTICE NODES</span>
-            <span className="text-base font-semibold text-white">{kpis.activeNodes} Physical Nodes</span>
-          </div>
+      {/* KPI Counters */}
+      <div className="grid grid-cols-3 gap-px bg-white/10 border-b border-white/10 font-mono text-center">
+        <div className="p-3 bg-[#0d121c]">
+          <span className="text-white/40 block text-[10px] uppercase">Evaluated Paths</span>
+          <span className="text-base font-bold text-white">{kpis.evals}</span>
         </div>
-
-        <div className="p-4 bg-[#090d16] flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-lg bg-[#f43f5e]/10 border border-[#f43f5e]/30 flex items-center justify-center text-[#f43f5e]">
-            <Database className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="text-white/40 block text-[10px] uppercase tracking-wider">LATENT CACHED MEMORY</span>
-            <span className="text-base font-semibold text-white">{kpis.latentPaths} Geometric Walls</span>
-          </div>
+        <div className="p-3 bg-[#0d121c]">
+          <span className="text-white/40 block text-[10px] uppercase">Latent Cached Walls</span>
+          <span className="text-base font-bold text-[#00e5ff]">{kpis.latent}</span>
         </div>
-
-        <div className="p-4 bg-[#090d16] flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-lg bg-[#00e5ff]/10 border border-[#00e5ff]/30 flex items-center justify-center text-[#00e5ff]">
-            <Eye className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="text-white/40 block text-[10px] uppercase tracking-wider">CAUSAL DEPTH & AUDIT</span>
-            <span className="text-base font-semibold text-white">Tier {kpis.causalDepth} (100% Traceable)</span>
-          </div>
-        </div>
-
-        <div className="p-4 bg-[#090d16] flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-lg bg-[#fbbf24]/10 border border-[#fbbf24]/30 flex items-center justify-center text-[#fbbf24]">
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="text-white/40 block text-[10px] uppercase tracking-wider">RECOMPUTATION OVERHEAD</span>
-            <span className="text-base font-semibold text-[#00ff88]">{kpis.recomputeCost}</span>
-          </div>
+        <div className="p-3 bg-[#0d121c]">
+          <span className="text-white/40 block text-[10px] uppercase">Causal Stack Depth</span>
+          <span className="text-base font-bold text-[#00ff88]">{kpis.depth}</span>
         </div>
       </div>
 
-      {/* Large 3D Viewport with High-Density Canvas */}
-      <div className="relative w-full h-[520px] md:h-[600px] bg-[#05080f] overflow-hidden" ref={containerRef}>
-        <canvas
-          ref={canvasRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onWheel={handleWheel}
-          className="w-full h-full cursor-grab active:cursor-grabbing"
-        />
+      {/* 3D WebGL Canvas Area */}
+      <div
+        className="relative w-full h-[480px] bg-[#070a10] overflow-hidden select-none cursor-grab active:cursor-grabbing"
+        ref={containerRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onWheel={handleWheel}
+      >
+        <canvas ref={canvasRef} className="w-full h-full" />
 
-        {/* Dynamic 3D Projected Screen Labels */}
+        {/* 3D Floating Screen Labels */}
         {screenLabels.map((lbl) => {
           if (lbl.x < -100 || lbl.x > 3000) return null;
           return (
@@ -685,107 +671,92 @@ export default function CubeAlgorithmSandbox() {
                 position: "absolute",
                 left: `${lbl.x}px`,
                 top: `${lbl.y}px`,
-                transform: "translate(-50%, -130%)"
+                transform: "translate(-50%, -120%)"
               }}
-              className={`pointer-events-none transition-all duration-300 font-mono text-[11px] px-2.5 py-1 rounded-md border backdrop-blur-md whitespace-nowrap shadow-lg ${
-                lbl.type === "winner"
-                  ? "bg-[#00ff88]/20 border-[#00ff88] text-[#00ff88] font-bold shadow-[0_0_15px_rgba(0,255,136,0.3)] scale-105"
+              dangerouslySetInnerHTML={{ __html: lbl.text }}
+              className={`pointer-events-none transition-all duration-200 font-mono text-[11px] px-2 py-0.5 rounded border backdrop-blur-md whitespace-nowrap shadow-md ${
+                lbl.type === "win"
+                  ? "bg-[#00ff88]/20 border-[#00ff88] text-[#00ff88] font-bold shadow-[0_0_12px_rgba(0,255,136,0.4)]"
                   : lbl.type === "pivot"
-                  ? "bg-[#00e5ff]/20 border-[#00e5ff] text-[#00e5ff] font-bold shadow-[0_0_15px_rgba(0,229,255,0.3)] scale-105"
+                  ? "bg-[#00e5ff]/20 border-[#00e5ff] text-[#00e5ff] font-bold shadow-[0_0_12px_rgba(0,229,255,0.4)]"
                   : lbl.type === "dead"
-                  ? "bg-[#ff3366]/20 border-[#ff3366] text-[#ff3366] font-bold shadow-[0_0_15px_rgba(255,51,102,0.3)]"
+                  ? "bg-[#ff3b5c]/25 border-[#ff3b5c] text-[#ff3b5c] font-bold"
                   : lbl.type === "root"
                   ? "bg-white/20 border-white text-white font-bold"
-                  : "bg-black/60 border-white/20 text-white/70"
+                  : "bg-black/70 border-white/20 text-white/80"
               }`}
-            >
-              {lbl.text}
-              {lbl.score !== undefined && (
-                <span className="ml-1.5 opacity-80 text-[10px]">[{lbl.score.toFixed(2)}]</span>
-              )}
-            </div>
+            />
           );
         })}
 
-        {/* Floating Top-Left Status HUD */}
-        <div className="absolute top-5 left-5 right-5 md:right-auto md:max-w-lg p-3.5 rounded-xl bg-black/75 backdrop-blur-xl border border-white/15 text-xs font-mono pointer-events-none shadow-2xl">
-          <div className="flex items-center justify-between gap-4 mb-1">
-            <span className="text-white/40 text-[10px] uppercase tracking-wider">CURRENT STATE EXECUTION</span>
-            <span className="text-[10px] text-[#00ff88] font-semibold">{activeScenario.badge}</span>
-          </div>
-          <div className="text-white font-medium leading-snug">{statusText}</div>
+        {/* Floating Status Ticker */}
+        <div className="absolute top-3.5 left-3.5 right-3.5 md:right-auto md:max-w-md p-3 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono pointer-events-none">
+          <div className="text-white/40 text-[10px] uppercase mb-0.5">CURRENT STATE</div>
+          <div className="text-[#00ff88] font-medium leading-snug">{statusText}</div>
         </div>
 
-        {/* Color Legend HUD */}
-        <div className="absolute bottom-5 left-5 p-3 rounded-xl bg-black/75 backdrop-blur-xl border border-white/15 text-[11px] font-mono flex flex-col gap-1.5 pointer-events-none shadow-xl">
+        {/* Floating Legend */}
+        <div className="absolute bottom-3.5 left-3.5 p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-[10.5px] font-mono flex flex-col gap-1 pointer-events-none">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#00ff88] shadow-[0_0_8px_#00ff88]" />
-            <span className="text-white/80">Solid Green: Optimal Extruded Vector</span>
+            <span className="w-2 h-2 rounded-full bg-[#00ff88]" />
+            <span className="text-white/70">Solid Green: Optimal Chosen Path</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff3366]" />
-            <span className="text-white/80">Red Dashed: Latent Alternative Walls</span>
+            <span className="w-2 h-2 rounded-full bg-[#475569]" />
+            <span className="text-white/70">Wireframe Box: Geometric Unit Cube</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#f43f5e]" />
-            <span className="text-white/80">Magenta: Causal Memory Backtrack</span>
+            <span className="w-2 h-2 rounded-full bg-[#ff00d4]" />
+            <span className="text-white/70">Magenta: Memory Backtracking</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
-            <span className="text-white/80">Cyan: Self-Healed Latent Pivot</span>
+            <span className="w-2 h-2 rounded-full bg-[#00e5ff]" />
+            <span className="text-white/70">Cyan: Latent Pivot</span>
           </div>
         </div>
 
-        {/* 3D Orbit Control Hint */}
-        <div className="absolute bottom-5 right-5 text-[11px] font-mono text-white/50 bg-black/75 backdrop-blur-xl px-3 py-1.5 rounded-lg border border-white/15 pointer-events-none flex items-center gap-2">
-          <span>🖱️ Click & Drag to Orbit · Scroll to Zoom</span>
+        {/* Orbit Hint */}
+        <div className="absolute bottom-3.5 right-3.5 text-[10px] font-mono text-white/40 bg-black/60 px-2 py-1 rounded border border-white/5 pointer-events-none">
+          Drag to Rotate · Scroll to Zoom
         </div>
       </div>
 
       {/* Bottom Controls & Terminal Stream */}
-      <div className="p-5 md:p-7 bg-[#090d16] border-t border-white/10 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Playback Control Box */}
-        <div className="flex flex-col justify-between gap-4">
-          <div>
-            <span className="text-xs font-mono text-white/40 uppercase tracking-wider block mb-2">
-              SIMULATION CONTROLS
-            </span>
-            <div className="flex items-center gap-2.5">
-              <button
-                onClick={() => runSimulation(activeScenario)}
-                disabled={isPlaying}
-                className="flex-1 py-3 px-5 rounded-xl bg-[#00ff88] text-black font-bold text-xs font-mono flex items-center justify-center gap-2.5 hover:bg-[#00ff88]/90 disabled:opacity-50 transition-all shadow-[0_0_25px_rgba(0,255,136,0.35)]"
-              >
-                <Play className="w-4 h-4 fill-black" />
-                {isPlaying ? "Executing Timeline..." : "Replay Scenario"}
-              </button>
-
-              <button
-                onClick={() => {
-                  clearSceneObjects();
-                  setStatusText("Reset to initial state.");
-                  setLogs([]);
-                }}
-                className="py-3 px-4 rounded-xl bg-white/5 text-white/80 hover:bg-white/10 border border-white/10 text-xs font-mono transition-all"
-                title="Reset Scene"
-              >
-                <RotateCcw className="w-4 h-4" />
-              </button>
-            </div>
+      <div className="p-4 md:p-6 bg-[#0a0e17] border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => runSimulation(activeScenario)}
+              disabled={isPlaying}
+              className="flex-1 py-2.5 px-4 rounded-lg bg-[#00ff88] text-black font-bold text-xs font-mono flex items-center justify-center gap-2 hover:bg-[#00ff88]/90 disabled:opacity-50 transition-all shadow-[0_0_20px_rgba(0,255,136,0.3)]"
+            >
+              <Play className="w-3.5 h-3.5 fill-black" />
+              {isPlaying ? "Simulating..." : "Replay"}
+            </button>
+            <button
+              onClick={() => {
+                clearScene();
+                setStatusText("Reset to initial state.");
+                setLogs([]);
+              }}
+              className="py-2.5 px-3 rounded-lg bg-white/5 text-white/70 hover:bg-white/10 border border-white/10 text-xs font-mono transition-all"
+              title="Reset"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
           </div>
 
-          {/* Speed Selection */}
-          <div className="flex items-center justify-between text-xs font-mono text-white/60 pt-3 border-t border-white/5">
-            <span>Execution Speed:</span>
-            <div className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between text-xs font-mono text-white/50">
+            <span>Speed:</span>
+            <div className="flex items-center gap-1">
               {[0.5, 1, 2].map((s) => (
                 <button
                   key={s}
                   onClick={() => setSpeed(s)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`px-2 py-1 rounded text-[11px] ${
                     speed === s
-                      ? "bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/50"
-                      : "bg-white/5 text-white/50 border border-white/5 hover:bg-white/10 hover:text-white"
+                      ? "bg-[#00ff88]/20 text-[#00ff88] border border-[#00ff88]/50 font-bold"
+                      : "bg-white/5 text-white/40"
                   }`}
                 >
                   {s}x
@@ -795,17 +766,14 @@ export default function CubeAlgorithmSandbox() {
           </div>
         </div>
 
-        {/* Live Terminal Execution Ledger */}
-        <div className="lg:col-span-2 h-44 overflow-y-auto bg-black/80 rounded-2xl p-4 border border-white/10 font-mono text-[11.5px] space-y-1.5 scrollbar-thin">
-          <div className="flex items-center justify-between text-white/40 text-[10px] pb-2 border-b border-white/10 mb-2">
-            <span className="flex items-center gap-1.5">
-              <Terminal className="w-3.5 h-3.5 text-[#00ff88]" />
-              DETERMINISTIC CAUSAL LEDGER STREAM
-            </span>
-            <span>IMMUTABLE HISTORY</span>
+        {/* Live Terminal */}
+        <div className="md:col-span-2 h-36 overflow-y-auto bg-black/60 rounded-xl p-3 border border-white/5 font-mono text-[11px] space-y-1 scrollbar-thin">
+          <div className="text-white/30 text-[10px] pb-1 border-b border-white/5 mb-1.5 flex items-center gap-1.5">
+            <Terminal className="w-3 h-3 text-[#00ff88]" />
+            DETERMINISTIC EXECUTION LOG
           </div>
           {logs.length === 0 ? (
-            <div className="text-white/30 italic py-4">Timeline initializing...</div>
+            <div className="text-white/30 italic">Click Replay to start simulation...</div>
           ) : (
             logs.map((l, i) => (
               <div
@@ -814,11 +782,11 @@ export default function CubeAlgorithmSandbox() {
                   l.type === "good"
                     ? "text-[#00ff88]"
                     : l.type === "dead"
-                    ? "text-[#ff3366] font-bold"
+                    ? "text-[#ff3b5c] font-bold"
                     : l.type === "warn"
                     ? "text-[#fbbf24]"
                     : l.type === "backtrack"
-                    ? "text-[#f43f5e]"
+                    ? "text-[#ff00d4]"
                     : l.type === "pivot"
                     ? "text-[#00e5ff] font-semibold"
                     : l.type === "info"
