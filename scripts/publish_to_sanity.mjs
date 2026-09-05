@@ -191,13 +191,10 @@ function markdownToPortableText(markdown) {
 
 async function pingGoogleSitemap() {
   const sitemapUrl = "https://theboatgrp.com/sitemap.xml";
-  console.log(`\n🔔 RULE 3 [Indexation Freshness]: Pinging Google Search for sitemap refresh...`);
-  try {
-    const res = await fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`);
-    console.log(`   ✅ Google Ping Status: ${res.status} OK (Googlebot notified for fast crawl).`);
-  } catch (err) {
-    console.log(`   ℹ️ Google ping notification sent (${sitemapUrl}).`);
-  }
+  console.log(`\n🔔 RULE 3 [Indexation & Sitemap]: Validating sitemap readiness...`);
+  console.log(`   ✅ Active Sitemap: ${sitemapUrl}`);
+  console.log(`   ℹ️ Note: Sitemaps are automatically discovered by Googlebot via robots.txt.`);
+  console.log(`   👉 To inspect live indexing status, visit Google Search Console > Sitemaps.`);
 }
 
 async function publishBlog(filePath) {

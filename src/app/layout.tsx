@@ -1,10 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Anton, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import LocalBusinessSchema from "@/components/schema/LocalBusinessSchema";
 import { CONTACT } from "@/lib/constants";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0f0f0f",
+  colorScheme: "dark",
+};
 
 const anton = Anton({
   subsets: ["latin"],
@@ -72,10 +80,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/fav.png", type: "image/png", sizes: "48x48" },
+      { url: "/logo.png", type: "image/png", sizes: "192x192" },
     ],
-    apple: "/fav.png",
-    shortcut: "/fav.png",
+    apple: [
+      { url: "/fav.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
@@ -118,6 +130,11 @@ const jsonLd = {
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: "theBOAT",
+      alternateName: [
+        "theBOAT Group",
+        "theBOAT Studio",
+        "theBOAT Automation & Web Studio",
+      ],
       publisher: { "@id": `${SITE_URL}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -127,6 +144,48 @@ const jsonLd = {
         },
         "query-input": "required name=search_term_string",
       },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/#sitenavigation`,
+      name: "Site Navigation",
+      itemListElement: [
+        {
+          "@type": "SiteNavigationElement",
+          position: 1,
+          name: "Services",
+          description: "Shopify, custom web apps, and autonomous workflows",
+          url: `${SITE_URL}/services`,
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 2,
+          name: "Work",
+          description: "Client case studies and engineering portfolio",
+          url: `${SITE_URL}/work`,
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 3,
+          name: "Stores",
+          description: "Live Shopify storefronts and ecommerce architectures",
+          url: `${SITE_URL}/stores`,
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 4,
+          name: "Blog",
+          description: "Engineering and automation benchmarks",
+          url: `${SITE_URL}/blog`,
+        },
+        {
+          "@type": "SiteNavigationElement",
+          position: 5,
+          name: "Contact",
+          description: "Start a project or book an architecture discovery call",
+          url: `${SITE_URL}/#contact`,
+        },
+      ],
     },
   ],
 };

@@ -1,12 +1,69 @@
 {
-  "generatedAt": "2026-08-30T03:52:39.423Z",
-  "publishedMemoryCount": 19,
+  "generatedAt": "2026-09-05T05:19:51.782Z",
+  "publishedMemoryCount": 20,
   "pillars": {
     "n8n_automation": {
       "pillarName": "Workflow Automation & n8n",
-      "totalPostsScanned": 0,
-      "questionsCount": 0,
-      "topQuestions": []
+      "totalPostsScanned": 49,
+      "questionsCount": 32,
+      "topQuestions": [
+        {
+          "question": "Help a beginner! Trying to connect Google Sheets & Gmail in self-hosted n8n (Credential Error)",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I have recently started learning n8n. To avoid n8n cloud fees after the free trial, I self-hosted it locally using nod...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7r58s/help_a_beginner_trying_to_connect_google_sheets/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "Building an IoT device tester — what device should I use for testing?",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I’m currently building a small IoT testing tool that can connect to a device and automatically run different tests, li...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7a2jb/building_an_iot_device_tester_what_device_should/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "Are my expectations of management unrealistic, or are theirs?",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Our organization has had a few challenges since I joined 10 months ago.&lt;br/&gt; We are just two developers, and top...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7jgdx/are_my_expectations_of_management_unrealistic_or/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "What the 2026-07-28 MCP revision actually changes for n8n (it isn't the deprecations)",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Most of the noise about the new MCP revision is about the three deprecations. On n8n those are the part that doesn&amp...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w736k0/what_the_20260728_mcp_revision_actually_changes/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "How can I improve error handling and duplicate lead detection in this n8n workflow?",
+          "snippet": "&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/n8n/comments/1w7amlx/how_can_i_improve_error_handling_and_duplicate/&quot;&gt; &lt;img src=&quot;https:...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7amlx/how_can_i_improve_error_handling_and_duplicate/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "As your n8n workflows grow, where do you keep the actual state of the work?",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I&amp;#39;ve been thinking about a problem that seems to appear once automation goes beyond simple trigger → action wo...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w6znak/as_your_n8n_workflows_grow_where_do_you_keep_the/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "How did you find out an n8n workflow silently stopped?",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;No error thrown, nothing crashed, it just stops doing its job. Was it you noticing, a monitoring node, or someone down...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w75q6m/how_did_you_find_out_an_n8n_workflow_silently/",
+          "pillar": "n8n_automation"
+        },
+        {
+          "question": "Why Self hosted N8n using Docker can't?",
+          "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I use docker for my self hosted n8n account. I tried to create a AI customer support agent. I used whatsapp as my trig...",
+          "sourceSubreddit": "n8n",
+          "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w6na6m/why_self_hosted_n8n_using_docker_cant/",
+          "pillar": "n8n_automation"
+        }
+      ]
     },
     "ai_agents": {
       "pillarName": "AI Agents & Autonomous Operations",
@@ -33,7 +90,64 @@
       "topQuestions": []
     }
   },
-  "allMinedQuestions": [],
+  "allMinedQuestions": [
+    {
+      "question": "Help a beginner! Trying to connect Google Sheets & Gmail in self-hosted n8n (Credential Error)",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I have recently started learning n8n. To avoid n8n cloud fees after the free trial, I self-hosted it locally using nod...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7r58s/help_a_beginner_trying_to_connect_google_sheets/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "Building an IoT device tester — what device should I use for testing?",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I’m currently building a small IoT testing tool that can connect to a device and automatically run different tests, li...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7a2jb/building_an_iot_device_tester_what_device_should/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "Are my expectations of management unrealistic, or are theirs?",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Our organization has had a few challenges since I joined 10 months ago.&lt;br/&gt; We are just two developers, and top...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7jgdx/are_my_expectations_of_management_unrealistic_or/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "What the 2026-07-28 MCP revision actually changes for n8n (it isn't the deprecations)",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Most of the noise about the new MCP revision is about the three deprecations. On n8n those are the part that doesn&amp...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w736k0/what_the_20260728_mcp_revision_actually_changes/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "How can I improve error handling and duplicate lead detection in this n8n workflow?",
+      "snippet": "&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/n8n/comments/1w7amlx/how_can_i_improve_error_handling_and_duplicate/&quot;&gt; &lt;img src=&quot;https:...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w7amlx/how_can_i_improve_error_handling_and_duplicate/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "As your n8n workflows grow, where do you keep the actual state of the work?",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I&amp;#39;ve been thinking about a problem that seems to appear once automation goes beyond simple trigger → action wo...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w6znak/as_your_n8n_workflows_grow_where_do_you_keep_the/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "How did you find out an n8n workflow silently stopped?",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;No error thrown, nothing crashed, it just stops doing its job. Was it you noticing, a monitoring node, or someone down...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w75q6m/how_did_you_find_out_an_n8n_workflow_silently/",
+      "pillar": "n8n_automation"
+    },
+    {
+      "question": "Why Self hosted N8n using Docker can't?",
+      "snippet": "&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I use docker for my self hosted n8n account. I tried to create a AI customer support agent. I used whatsapp as my trig...",
+      "sourceSubreddit": "n8n",
+      "sourceUrl": "https://www.reddit.com/r/n8n/comments/1w6na6m/why_self_hosted_n8n_using_docker_cant/",
+      "pillar": "n8n_automation"
+    }
+  ],
   "evaluatedOpportunities": [
     {
       "pillar": "n8n_automation",
