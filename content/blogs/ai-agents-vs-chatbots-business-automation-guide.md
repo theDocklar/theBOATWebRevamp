@@ -7,7 +7,7 @@ secondaryKeywords: ["narrow ai agents for business","agentic commerce shopify","
 category: "AI & Autonomous Agents"
 readingTime: "6 min read"
 author: "theBOAT"
-createdAt: "2026-08-30T03:55:51.820Z"
+createdAt: "2026-09-05T05:20:59.075Z"
 faqs: [
   {
     "question": "What is the difference between an AI agent and a chatbot?",

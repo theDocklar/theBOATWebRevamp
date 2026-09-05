@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "tool": "SEO Genie — Technical SEO Audit",
+    "version": "1.0.0",
+    "generatedAt": "2026-09-05T03:14:38.854Z",
+    "poweredBy": "theBOAT Group (https://theboatgrp.com)"
+  },
+  "target": {
+    "url": "https://theboatgrp.com",
+    "domain": "theboatgrp.com"
+  },
+  "overallScore": 94,
+  "overallRating": "GOOD",
+  "audits": {
+    "coreWebVitals": {
+      "performanceScore": 97,
+      "seoScore": 100,
+      "lab": {
+        "lcp": 2574,
+        "cls": 0,
+        "tbt": 0,
+        "ttfb": 28,
+        "fcp": 983
+      },
+      "field": {
+        "lcp": null,
+        "inp": null,
+        "cls": null,
+        "ttfb": null
+      }
+    },
+    "crawlability": {
+      "robotsTxt": {
+        "exists": true,
+        "allowsGooglebot": true,
+        "sitemaps": [
+          "https://theboatgrp.com/sitemap.xml"
+        ]
+      },
+      "sitemaps": [
+        {
+          "url": "https://theboatgrp.com/sitemap.xml",
+          "exists": true,
+          "status": 200
+        }
+      ],
+      "indexability": {
+        "isNoIndex": false,
+        "metaRobots": "index, follow",
+        "xRobotsTag": null
+      },
+      "canonical": {
+        "href": "https://theboatgrp.com",
+        "isSelfReferencing": true
+      }
+    },
+    "ssl": {
+      "cert": {
+        "valid": true,
+        "authorizationError": null,
+        "issuer": "Let's Encrypt",
+        "subject": "theboatgrp.com",
+        "validFrom": "2026-09-04T04:43:49.000Z",
+        "validTo": "2026-12-03T04:43:48.000Z",
+        "daysRemaining": 89,
+        "isExpired": false,
+        "protocol": "TLSv1.3"
+      },
+      "redirect": {
+        "redirects": true,
+        "redirectsToHttps": true,
+        "statusCode": 301,
+        "location": "https://theboatgrp.com/"
+      }
+    },
+    "structuredData": {
+      "totalSchemas": 8,
+      "types": [
+        "Organization",
+        "WebSite",
+        "LocalBusiness",
+        "FAQPage",
+        "Service",
+        "Service",
+        "Service",
+        "Service"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "mobileFriendliness": {
+      "viewport": null,
+      "tapTargets": null,
+      "fontSize": null
+    },
+    "domainAuthority": {
+      "available": false,
+      "reason": "OPENPAGERANK_API_KEY not set (free at openpagerank.com)"
+    }
+  }
+}

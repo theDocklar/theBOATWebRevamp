@@ -45,9 +45,11 @@ export default function HeroSection() {
       {/* Hero content */}
       <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-5 md:px-8 pb-16 pt-12 md:pt-16">
         <div className="max-w-4xl">
-          {/* Main headline */}
+          {/* Main headline — rendered visible immediately for LCP */}
           <motion.h1
-            {...fadeUp(0.2)}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: EASE }}
             className="text-[clamp(64px,11vw,130px)] uppercase leading-[0.9] tracking-tight text-white"
             style={{ fontFamily: "var(--font-display)" }}
           >
